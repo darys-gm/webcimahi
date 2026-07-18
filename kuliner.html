@@ -1,0 +1,1420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
+    <title>Kuliner Khas Cimahi - Portal Wisata Digital</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Quicksand:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4caf50",
+                        "primary-fixed": "#99f894",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary": "#005313",
+                        "secondary-container": "#ffb05f",
+                        "primary-fixed-dim": "#7edb7b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface-variant": "#3f4a3c",
+                        "inverse-surface": "#2f3131",
+                        "tertiary-container": "#785900",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-background": "#1a1c1c",
+                        "outline-variant": "#bfcab9",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#754300",
+                        "surface-dim": "#dadada",
+                        "tertiary-fixed-dim": "#ebc166",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#006e1c",
+                        "on-tertiary-container": "#fdd275",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary": "#8b5000",
+                        "tertiary-fixed": "#ffdf9e",
+                        "outline": "#6f7a6b",
+                        "on-primary-container": "#8fee8b",
+                        "inverse-primary": "#7edb7b",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005313",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-secondary-fixed-variant": "#6a3c00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-primary-fixed": "#002204",
+                        "tertiary": "#5b4200",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "64px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Quicksand"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Quicksand"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Quicksand"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        body {
+            background: #f9f9f9;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        /* ============================================================
+           ANIMASI AOS CUSTOM
+           ============================================================ */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+
+        /* Animasi fade-up */
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+        }
+
+        /* Animasi fade-left */
+        [data-aos="fade-left"] {
+            transform: translateX(-40px);
+        }
+        [data-aos="fade-left"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi fade-right */
+        [data-aos="fade-right"] {
+            transform: translateX(40px);
+        }
+        [data-aos="fade-right"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi zoom-in */
+        [data-aos="zoom-in"] {
+            transform: scale(0.9);
+        }
+        [data-aos="zoom-in"].aos-animate {
+            transform: scale(1);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #6b7280;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+        .back-btn:hover {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+        .back-btn span {
+            font-size: 1rem;
+        }
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: translateY(99%);
+            z-index: 10;
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+        .wave-divider .shape-fill { fill: var(--wave-color, #f9f9f9); }
+
+        /* Animasi Awan */
+        @keyframes floatCloudRight {
+            0% { transform: translateX(-10vw) scale(1); }
+            100% { transform: translateX(calc(100vw + 10vw)) scale(1.1); }
+        }
+        @keyframes floatCloudLeft {
+            0% { transform: translateX(calc(100vw + 10vw)) scale(1); }
+            100% { transform: translateX(-10vw) scale(1.1); }
+        }
+        .cloud-hover:hover { animation-play-state: paused !important; }
+
+        /* ============================================================
+           TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH
+           ============================================================ */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #005313;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* Mobile version */
+        .mobile-lang-btn {
+            margin-top: 0.5rem;
+            padding: 0.4rem 1rem;
+            align-self: flex-start;
+            background: transparent;
+            border: 1px solid #005313;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .mobile-lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .mobile-lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .mobile-lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .mobile-lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .mobile-lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .mobile-lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mobile-lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .mobile-lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mobile-lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        @keyframes langPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .lang-pulse {
+            animation: langPulse 0.4s ease-in-out;
+        }
+
+        .kuliner-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .kuliner-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            border-color: #4caf50;
+        }
+        
+        .kuliner-card .image-side {
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .kuliner-card .image-side::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(0, 83, 19, 0.15) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        
+        .kuliner-card:hover .image-side::after {
+            opacity: 1;
+        }
+        
+        .kuliner-card .image-side img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .kuliner-card:hover .image-side img {
+            transform: scale(1.08);
+        }
+        
+        .kuliner-card .text-side h2 {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .kuliner-card .text-side h2::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #005313;
+            transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 2px;
+        }
+        
+        .kuliner-card:hover .text-side h2::after {
+            width: 40%;
+        }
+        
+        .kuliner-card .text-side .tag-container span {
+            transition: all 0.3s ease;
+        }
+        
+        .kuliner-card:hover .text-side .tag-container span {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .kuliner-card .text-side .price-tag {
+            transition: all 0.4s ease;
+        }
+        
+        .kuliner-card:hover .text-side .price-tag {
+            background: #005313 !important;
+            color: white !important;
+            transform: scale(1.05);
+            box-shadow: 0 4px 16px rgba(0, 83, 19, 0.3);
+        }
+
+        /* Back to Top FAB - Fix agar tidak keluar layar */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #ffb05f;
+            color: #754300;
+            border: none;
+            box-shadow: 0 8px 30px rgba(255, 176, 95, 0.4);
+            cursor: pointer;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 176, 95, 0.6);
+            background: #ffb871;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.95);
+        }
+
+        .back-to-top .material-symbols-outlined {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                min-height: 48px;
+                max-width: 48px;
+                max-height: 48px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .back-to-top {
+                bottom: 12px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                max-width: 44px;
+                max-height: 44px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 20px;
+            }
+        }
+
+        /* ============================================================
+           AWAN - POSISI DINAIKKAN UNTUK SEMUA UKURAN LAYAR
+           ============================================================ */
+        .cloud-container { 
+            height: 35% !important; 
+            top: 0% !important;
+        }
+        .cloud-1 { top: 2% !important; }
+        .cloud-2 { top: 15% !important; }
+        .cloud-3 { top: 35% !important; }
+        .cloud-4 { top: 60% !important; }
+
+        @media (max-width: 1024px) {
+            .cloud-container { height: 38% !important; top: 0% !important; }
+            .cloud-1 { top: 3% !important; }
+            .cloud-2 { top: 18% !important; }
+            .cloud-3 { top: 38% !important; }
+            .cloud-4 { top: 62% !important; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo { height: 2rem !important; }
+            .nav-logo-second { height: 2.25rem !important; }
+            
+            .hero-section {
+                background-size: cover !important;
+                background-position: 50% 30% !important;
+                background-attachment: scroll !important;
+                min-height: 50vh !important;
+            }
+            
+            .cloud-container { height: 40% !important; top: 0% !important; }
+            .cloud-1 { width: 5rem !important; top: 2% !important; opacity: 0.7 !important; }
+            .cloud-2 { width: 4rem !important; top: 18% !important; opacity: 0.6 !important; }
+            .cloud-3 { width: 6rem !important; top: 38% !important; opacity: 0.5 !important; }
+            .cloud-4 { width: 3.5rem !important; top: 60% !important; opacity: 0.55 !important; }
+            .hero-title { font-size: 2rem !important; }
+            .card-content { padding: 1.25rem !important; }
+            
+            .kuliner-card { 
+                flex-direction: column !important; 
+            }
+            .kuliner-card .image-side { 
+                width: 100% !important; 
+                height: 200px !important; 
+                flex: none !important;
+                max-width: 100% !important;
+                order: 1 !important;
+            }
+            .kuliner-card .text-side { 
+                width: 100% !important; 
+                flex: none !important;
+                max-width: 100% !important;
+                order: 2 !important;
+            }
+
+            /* Top Footer - mobile */
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                text-align: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-center {
+                padding: 0 !important;
+            }
+            /* FOLLOW US - CENTER DI MOBILE */
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero-section {
+                background-size: cover !important;
+                background-position: 50% 25% !important;
+                background-attachment: scroll !important;
+                min-height: 45vh !important;
+            }
+            
+            .cloud-container { height: 45% !important; top: 0% !important; }
+            .cloud-1 { width: 4rem !important; top: 2% !important; }
+            .cloud-2 { width: 3.2rem !important; top: 16% !important; }
+            .cloud-3 { width: 5rem !important; top: 35% !important; }
+            .cloud-4 { width: 2.8rem !important; top: 55% !important; }
+            .hero-title { font-size: 1.5rem !important; }
+            .card-content { padding: 1rem !important; }
+            .kuliner-card .image-side { height: 160px !important; }
+
+            /* Top Footer - sangat kecil */
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1rem !important;
+                text-align: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+
+        /* ============================================================
+           TABLET (641px – 1024px) - SEMUA CARD: Gambar di ATAS
+           ============================================================ */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .kuliner-card { 
+                flex-direction: column !important; 
+            }
+            .kuliner-card .image-side { 
+                width: 100% !important; 
+                height: 280px !important; 
+                flex: none !important;
+                max-width: 100% !important;
+                order: 1 !important;
+            }
+            .kuliner-card .text-side { 
+                width: 100% !important; 
+                flex: none !important;
+                max-width: 100% !important;
+                order: 2 !important;
+                padding: 1.5rem !important;
+            }
+        }
+
+        /* ============================================================
+           DESKTOP (≥ 1025px) - ZIG-ZAG LAYOUT
+           Card 1: Gambar KANAN, Teks KIRI
+           Card 2: Gambar KIRI, Teks KANAN
+           Card 3: Gambar KANAN, Teks KIRI
+           ============================================================ */
+        @media (min-width: 1025px) {
+            .kuliner-card {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: stretch !important;
+            }
+            
+            .kuliner-card .image-side {
+                flex: 0 0 50% !important;
+                width: 50% !important;
+                max-width: 50% !important;
+                height: auto !important;
+                min-height: 340px !important;
+                display: flex !important;
+                align-items: stretch !important;
+            }
+            
+            .kuliner-card .image-side img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+            
+            .kuliner-card .text-side {
+                flex: 0 0 50% !important;
+                width: 50% !important;
+                max-width: 50% !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                padding: 2rem !important;
+            }
+            
+            /* CARD 1 (Denjapi): Gambar di KANAN, Teks di KIRI */
+            .kuliner-card:nth-child(1) .image-side { 
+                order: 2 !important;
+            }
+            .kuliner-card:nth-child(1) .text-side { 
+                order: 1 !important;
+            }
+            
+            /* CARD 2 (Keripik Singkong): Gambar di KIRI, Teks di KANAN */
+            .kuliner-card:nth-child(2) .image-side { 
+                order: 1 !important;
+            }
+            .kuliner-card:nth-child(2) .text-side { 
+                order: 2 !important;
+            }
+            
+            /* CARD 3 (Sumpia Udang): Gambar di KANAN, Teks di KIRI */
+            .kuliner-card:nth-child(3) .image-side { 
+                order: 2 !important;
+            }
+            .kuliner-card:nth-child(3) .text-side { 
+                order: 1 !important;
+            }
+        }
+
+        footer {
+            border-radius: 0 !important;
+        }
+
+        /* ============================================================
+           FOOTER - 3 SECTION (TOP, MID, BOTTOM)
+           ============================================================ */
+        /* Top Footer */
+        .top-footer {
+            background-color: #1a3c2a;
+            padding: 3rem 0;
+        }
+
+        .top-footer .top-footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .top-footer .top-footer-inner .top-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center {
+            flex: 1;
+            text-align: left;
+            padding: 0 1rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .top-footer .top-footer-inner .top-footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right .social-icons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #ffb05f;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .top-footer {
+                padding: 2rem 0;
+            }
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                text-align: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-center {
+                padding: 0 !important;
+            }
+            /* FOLLOW US - CENTER DI MOBILE */
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-footer {
+                padding: 1.5rem 0;
+            }
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+
+        /* Mid Footer - Background Image */
+        .mid-footer {
+            background-image: url('images/footer-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .mid-footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 60, 42, 0.75);
+            z-index: 1;
+        }
+
+        .mid-footer > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mid-footer .mid-footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .mid-footer .mid-footer-title {
+            color: #ffb05f;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .mid-footer .footer-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            justify-content: flex-start;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item:hover {
+            color: #ffb05f;
+            border-bottom-color: #ffb05f;
+            transform: translateX(4px);
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item .bullet {
+            color: #ffb05f;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mid-footer .mid-footer-inner {
+                align-items: center;
+                padding: 0 1rem;
+            }
+            .mid-footer .mid-footer-title {
+                text-align: center;
+                max-width: 100%;
+                font-size: 1.2rem;
+            }
+            .mid-footer .footer-links-grid {
+                max-width: 100%;
+            }
+            .mid-footer {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: left center !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mid-footer .footer-links-grid .footer-link-item {
+                font-size: 0.85rem;
+                padding: 0.4rem 0;
+            }
+        }
+
+        /* Bottom Footer */
+        .bottom-footer {
+            background-color: #0f2a1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .footer-link {
+            transition: color 0.2s ease;
+        }
+        .footer-link:hover {
+            color: #ffb05f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[100] bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md shadow-sm dark:shadow-none font-body-md text-body-md">
+        <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto">
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="index.html">
+                    <img alt="Logo Cimahi" class="h-10 w-auto object-contain" src="images/logo-cimahi.png">
+                </a>
+                <img alt="Logo Cimahi Campernik" class="h-10 w-auto object-contain" src="images/logo-campernik.png">
+            </div>
+            <div class="hidden lg:flex gap-6 items-center">
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#technopark" data-i18n="nav.technopark">Technology</a>
+                <!-- TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH -->
+                <button id="langToggleDesktop" class="lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeDesktop" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltDesktop" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+            <div class="lg:hidden">
+                <button id="menuToggle" class="p-2 text-on-surface"><span class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <div id="mobileMenu" class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 bg-white shadow-md">
+            <div class="flex flex-col px-6 py-4 gap-2">
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#technopark" data-i18n="nav.technopark">Technology</a>
+                <!-- TOMBOL BAHASA MOBILE DENGAN TEKS ID/EN - STYLISH -->
+                <button id="langToggleMobile" class="mobile-lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeMobile" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltMobile" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Kuliner -->
+    <header class="hero-section relative min-h-[60vh] md:min-h-[70vh] lg:min-h-[95vh] flex items-center justify-center pt-20 md:pt-24 pb-8 md:pb-12 px-4 md:px-margin-desktop overflow-hidden" 
+            style="background-image: url('images/hero-profil-bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+        
+        <div class="cloud-container absolute top-0 left-0 w-full z-[1] overflow-hidden pointer-events-none">
+            <img src="images/awan.png" alt="Awan" class="cloud-1 absolute w-24 md:w-32 lg:w-48 opacity-60 cloud-hover" style="animation: floatCloudRight 20s ease-in-out infinite alternate;">
+            <img src="images/awan.png" alt="Awan" class="cloud-2 absolute w-20 md:w-24 lg:w-36 opacity-50 cloud-hover" style="animation: floatCloudLeft 25s ease-in-out infinite alternate; animation-delay: 3s;">
+            <img src="images/awan.png" alt="Awan" class="cloud-3 absolute w-28 md:w-32 lg:w-56 opacity-40 cloud-hover" style="animation: floatCloudRight 30s ease-in-out infinite alternate; animation-delay: 5s;">
+            <img src="images/awan.png" alt="Awan" class="cloud-4 absolute w-16 md:w-20 lg:w-32 opacity-45 cloud-hover" style="animation: floatCloudLeft 18s ease-in-out infinite alternate; animation-delay: 2s;">
+        </div>
+        
+        <div class="relative z-10 text-center max-w-4xl px-4">
+            <h1 class="hero-title font-display-lg text-3xl md:text-4xl lg:text-5xl text-white drop-shadow-lg font-bold mb-0 md:mb-0" data-aos="fade-up" data-aos-duration="1000" data-i18n="culinary.hero.title">Kuliner Khas Cimahi</h1>
+        </div>
+        
+        <div class="wave-divider" style="--wave-color: #f9f9f9;">
+            <svg data-name="Layer 1" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path class="shape-fill" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="relative py-8 md:py-section-gap px-4 md:px-margin-desktop bg-surface-container-lowest">
+        <div class="max-w-[1200px] mx-auto">
+            
+            <a href="index.html#culinary" class="back-btn mb-6 md:mb-8 inline-flex" data-aos="fade-right" data-aos-duration="600">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span data-i18n="culinary.back">Kembali ke Beranda</span>
+            </a>
+
+            <!-- ============================================================
+                 CARD 1: Denjapi
+                 ============================================================ -->
+            <div class="kuliner-card bg-surface rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-surface-container mb-6 md:mb-8" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                <div class="image-side overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoBvvpfXMvJ0KejhS4JZWOEC-_HRk8UAAckSH4eulmrDw7EA7UdZzROn9cC5Azijz3AqdpwjCTRJdt7zgwXWpNNeF2pb8IH_TnyUCIr49P3DntEwLNyZsF72Fb52-bvgrD9lsEkiKcEPFwiwi6CznZ_YK7BxyMZBVg3pkpUeghGcoz9q0Bc4rLCjHJA9E691JPXQeZ7dXnZubKCO8zkixP8UIA6Rmx868Av6NTVruNUHa__GAhYcq_FPsSY8UPE-hRDF-W4dsdkt0" 
+                         alt="Denjapi" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="text-side card-content p-6 md:p-8 lg:p-10">
+                    <div class="tag-container flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag1">#Kuliner</span>
+                        <span class="text-xs bg-secondary-container/10 text-secondary-container px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag2">#MakananSehat</span>
+                        <span class="text-xs bg-[#0ea5e9]/10 text-[#0ea5e9] px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag3">#Vegan</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-primary mb-3 font-bold text-2xl md:text-3xl" data-i18n="culinary.card1.title">Denjapi</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="culinary.card1.desc">
+                        Dendeng jantung pisang (<span class="font-semibold text-primary">Banana heart jerky</span>) dengan bumbu khas, alternatif lezat dan unik bagi pecinta kuliner nabati.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-surface-container">
+                        <span class="price-tag inline-block bg-primary/20 text-primary font-semibold text-sm px-4 py-2 rounded-full transition-all duration-300" data-i18n="culinary.card1.price">
+                            Est. Harga: Rp 25.000 – Rp 50.000
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 CARD 2: Keripik Singkong
+                 ============================================================ -->
+            <div class="kuliner-card bg-surface rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-surface-container mb-6 md:mb-8" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                <div class="image-side overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuTsvkExTG5tZGwO9B7QKCjla_dLlCvNOwlp2YQWQGBuZHJMupvITjxML4cGKAxRsON74AvEgqM36l5awKUftii0nZ1cw3EBq4TW0HIjrAIHSVr2JVTJpBDEkqII3ZTnecitliqlTeRA7REoLvmmKAcHW58HJLEAutCZmbUG75WoDjvtlq3x91BxTWRES1Z7haDnggRU8ChvOR-h9EczfhpENTQmOFvDsenK9fzzou8E9kZwjeiBscrF7muQurzxhznYZ8EE28b_U" 
+                         alt="Keripik Singkong" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="text-side card-content p-6 md:p-8 lg:p-10">
+                    <div class="tag-container flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag4">#Kuliner</span>
+                        <span class="text-xs bg-secondary-container/10 text-secondary-container px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag5">#Camilan</span>
+                        <span class="text-xs bg-[#0ea5e9]/10 text-[#0ea5e9] px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag6">#Renyah</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-primary mb-3 font-bold text-2xl md:text-3xl" data-i18n="culinary.card2.title">Keripik Singkong</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="culinary.card2.desc">
+                        Keripik singkong renyah dengan berbagai varian rasa pedas yang menggugah selera, camilan favorit khas daerah ini.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-surface-container">
+                        <span class="price-tag inline-block bg-primary/20 text-primary font-semibold text-sm px-4 py-2 rounded-full transition-all duration-300" data-i18n="culinary.card2.price">
+                            Est. Harga: Rp 15.000 – Rp 30.000
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================================
+                 CARD 3: Sumpia Udang
+                 ============================================================ -->
+            <div class="kuliner-card bg-surface rounded-2xl md:rounded-3xl overflow-hidden shadow-sm border border-surface-container" data-aos="fade-right" data-aos-duration="800" data-aos-delay="300">
+                <div class="image-side overflow-hidden">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb5VRtFgzG6_YUKRXp3mW7QVkCyf6oet0e4TKTd3-_n7U7CpDvlInGEwQOL3CXxLiQwCB6SyPMrRdXhUq74YDWJvpVE5vwpC2GGPo75IL1vFFXLaMlRYkmbQ16pz7eoyAIpSFT3NpNnNSX3RNkPvh8jWHrDwQEGaSZMAZEIk9b7Q2yBspw7X-bHB4uUY2xS7bshs8dK5SYnElOGNoIYjGK1UV5ztCrLyjBYHw6aLEVDNHB8TS1lusbSK9W3KIR98z3WFSYGtJPzYs" 
+                         alt="Sumpia Udang" 
+                         class="w-full h-full object-cover transition-transform duration-500">
+                </div>
+                <div class="text-side card-content p-6 md:p-8 lg:p-10">
+                    <div class="tag-container flex flex-wrap gap-2 mb-3">
+                        <span class="text-xs bg-primary/10 text-primary px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag7">#Kuliner</span>
+                        <span class="text-xs bg-secondary-container/10 text-secondary-container px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag8">#OlehOleh</span>
+                        <span class="text-xs bg-[#0ea5e9]/10 text-[#0ea5e9] px-3 py-1 rounded-full font-medium transition-all duration-300" data-i18n="culinary.tag9">#KhasCimahi</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-primary mb-3 font-bold text-2xl md:text-3xl" data-i18n="culinary.card3.title">Sumpia Udang</h2>
+                    <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed text-sm md:text-base" data-i18n="culinary.card3.desc">
+                        Camilan renyah berbentuk gulungan kecil dengan isian udang kering (<span class="font-semibold text-primary">ebi</span>) yang gurih dan sedikit manis. Sangat populer sebagai buah tangan khas Cimahi.
+                    </p>
+                    <div class="mt-4 pt-4 border-t border-surface-container">
+                        <span class="price-tag inline-block bg-primary/20 text-primary font-semibold text-sm px-4 py-2 rounded-full transition-all duration-300" data-i18n="culinary.card3.price">
+                            Est. Harga: Rp 15.000 – Rp 35.000
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+         FOOTER - 3 SECTION (TOP, MID, BOTTOM) 
+         ============================================================ -->
+    <footer class="w-full text-white">
+        <!-- ======= TOP FOOTER ======= -->
+        <div class="top-footer">
+            <div class="top-footer-inner">
+                <!-- Kiri: Logo dan Brand -->
+                <div class="top-footer-left" data-aos="fade-right" data-aos-duration="600">
+                    <div class="flex items-center gap-4">
+                        <img alt="Logo Cimahi" class="h-14 w-auto object-contain" src="images/logo-cimahi.png">
+                        <img alt="Logo Cimahi Campernik" class="h-14 w-auto object-contain" src="images/logo-campernik.png">
+                    </div>
+                </div>
+
+                <!-- Tengah: Alamat -->
+                <div class="top-footer-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                    <p>Jl. Raden Demang Hardjakusumah Blok Jati Cihanjuang No.1,<br>
+                    Kelurahan Cibabat, Kec. Cimahi Utara, Kota Cimahi</p>
+                </div>
+
+                <!-- Kanan: Sosial Media -->
+                <div class="top-footer-right" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
+                    <p data-i18n="footer.follow" class="text-center md:text-right">Ikuti kami</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/pemerintahkotacimahi/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/cimahikota/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/user/admincimahi" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= MID FOOTER - Data Lainnya ======= -->
+        <div class="mid-footer">
+            <div class="mid-footer-inner" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                <h3 class="mid-footer-title" data-i18n="footer.otherdata">Data Lainnya</h3>
+                <div class="footer-links-grid">
+                    <a href="profil.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="150">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.profile">Profil Kota Cimahi</span>
+                    </a>
+                    <a href="budaya.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culture">Budaya & Tradisi</span>
+                    </a>
+                    <a href="kuliner.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="250">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culinary">Kuliner Khas</span>
+                    </a>
+                    <a href="wisata.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.destinations">Destinasi Wisata</span>
+                    </a>
+                    <a href="techno.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="350">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.technology">Perkembangan Teknologi & Modernisasi</span>
+                    </a>
+                    <a href="map.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.map">Peta Sarana Cimahi</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= BOTTOM FOOTER ======= -->
+        <div class="bottom-footer">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <p class="text-center text-sm text-white/50">
+                    © 2026 Cimahi Hepi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#" class="back-to-top" aria-label="Kembali ke atas">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </a>
+
+    <!-- JavaScript untuk AOS, Translate dan Menu Toggle -->
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800,
+            once: false,
+            mirror: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('max-h-0');
+                    mobileMenu.classList.toggle('max-h-96');
+                    mobileMenu.classList.toggle('opacity-0');
+                    mobileMenu.classList.toggle('opacity-100');
+                });
+            }
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav')) {
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    }
+                }
+            });
+
+            let currentLang = localStorage.getItem('cimahiLang') || 'id';
+
+            // Fungsi untuk update UI teks bahasa
+            function updateLanguageUI(lang) {
+                const langCodeDesktop = document.getElementById('langCodeDesktop');
+                const langCodeMobile = document.getElementById('langCodeMobile');
+                const langCodeAltDesktop = document.getElementById('langCodeAltDesktop');
+                const langCodeAltMobile = document.getElementById('langCodeAltMobile');
+
+                const activeLang = lang === 'id' ? 'ID' : 'EN';
+                const inactiveLang = lang === 'id' ? 'EN' : 'ID';
+
+                if (langCodeDesktop) {
+                    langCodeDesktop.textContent = activeLang;
+                    langCodeDesktop.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeDesktop.classList.add('active');
+                    void langCodeDesktop.offsetWidth;
+                    langCodeDesktop.classList.add('lang-pulse');
+                }
+                if (langCodeMobile) {
+                    langCodeMobile.textContent = activeLang;
+                    langCodeMobile.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeMobile.classList.add('active');
+                    void langCodeMobile.offsetWidth;
+                    langCodeMobile.classList.add('lang-pulse');
+                }
+                if (langCodeAltDesktop) {
+                    langCodeAltDesktop.textContent = inactiveLang;
+                    langCodeAltDesktop.classList.remove('active', 'inactive');
+                    langCodeAltDesktop.classList.add('inactive');
+                }
+                if (langCodeAltMobile) {
+                    langCodeAltMobile.textContent = inactiveLang;
+                    langCodeAltMobile.classList.remove('active', 'inactive');
+                    langCodeAltMobile.classList.add('inactive');
+                }
+            }
+
+            const translations = {
+                id: {
+                    'nav.profile': 'Profil',
+                    'nav.history': 'Sejarah',
+                    'nav.culture': 'Budaya',
+                    'nav.culinary': 'Kuliner',
+                    'nav.destinations': 'Destinasi',
+                    'nav.technopark': 'Teknologi',
+                    'nav.lang': 'EN/ID',
+                    'culinary.hero.title': 'Kuliner Khas Cimahi',
+                    'culinary.back': 'Kembali ke Beranda',
+                    'culinary.tag1': '#Kuliner',
+                    'culinary.tag2': '#MakananSehat',
+                    'culinary.tag3': '#Vegan',
+                    'culinary.tag4': '#Kuliner',
+                    'culinary.tag5': '#Camilan',
+                    'culinary.tag6': '#Renyah',
+                    'culinary.tag7': '#Kuliner',
+                    'culinary.tag8': '#OlehOleh',
+                    'culinary.tag9': '#KhasCimahi',
+                    'culinary.card1.title': 'Denjapi',
+                    'culinary.card1.desc': 'Dendeng jantung pisang (<span class="font-semibold text-primary">Banana heart jerky</span>) dengan bumbu khas, alternatif lezat dan unik bagi pecinta kuliner nabati.',
+                    'culinary.card1.price': 'Est. Harga: Rp 25.000 – Rp 50.000',
+                    'culinary.card2.title': 'Keripik Singkong',
+                    'culinary.card2.desc': 'Keripik singkong renyah dengan berbagai varian rasa pedas yang menggugah selera, camilan favorit khas daerah ini.',
+                    'culinary.card2.price': 'Est. Harga: Rp 15.000 – Rp 30.000',
+                    'culinary.card3.title': 'Sumpia Udang',
+                    'culinary.card3.desc': 'Camilan renyah berbentuk gulungan kecil dengan isian udang kering (<span class="font-semibold text-primary">ebi</span>) yang gurih dan sedikit manis. Sangat populer sebagai buah tangan khas Cimahi.',
+                    'culinary.card3.price': 'Est. Harga: Rp 15.000 – Rp 35.000',
+                    'footer.follow': 'Ikuti kami',
+                    'footer.otherdata': 'Data Lainnya',
+                    'footer.link.profile': 'Profil Kota Cimahi',
+                    'footer.link.culture': 'Budaya & Tradisi',
+                    'footer.link.culinary': 'Kuliner Khas',
+                    'footer.link.destinations': 'Destinasi Wisata',
+                    'footer.link.technology': 'Perkembangan Teknologi & Modernisasi',
+                    'footer.link.map': 'Peta Sarana Cimahi'
+                },
+                en: {
+                    'nav.profile': 'Profile',
+                    'nav.history': 'History',
+                    'nav.culture': 'Culture',
+                    'nav.culinary': 'Culinary',
+                    'nav.destinations': 'Destinations',
+                    'nav.technopark': 'Technology',
+                    'nav.lang': 'ID/EN',
+                    'culinary.hero.title': 'Cimahi Signature Culinary',
+                    'culinary.back': 'Back to Home',
+                    'culinary.tag1': '#Culinary',
+                    'culinary.tag2': '#HealthyFood',
+                    'culinary.tag3': '#Vegan',
+                    'culinary.tag4': '#Culinary',
+                    'culinary.tag5': '#Snack',
+                    'culinary.tag6': '#Crispy',
+                    'culinary.tag7': '#Culinary',
+                    'culinary.tag8': '#Souvenir',
+                    'culinary.tag9': '#CimahiSpecialty',
+                    'culinary.card1.title': 'Denjapi',
+                    'culinary.card1.desc': 'Banana heart jerky with special spices, a delicious and unique alternative for plant-based food lovers.',
+                    'culinary.card1.price': 'Est. Price: Rp 25,000 – Rp 50,000',
+                    'culinary.card2.title': 'Cassava Chips',
+                    'culinary.card2.desc': 'Crispy cassava chips with various spicy flavors, a favorite snack from this region.',
+                    'culinary.card2.price': 'Est. Price: Rp 15,000 – Rp 30,000',
+                    'culinary.card3.title': 'Shrimp Sumpia',
+                    'culinary.card3.desc': 'Crispy small rolls filled with dried shrimp (<span class="font-semibold text-primary">ebi</span>), savory and slightly sweet. Very popular as a typical Cimahi souvenir.',
+                    'culinary.card3.price': 'Est. Price: Rp 15,000 – Rp 35,000',
+                    'footer.follow': 'Follow Us',
+                    'footer.otherdata': 'Other Data',
+                    'footer.link.profile': 'Cimahi City Profile',
+                    'footer.link.culture': 'Culture & Traditions',
+                    'footer.link.culinary': 'Signature Culinary',
+                    'footer.link.destinations': 'Tourist Destinations',
+                    'footer.link.technology': 'Technology Development & Modernization',
+                    'footer.link.map': 'Cimahi Facilities Map'
+                }
+            };
+
+            function applyLanguage(lang) {
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key] !== undefined) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                updateLanguageUI(lang);
+                currentLang = lang;
+                localStorage.setItem('cimahiLang', lang);
+            }
+
+            applyLanguage(currentLang);
+
+            document.querySelectorAll('.lang-btn, .mobile-lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var nextLang = currentLang === 'id' ? 'en' : 'id';
+                    applyLanguage(nextLang);
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

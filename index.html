@@ -1,0 +1,3118 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
+    <title>Portal Wisata Digital Kota Cimahi</title>
+
+    <!-- Favicon dari folder images -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400,600&amp;family=Quicksand:wght@600;700&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4caf50",
+                        "primary-fixed": "#99f894",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary": "#005313",
+                        "secondary-container": "#ffb05f",
+                        "primary-fixed-dim": "#7edb7b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface-variant": "#3f4a3c",
+                        "inverse-surface": "#2f3131",
+                        "tertiary-container": "#785900",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-background": "#1a1c1c",
+                        "outline-variant": "#bfcab9",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#754300",
+                        "surface-dim": "#dadada",
+                        "tertiary-fixed-dim": "#ebc166",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#006e1c",
+                        "on-tertiary-container": "#fdd275",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary": "#8b5000",
+                        "tertiary-fixed": "#ffdf9e",
+                        "outline": "#6f7a6b",
+                        "on-primary-container": "#8fee8b",
+                        "inverse-primary": "#7edb7b",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005313",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-secondary-fixed-variant": "#6a3c00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-primary-fixed": "#002204",
+                        "tertiary": "#5b4200",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "64px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Quicksand"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Quicksand"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Quicksand"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        /* ============================================================
+           ANIMASI AOS CUSTOM
+           ============================================================ */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+
+        /* Animasi fade-up */
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+        }
+
+        /* Animasi fade-left */
+        [data-aos="fade-left"] {
+            transform: translateX(-40px);
+        }
+        [data-aos="fade-left"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi fade-right */
+        [data-aos="fade-right"] {
+            transform: translateX(40px);
+        }
+        [data-aos="fade-right"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi zoom-in */
+        [data-aos="zoom-in"] {
+            transform: scale(0.9);
+        }
+        [data-aos="zoom-in"].aos-animate {
+            transform: scale(1);
+        }
+
+        /* Animasi flip-left */
+        [data-aos="flip-left"] {
+            perspective: 800px;
+            transform: rotateY(-30deg);
+        }
+        [data-aos="flip-left"].aos-animate {
+            transform: rotateY(0);
+        }
+
+        /* Animasi flip-right */
+        [data-aos="flip-right"] {
+            perspective: 800px;
+            transform: rotateY(30deg);
+        }
+        [data-aos="flip-right"].aos-animate {
+            transform: rotateY(0);
+        }
+
+        /* Delay untuk hero title agar lebih smooth */
+        .hero-title-animate {
+            animation: slideDown 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: translateY(99%);
+            z-index: 10;
+        }
+
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+
+        .wave-divider .shape-fill {
+            fill: var(--wave-color, #f9f9f9);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        /* Hero background - responsif */
+        .hero-with-bg {
+            background-image: url('images/hero-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 640px) {
+            .hero-with-bg {
+                background-size: cover;
+                background-position: 50% 30%;
+            }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .hero-with-bg {
+                background-size: cover;
+                background-position: 50% 40%;
+            }
+        }
+
+        .hero-with-bg .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .hero-with-bg .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-with-bg .hero-bg-layers {
+            display: none;
+        }
+
+        /* Back to Top FAB - Fix agar tidak keluar layar tanpa overflow-x:hidden */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #ffb05f;
+            color: #754300;
+            border: none;
+            box-shadow: 0 8px 30px rgba(255, 176, 95, 0.4);
+            cursor: pointer;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 176, 95, 0.6);
+            background: #ffb871;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.95);
+        }
+
+        .back-to-top .material-symbols-outlined {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                min-height: 48px;
+                max-width: 48px;
+                max-height: 48px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .back-to-top {
+                bottom: 12px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                max-width: 44px;
+                max-height: 44px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 20px;
+            }
+        }
+
+        /* ============================================================
+           TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH
+           ============================================================ */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #005313;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* Mobile version */
+        .mobile-lang-btn {
+            margin-top: 0.5rem;
+            padding: 0.4rem 1rem;
+            align-self: flex-start;
+            background: transparent;
+            border: 1px solid #005313;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .mobile-lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .mobile-lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .mobile-lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .mobile-lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .mobile-lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .mobile-lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mobile-lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .mobile-lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mobile-lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        @keyframes langPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .lang-pulse {
+            animation: langPulse 0.4s ease-in-out;
+        }
+
+        /* ============================================================
+           HERO ANIMATION - SLIDE FROM TOP
+           ============================================================ */
+        @keyframes slideDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-60px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title-animate {
+            animation: slideDown 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* ============================================================
+           CARD DESTINATION - FULL RESPONSIF
+           ============================================================ */
+        .dest-card {
+            max-width: 340px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .dest-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dest-card .card-image {
+            height: 180px;
+            flex-shrink: 0;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .dest-card .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .dest-card .card-body {
+            padding: 1rem 1.25rem 1.25rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dest-card .card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+
+        .dest-card .card-desc {
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #4a4a4a;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            flex: 1;
+        }
+
+        /* ============================================================
+           CAROUSEL NAVIGATION BUTTONS - FIXED POSITION
+           ============================================================ */
+        #prevBtn,
+        #nextBtn {
+            transition: transform 0.2s ease, opacity 0.2s ease, background 0.2s ease !important;
+            will-change: transform !important;
+            backface-visibility: hidden !important;
+            -webkit-backface-visibility: hidden !important;
+            border: none !important;
+            outline: none !important;
+            -webkit-tap-highlight-color: transparent !important;
+            touch-action: manipulation !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+        }
+
+        #prevBtn:disabled,
+        #nextBtn:disabled {
+            opacity: 0.3 !important;
+            cursor: not-allowed !important;
+            transform: translateY(-50%) !important;
+        }
+
+        /* ============================================================
+           CULTURE CARD - ZIG-ZAG LAYOUT UNTUK TABLET
+           ============================================================ */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .culture-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .culture-card {
+                display: flex;
+                flex-direction: row;
+                align-items: stretch;
+                background: #ffffff;
+                border-radius: 1.5rem;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                transition: all 0.3s ease;
+            }
+
+            .culture-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            }
+
+            .culture-card:nth-child(1) {
+                flex-direction: row;
+            }
+
+            .culture-card:nth-child(1) .culture-image {
+                order: 1;
+            }
+
+            .culture-card:nth-child(1) .culture-content {
+                order: 2;
+            }
+
+            .culture-card:nth-child(2) {
+                flex-direction: row;
+            }
+
+            .culture-card:nth-child(2) .culture-image {
+                order: 2;
+            }
+
+            .culture-card:nth-child(2) .culture-content {
+                order: 1;
+            }
+
+            .culture-card:nth-child(3) {
+                flex-direction: row;
+            }
+
+            .culture-card:nth-child(3) .culture-image {
+                order: 1;
+            }
+
+            .culture-card:nth-child(3) .culture-content {
+                order: 2;
+            }
+
+            .culture-card .culture-image {
+                flex: 0 0 45%;
+                height: 280px;
+                overflow: hidden;
+            }
+
+            .culture-card .culture-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .culture-card .culture-content {
+                flex: 1;
+                padding: 2rem;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .culture-card .culture-content h3 {
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: #005313;
+                margin-bottom: 0.5rem;
+            }
+
+            .culture-card .culture-content p {
+                font-size: 0.9rem;
+                line-height: 1.6;
+                color: #3f4a3c;
+            }
+        }
+
+        /* --- MOBILE (≤ 640px) --- */
+        @media (max-width: 640px) {
+            .carousel-item {
+                flex: 0 0 100% !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-sizing: border-box !important;
+                padding-left: 0.3rem !important;
+                padding-right: 0.3rem !important;
+            }
+
+            .dest-card {
+                max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                border-radius: 0.6rem !important;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08) !important;
+                margin: 0 !important;
+            }
+
+            .dest-card .card-image,
+            .dest-card .card-body {
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+
+            .dest-card .card-image {
+                height: 180px !important;
+                aspect-ratio: 16/9 !important;
+            }
+
+            .dest-card .card-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+
+            .dest-card .card-body {
+                padding: 0.4rem 0.6rem 0.6rem !important;
+            }
+
+            .dest-card .card-title {
+                font-size: 0.7rem !important;
+                margin-bottom: 0.15rem !important;
+                line-height: 1.2 !important;
+            }
+
+            .dest-card .card-desc {
+                font-size: 0.6rem !important;
+                line-height: 1.25 !important;
+                -webkit-line-clamp: 2 !important;
+            }
+
+            #prevBtn,
+            #nextBtn {
+                position: absolute !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                padding: 6px !important;
+                width: 32px !important;
+                height: 32px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                border-radius: 50% !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+                z-index: 10 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            #prevBtn:hover:not(:disabled),
+            #nextBtn:hover:not(:disabled) {
+                transform: translateY(-50%) scale(1.1) !important;
+                background: rgba(255, 255, 255, 1) !important;
+            }
+
+            #prevBtn:active:not(:disabled),
+            #nextBtn:active:not(:disabled) {
+                transform: translateY(-50%) scale(0.95) !important;
+            }
+
+            #prevBtn svg,
+            #nextBtn svg {
+                width: 18px !important;
+                height: 18px !important;
+                display: block !important;
+                flex-shrink: 0 !important;
+            }
+
+            .hero-title-animate {
+                font-size: 28px !important;
+                line-height: 1.2 !important;
+            }
+
+            .culture-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .culture-card {
+                background: #ffffff;
+                border-radius: 1.5rem;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                transition: all 0.3s ease;
+            }
+
+            .culture-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            }
+
+            .culture-card .culture-image {
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .culture-card .culture-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .culture-card .culture-content {
+                padding: 1.25rem;
+            }
+
+            .culture-card .culture-content h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #005313;
+                margin-bottom: 0.5rem;
+            }
+
+            .culture-card .culture-content p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                color: #3f4a3c;
+            }
+
+            /* Map - mobile: stack vertikal */
+            .map-card-split {
+                flex-direction: column !important;
+                border-radius: 1rem;
+                max-width: 100% !important;
+            }
+
+            .map-image-container {
+                flex: 1 1 auto !important;
+                max-width: 100% !important;
+                min-height: 200px !important;
+                height: auto !important;
+                aspect-ratio: 4/3 !important;
+                padding: 0 !important;
+                border-radius: 1rem 1rem 0 0 !important;
+                background: transparent !important;
+            }
+
+            .map-image-container img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+                background: #f5f5f5 !important;
+            }
+
+            .map-info-container {
+                flex: 1 1 auto !important;
+                max-width: 100% !important;
+                padding: 1.2rem !important;
+            }
+
+            .map-info-container h2 {
+                font-size: 1rem !important;
+            }
+
+            .map-info-container .map-desc {
+                font-size: 0.75rem !important;
+            }
+
+            .map-info-container .btn-map a {
+                width: 100% !important;
+                justify-content: center !important;
+                font-size: 0.8rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+
+            /* Techno - mobile: gambar sebelum button dengan margin top */
+            .techno-section-wrapper {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+
+            .techno-section-wrapper .techno-text {
+                order: 1 !important;
+                text-align: center !important;
+                width: 100% !important;
+            }
+
+            .techno-section-wrapper .techno-text h2 {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .techno-section-wrapper .techno-text p {
+                text-align: center !important;
+            }
+
+            .techno-section-wrapper .techno-text .techno-button-desktop {
+                display: none !important;
+            }
+
+            .techno-section-wrapper .techno-images-wrapper {
+                order: 2 !important;
+                width: 100% !important;
+                margin: 1rem 0 !important;
+            }
+
+            .techno-section-wrapper .techno-button-mobile {
+                order: 3 !important;
+                width: 100% !important;
+                display: flex !important;
+                justify-content: center !important;
+                margin-top: 1.5rem !important;
+            }
+
+            .techno-overlap-wrapper {
+                position: relative !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 280px !important;
+                margin: 0 auto !important;
+            }
+
+            .techno-overlap-wrapper .img-1 {
+                position: relative !important;
+                width: 85% !important;
+                z-index: 1 !important;
+                border-radius: 1rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+                margin: 0 auto !important;
+            }
+
+            .techno-overlap-wrapper .img-1 img {
+                width: 100% !important;
+                height: 200px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            .techno-overlap-wrapper .img-2 {
+                position: absolute !important;
+                bottom: -20px !important;
+                right: 20px !important;
+                width: 60% !important;
+                z-index: 2 !important;
+                border-radius: 1rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            .techno-overlap-wrapper .img-2 img {
+                width: 100% !important;
+                height: 200px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            /* Maskot - Mobile */
+            .maskot-left {
+                position: absolute !important;
+                bottom: -10px !important;
+                left: -15px !important;
+                width: 50px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite !important;
+            }
+
+            .maskot-right {
+                position: absolute !important;
+                top: -10px !important;
+                right: -15px !important;
+                width: 50px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite 1.5s !important;
+            }
+
+            /* Mid Footer - mobile: background tampilkan sisi kiri */
+            .mid-footer {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: left center !important;
+            }
+
+            .mid-footer .mid-footer-inner {
+                align-items: center !important;
+                padding: 0 1rem !important;
+            }
+
+            .mid-footer .mid-footer-title {
+                text-align: center !important;
+                max-width: 100% !important;
+            }
+
+            .mid-footer .footer-links-grid {
+                max-width: 100% !important;
+            }
+
+            /* Top Footer - mobile */
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                text-align: center !important;
+            }
+
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+
+            /* FOLLOW US - CENTER DI MOBILE */
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .top-footer {
+                padding: 2rem 0 !important;
+            }
+        }
+
+        /* --- TABLET (641px – 1024px) --- */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .carousel-item {
+                flex: 0 0 50% !important;
+                width: 50% !important;
+                max-width: 50% !important;
+                box-sizing: border-box !important;
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+
+            .dest-card {
+                max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                margin: 0 !important;
+            }
+
+            .dest-card .card-image,
+            .dest-card .card-body {
+                box-sizing: border-box !important;
+                width: 100% !important;
+            }
+
+            .dest-card .card-image {
+                height: 150px !important;
+            }
+
+            .dest-card .card-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+
+            .dest-card .card-body {
+                padding: 0.7rem 0.9rem 0.9rem !important;
+            }
+
+            .dest-card .card-title {
+                font-size: 0.85rem !important;
+            }
+
+            .dest-card .card-desc {
+                font-size: 0.75rem !important;
+                -webkit-line-clamp: 2 !important;
+            }
+
+            #prevBtn,
+            #nextBtn {
+                position: absolute !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                padding: 6px !important;
+                width: 32px !important;
+                height: 32px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                border-radius: 50% !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+                z-index: 10 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            #prevBtn:hover:not(:disabled),
+            #nextBtn:hover:not(:disabled) {
+                transform: translateY(-50%) scale(1.1) !important;
+                background: rgba(255, 255, 255, 1) !important;
+            }
+
+            #prevBtn:active:not(:disabled),
+            #nextBtn:active:not(:disabled) {
+                transform: translateY(-50%) scale(0.95) !important;
+            }
+
+            #prevBtn svg,
+            #nextBtn svg {
+                width: 18px !important;
+                height: 18px !important;
+                display: block !important;
+                flex-shrink: 0 !important;
+            }
+
+            /* Map - tablet: horizontal dengan form lebih sempit */
+            .map-card-split {
+                flex-direction: row !important;
+                max-width: 950px !important;
+                border-radius: 1rem !important;
+                overflow: hidden !important;
+            }
+
+            .map-image-container {
+                flex: 0 0 60% !important;
+                max-width: 60% !important;
+                min-height: 280px !important;
+                height: auto !important;
+                aspect-ratio: 4/3 !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+            }
+
+            .map-image-container img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+                background: #f5f5f5 !important;
+            }
+
+            .map-info-container {
+                flex: 0 0 40% !important;
+                max-width: 40% !important;
+                padding: 1.5rem 1.5rem 1.5rem 1rem !important;
+            }
+
+            .map-info-container h2 {
+                font-size: 1.1rem !important;
+            }
+
+            .map-info-container .map-desc {
+                font-size: 0.8rem !important;
+            }
+
+            .map-info-container .btn-map a {
+                font-size: 0.7rem !important;
+                padding: 0.35rem 0.9rem !important;
+                gap: 0.25rem !important;
+                border-radius: 9999px !important;
+                white-space: nowrap !important;
+                min-height: 32px !important;
+            }
+            
+            .map-info-container .btn-map a .material-symbols-outlined {
+                font-size: 0.7rem !important;
+            }
+
+            /* Techno - tablet: tetap horizontal seperti desktop */
+            .techno-section-wrapper {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 3rem !important;
+            }
+
+            .techno-section-wrapper .techno-text {
+                flex: 1 !important;
+                text-align: left !important;
+            }
+
+            .techno-section-wrapper .techno-text h2 {
+                text-align: left !important;
+            }
+
+            .techno-section-wrapper .techno-text .techno-button-desktop {
+                display: inline-flex !important;
+            }
+
+            .techno-section-wrapper .techno-button-mobile {
+                display: none !important;
+            }
+
+            .techno-section-wrapper .techno-images-wrapper {
+                flex: 1 !important;
+            }
+
+            .techno-overlap-wrapper {
+                position: relative !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 350px !important;
+            }
+
+            .techno-overlap-wrapper .img-1 {
+                position: relative !important;
+                width: 80% !important;
+                z-index: 1 !important;
+                border-radius: 1.2rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+            }
+
+            .techno-overlap-wrapper .img-1 img {
+                width: 100% !important;
+                height: 240px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            .techno-overlap-wrapper .img-2 {
+                position: absolute !important;
+                bottom: -30px !important;
+                right: 10px !important;
+                width: 55% !important;
+                z-index: 2 !important;
+                border-radius: 1.2rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            .techno-overlap-wrapper .img-2 img {
+                width: 100% !important;
+                height: 240px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            /* Maskot - Tablet */
+            .maskot-left {
+                position: absolute !important;
+                bottom: -20px !important;
+                left: -25px !important;
+                width: 70px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite !important;
+            }
+
+            .maskot-right {
+                position: absolute !important;
+                top: -20px !important;
+                right: -25px !important;
+                width: 70px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite 1.5s !important;
+            }
+
+            /* Mid Footer - tablet: background tetap proporsional */
+            .mid-footer {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: center !important;
+            }
+
+            /* Top Footer - tablet */
+            .top-footer .top-footer-inner {
+                display: flex !important;
+                flex-direction: row !important;
+                justify-content: space-between !important;
+                align-items: center !important;
+                gap: 1.5rem !important;
+                padding: 0 1rem !important;
+            }
+
+            .top-footer {
+                padding: 2.5rem 0 !important;
+            }
+        }
+
+        /* --- DESKTOP (≥ 1025px) --- */
+        @media (min-width: 1025px) {
+            .carousel-item {
+                flex: 0 0 33.333% !important;
+                width: 33.333% !important;
+                max-width: 33.333% !important;
+                box-sizing: border-box !important;
+                padding-left: 0.75rem !important;
+                padding-right: 0.75rem !important;
+            }
+
+            .dest-card {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+            }
+
+            .dest-card .card-image img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: cover !important;
+            }
+
+            #prevBtn,
+            #nextBtn {
+                position: absolute !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                padding: 8px !important;
+                width: 40px !important;
+                height: 40px !important;
+                background: rgba(255, 255, 255, 0.95) !important;
+                border-radius: 50% !important;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+                z-index: 10 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            #prevBtn:hover:not(:disabled),
+            #nextBtn:hover:not(:disabled) {
+                transform: translateY(-50%) scale(1.1) !important;
+                background: rgba(255, 255, 255, 1) !important;
+            }
+
+            #prevBtn:active:not(:disabled),
+            #nextBtn:active:not(:disabled) {
+                transform: translateY(-50%) scale(0.95) !important;
+            }
+
+            #prevBtn svg,
+            #nextBtn svg {
+                width: 22px !important;
+                height: 22px !important;
+                display: block !important;
+                flex-shrink: 0 !important;
+            }
+
+            .culture-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1.5rem;
+            }
+
+            .culture-card {
+                background: #ffffff;
+                border-radius: 1.5rem;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+                transition: all 0.3s ease;
+            }
+
+            .culture-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.15);
+            }
+
+            .culture-card .culture-image {
+                height: 200px;
+                overflow: hidden;
+            }
+
+            .culture-card .culture-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .culture-card .culture-content {
+                padding: 1.25rem;
+            }
+
+            .culture-card .culture-content h3 {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #005313;
+                margin-bottom: 0.5rem;
+            }
+
+            .culture-card .culture-content p {
+                font-size: 0.85rem;
+                line-height: 1.5;
+                color: #3f4a3c;
+            }
+
+            /* Map - desktop: form lebih sempit */
+            .map-card-split {
+                flex-direction: row !important;
+                max-width: 950px !important;
+                margin: 0 auto;
+                border-radius: 1rem !important;
+                overflow: hidden !important;
+            }
+
+            .map-image-container {
+                flex: 0 0 62% !important;
+                max-width: 62% !important;
+                min-height: 320px !important;
+                height: auto !important;
+                aspect-ratio: 4/3 !important;
+                padding: 0 !important;
+                border-radius: 0 !important;
+                background: transparent !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+            }
+
+            .map-image-container img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+                background: #f5f5f5 !important;
+            }
+
+            .map-info-container {
+                flex: 0 0 38% !important;
+                max-width: 38% !important;
+                padding: 1.8rem 1.8rem 1.8rem 1rem !important;
+            }
+
+            .map-info-container h2 {
+                font-size: 1.2rem !important;
+            }
+
+            .map-info-container .map-desc {
+                font-size: 0.85rem !important;
+            }
+
+            .map-info-container .btn-map a {
+                font-size: 0.85rem !important;
+                padding: 0.5rem 1.2rem !important;
+                gap: 0.4rem !important;
+            }
+
+            /* Techno - desktop: horizontal dengan button di bawah judul */
+            .techno-section-wrapper {
+                display: flex !important;
+                flex-direction: row !important;
+                align-items: center !important;
+                gap: 3rem !important;
+            }
+
+            .techno-section-wrapper .techno-text {
+                flex: 1 !important;
+                text-align: left !important;
+            }
+
+            .techno-section-wrapper .techno-text h2 {
+                text-align: left !important;
+            }
+
+            .techno-section-wrapper .techno-text .techno-button-desktop {
+                display: inline-flex !important;
+            }
+
+            .techno-section-wrapper .techno-button-mobile {
+                display: none !important;
+            }
+
+            .techno-section-wrapper .techno-images-wrapper {
+                flex: 1 !important;
+            }
+
+            .techno-overlap-wrapper {
+                position: relative !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                min-height: 400px !important;
+            }
+
+            .techno-overlap-wrapper .img-1 {
+                position: relative !important;
+                width: 70% !important;
+                z-index: 1 !important;
+                border-radius: 1.5rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15) !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .techno-overlap-wrapper .img-1:hover {
+                transform: scale(1.02) !important;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2) !important;
+            }
+
+            .techno-overlap-wrapper .img-1 img {
+                width: 100% !important;
+                height: 280px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            .techno-overlap-wrapper .img-2 {
+                position: absolute !important;
+                bottom: -40px !important;
+                right: 10px !important;
+                width: 50% !important;
+                z-index: 2 !important;
+                border-radius: 1.5rem !important;
+                overflow: hidden !important;
+                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2) !important;
+                transition: all 0.3s ease !important;
+            }
+
+            .techno-overlap-wrapper .img-2:hover {
+                transform: scale(1.03) !important;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+            }
+
+            .techno-overlap-wrapper .img-2 img {
+                width: 100% !important;
+                height: 280px !important;
+                object-fit: cover !important;
+                display: block !important;
+            }
+
+            /* Maskot - Desktop */
+            .maskot-left {
+                position: absolute !important;
+                bottom: -30px !important;
+                left: -40px !important;
+                width: 100px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite !important;
+            }
+
+            .maskot-right {
+                position: absolute !important;
+                top: -30px !important;
+                right: -40px !important;
+                width: 100px !important;
+                z-index: 3 !important;
+                animation: float 3s ease-in-out infinite 1.5s !important;
+            }
+
+            .top-footer {
+                padding: 3rem 0 !important;
+            }
+        }
+
+        /* --- LAYAR SANGAT KECIL (≤ 400px) --- */
+        @media (max-width: 400px) {
+            .dest-card .card-image {
+                height: 140px !important;
+                aspect-ratio: 16/9 !important;
+            }
+
+            .dest-card .card-body {
+                padding: 0.25rem 0.4rem 0.4rem !important;
+            }
+
+            .dest-card .card-title {
+                font-size: 0.6rem !important;
+            }
+
+            .dest-card .card-desc {
+                font-size: 0.55rem !important;
+                -webkit-line-clamp: 1 !important;
+            }
+
+            #prevBtn,
+            #nextBtn {
+                padding: 4px !important;
+                width: 28px !important;
+                height: 28px !important;
+            }
+
+            #prevBtn svg,
+            #nextBtn svg {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            .hero-title-animate {
+                font-size: 22px !important;
+                line-height: 1.2 !important;
+            }
+
+            .map-image-container {
+                min-height: 150px !important;
+                aspect-ratio: 4/3 !important;
+            }
+
+            .techno-overlap-wrapper {
+                min-height: 220px !important;
+            }
+
+            .techno-overlap-wrapper .img-1 img {
+                height: 160px !important;
+            }
+
+            .techno-overlap-wrapper .img-2 img {
+                height: 160px !important;
+            }
+
+            .techno-overlap-wrapper .img-2 {
+                bottom: -15px !important;
+                right: 15px !important;
+                width: 55% !important;
+            }
+
+            .techno-section-wrapper .techno-button-mobile {
+                margin-top: 1.2rem !important;
+            }
+
+            /* Maskot - Sangat Kecil */
+            .maskot-left {
+                width: 40px !important;
+                bottom: -5px !important;
+                left: -10px !important;
+            }
+
+            .maskot-right {
+                width: 40px !important;
+                top: -5px !important;
+                right: -10px !important;
+            }
+
+            /* Footer responsive untuk layar sangat kecil */
+            footer .footer-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2rem !important;
+            }
+
+            /* Mid Footer - mobile sangat kecil: background tampilkan sisi kiri */
+            .mid-footer {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: left center !important;
+            }
+
+            /* Top Footer - sangat kecil */
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1rem !important;
+                text-align: center !important;
+            }
+
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+
+            .top-footer {
+                padding: 1.5rem 0 !important;
+            }
+        }
+
+        /* Fix untuk carousel wrapper agar tidak overflow */
+        #destinationCarousel {
+            display: flex;
+            flex-wrap: nowrap;
+            will-change: transform;
+        }
+
+        /* ============================================================
+           MAP SECTION - DENGAN BACKGROUND IMAGE
+           ============================================================ */
+        .map-section-wrapper {
+            position: relative;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+            margin-bottom: 2rem;
+            z-index: 5;
+            background-image: url('images/map-background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .map-section-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 0;
+        }
+
+        .map-section-wrapper > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .map-section-wrapper .map-card-split {
+            background: #ffffff;
+            border-radius: 1.2rem;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            max-width: 1100px;
+            margin: 0 auto;
+            transition: all 0.3s ease;
+        }
+
+        .map-section-wrapper .map-card-split:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 70px -15px rgba(0, 0, 0, 0.2);
+        }
+
+        .map-section-wrapper .map-image-container {
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: #f5f5f5 !important;
+            flex: 0 0 60%;
+            max-width: 60%;
+            min-height: 320px;
+            height: auto;
+            aspect-ratio: 4/3;
+            padding: 0;
+        }
+
+        .map-section-wrapper .map-image-container img {
+            display: block;
+            border-radius: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .map-section-wrapper .map-info-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex: 0 0 40%;
+            max-width: 40%;
+            padding: 2rem 2rem 2rem 1.5rem;
+        }
+
+        .map-section-wrapper .map-info-container h2 {
+            font-weight: 700;
+            color: #005313;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+            font-size: 1.3rem;
+        }
+
+        .map-section-wrapper .map-info-container .map-desc {
+            color: #3f4a3c;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            font-size: 0.9rem;
+        }
+
+        .map-section-wrapper .map-info-container .btn-map a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #005313;
+            color: white;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 83, 19, 0.3);
+            padding: 0.6rem 1.4rem;
+            font-size: 0.85rem;
+        }
+
+        .map-section-wrapper .map-info-container .btn-map a:hover {
+            background: #4caf50;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 83, 19, 0.4);
+        }
+
+        .map-section-wrapper .map-info-container .btn-map a .material-symbols-outlined {
+            font-size: 1.1rem;
+        }
+
+        /* Map section wrapper - responsive tablet */
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .map-section-wrapper .map-card-split {
+                max-width: 950px;
+                margin: 0 1.5rem;
+            }
+            
+            .map-section-wrapper .map-image-container {
+                flex: 0 0 60%;
+                max-width: 60%;
+                min-height: 280px;
+            }
+            
+            .map-section-wrapper .map-info-container {
+                flex: 0 0 40%;
+                max-width: 40%;
+                padding: 1.5rem 1.5rem 1.5rem 1rem;
+            }
+            
+            .map-section-wrapper .map-info-container h2 {
+                font-size: 1.1rem;
+            }
+            
+            .map-section-wrapper .map-info-container .map-desc {
+                font-size: 0.8rem;
+            }
+            
+            .map-section-wrapper .map-info-container .btn-map a {
+                font-size: 0.7rem;
+                padding: 0.35rem 0.9rem;
+                gap: 0.25rem;
+                min-height: 32px;
+            }
+        }
+
+        /* Map section wrapper - mobile */
+        @media (max-width: 640px) {
+            .map-section-wrapper {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .map-section-wrapper .map-card-split {
+                flex-direction: column !important;
+                border-radius: 1rem;
+                margin: 0 0.75rem;
+                max-width: 100% !important;
+            }
+
+            .map-section-wrapper .map-image-container {
+                flex: 1 1 auto !important;
+                max-width: 100% !important;
+                min-height: 200px !important;
+                height: auto !important;
+                aspect-ratio: 4/3 !important;
+                padding: 0 !important;
+                border-radius: 1rem 1rem 0 0 !important;
+            }
+
+            .map-section-wrapper .map-image-container img {
+                width: 100% !important;
+                height: 100% !important;
+                object-fit: contain !important;
+                border-radius: 0 !important;
+            }
+
+            .map-section-wrapper .map-info-container {
+                flex: 1 1 auto !important;
+                max-width: 100% !important;
+                padding: 1.2rem !important;
+            }
+
+            .map-section-wrapper .map-info-container h2 {
+                font-size: 1rem !important;
+            }
+
+            .map-section-wrapper .map-info-container .map-desc {
+                font-size: 0.75rem !important;
+            }
+
+            .map-section-wrapper .map-info-container .btn-map a {
+                width: 100% !important;
+                justify-content: center !important;
+                font-size: 0.8rem !important;
+                padding: 0.5rem 1rem !important;
+            }
+        }
+
+        /* ============================================================
+           TECHNO PARK - OVERLAP LAYOUT DENGAN UKURAN SAMA
+           ============================================================ */
+        .techno-overlap-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            min-height: 400px;
+        }
+
+        .techno-overlap-wrapper .img-1 {
+            position: relative;
+            width: 70%;
+            z-index: 1;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .techno-overlap-wrapper .img-1:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .techno-overlap-wrapper .img-1 img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .techno-overlap-wrapper .img-2 {
+            position: absolute;
+            bottom: -40px;
+            right: 10px;
+            width: 50%;
+            z-index: 2;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .techno-overlap-wrapper .img-2:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .techno-overlap-wrapper .img-2 img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Animasi floating untuk maskot */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ============================================================
+           FOOTER - 3 SECTION (TOP, MID, BOTTOM)
+           ============================================================ */
+        footer {
+            border-radius: 0 !important;
+        }
+
+        /* Top Footer */
+        .top-footer {
+            background-color: #1a3c2a;
+            padding: 3rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .top-footer {
+                padding: 2rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-footer {
+                padding: 1.5rem 0;
+            }
+        }
+
+        .top-footer .top-footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .top-footer .top-footer-inner .top-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center {
+            flex: 1;
+            text-align: left;
+            padding: 0 1rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .top-footer .top-footer-inner .top-footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right .social-icons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Mid Footer - Background Image dengan warna lebih cerah */
+        .mid-footer {
+            background-image: url('images/footer-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .mid-footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 60, 42, 0.75);
+            z-index: 1;
+        }
+
+        .mid-footer > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mid-footer .mid-footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .mid-footer .mid-footer-title {
+            color: #ffb05f;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .mid-footer .footer-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            justify-content: flex-start;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item:hover {
+            color: #ffb05f;
+            border-bottom-color: #ffb05f;
+            transform: translateX(4px);
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item .bullet {
+            color: #ffb05f;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mid-footer .mid-footer-inner {
+                align-items: center;
+                padding: 0 1rem;
+            }
+
+            .mid-footer .mid-footer-title {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            .mid-footer .footer-links-grid {
+                max-width: 100%;
+            }
+
+            .mid-footer .mid-footer-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mid-footer .footer-links-grid .footer-link-item {
+                font-size: 0.85rem;
+                padding: 0.4rem 0;
+            }
+        }
+
+        .footer-link {
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: #ffb05f;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #ffb05f;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-surface text-on-surface font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+
+    <!-- TopNavBar - Responsif: burger muncul di tablet (di bawah 1024px) -->
+    <nav
+        class="fixed top-0 w-full z-[100] bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md shadow-sm dark:shadow-none font-body-md text-body-md">
+        <div
+            class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto">
+            <div class="flex items-center gap-4 md:gap-6">
+                <img alt="Logo Cimahi" class="h-10 w-auto object-contain" src="images/logo-cimahi.png">
+                <img alt="Logo Cimahi Campernik" class="h-10 w-auto object-contain" src="images/logo-campernik.png">
+            </div>
+            <!-- Menu desktop (hanya muncul di layar >= 1024px) -->
+            <div class="hidden lg:flex gap-6 items-center">
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold"
+                    href="#technopark" data-i18n="nav.technopark">Techno Park</a>
+                <!-- TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH -->
+                <button id="langToggleDesktop" class="lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeDesktop" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltDesktop" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+            <!-- Tombol burger muncul di bawah 1024px (tablet dan mobile) -->
+            <div class="lg:hidden">
+                <button id="menuToggle" class="p-2 text-on-surface"><span
+                        class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <!-- Mobile/Tablet menu dropdown (slide down) -->
+        <div id="mobileMenu"
+            class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 bg-white shadow-md">
+            <div class="flex flex-col px-6 py-4 gap-2">
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100"
+                    href="#technopark" data-i18n="nav.technopark">Technology</a>
+                <button id="langToggleMobile" class="mobile-lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeMobile" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltMobile" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section - Subtitle dihapus, title dengan animasi -->
+    <header
+        class="hero-with-bg relative min-h-screen flex items-center justify-center pt-24 pb-section-gap px-margin-mobile md:px-margin-desktop overflow-hidden">
+        <div class="hero-overlay"></div>
+        <div class="hero-content relative z-[3] text-center max-w-4xl mx-auto p-8 md:p-12">
+            <h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] mb-0 font-bold leading-tight hero-title-animate"
+                data-i18n="hero.title">
+                Selamat Datang di Kota Cimahi</h1>
+        </div>
+        <div class="wave-divider" style="--wave-color: var(--surface);">
+            <svg data-name="Layer 1" preserveAspectRatio="none" viewBox="0 0 1200 120"
+                xmlns="http://www.w3.org/2000/svg">
+                <path class="shape-fill"
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z">
+                </path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- SECTION PROFIL SINGKAT KOTA CIMAHI -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest"
+        id="profile">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="text-center mb-10" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="font-headline-md text-headline-md text-primary mb-3" data-i18n="profile.title">Profil Singkat
+                    Kota Cimahi</h2>
+                <div class="w-16 h-1 bg-secondary-container mx-auto rounded-full"></div>
+            </div>
+            <div class="flex flex-col lg:flex-row gap-8 items-start">
+                <div class="w-full lg:w-1/2" data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                    <div class="bg-surface rounded-2xl p-6 md:p-8 shadow-sm border border-surface-container">
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4"
+                            data-i18n="profile.p1">
+                            Cimahi mulai dikenal pada tahun <span class="font-bold text-primary">1811</span>, Gubernur
+                            Jendral Willem Daendels membuat jalan Anyer - Panarukan, dengan dibuatnya pos penjagaan
+                            (loji) di Alun-alun Cimahi sekarang.
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-4"
+                            data-i18n="profile.p2">
+                            Tahun <span class="font-bold text-primary">1874 - 1893</span>, dilaksanakan pembuatan jalan
+                            kereta api Bandung - Cianjur sekaligus pembuatan stasiun kereta api Cimahi.
+                        </p>
+                        <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-6"
+                            data-i18n="profile.p3">
+                            Tahun <span class="font-bold text-primary">1886</span> dimulainya pembangunan pusat
+                            pendidikan militer dan fasilitas lainnya (RS Dustira, rumah tahanan militer, dll).
+                        </p>
+                        <a href="profil.html"
+                            class="inline-flex items-center gap-2 bg-primary text-white font-label-sm text-label-sm px-6 py-2.5 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md text-sm"
+                            data-i18n="profile.button">
+                            Lihat Profil
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <a href="https://www.youtube.com/watch?v=UCaqzifm7BM" target="_blank" rel="noopener noreferrer"
+                        class="block rounded-2xl overflow-hidden shadow-lg group relative">
+                        <img src="https://img.youtube.com/vi/UCaqzifm7BM/maxresdefault.jpg" alt="Video Profil Cimahi"
+                            class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                            onerror="this.src='https://img.youtube.com/vi/UCaqzifm7BM/hqdefault.jpg'">
+                        <div
+                            class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                            <div
+                                class="w-14 h-14 bg-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-red-700 transition-all">
+                                <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Section -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="history">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+                <div class="w-full lg:w-1/2 relative" data-aos="fade-right" data-aos-duration="800">
+                    <div class="rounded-[2rem] overflow-hidden shadow-lg">
+                        <img alt="Warisan Militer Cimahi" class="w-full h-auto object-cover sepia-[.2]"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhsfqf8Me59-aIudHv4fftztiWbLrGYlxmMo-a8NQnXHFjSOYsuK6I8FiHZl05JrEh9gH1yfotcblX8TWL_ur6ih3KctXN3A5mO0Lwddnh3gCYFMk6Hpqv8Zr-aUzBDf2Pgp_ONkfqhnDH02iy-POElXVVftbVrotBuj0j2i6DpgQNVm2cDk09H7a-1nwOrb0HVVAWrpOTgPej5-Q-mwJfmLft2rrOwR-Rw99NytpTQAiGgsEsi_C7mAMLI78drNPYP1K6FPd8eTI">
+                    </div>
+                    <div
+                        class="absolute -bottom-6 right-8 bg-surface-container-lowest py-4 px-6 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.1)] border-l-4 border-secondary-container flex flex-col items-center">
+                        <span class="font-headline-md text-xl md:text-2xl font-bold text-primary italic">Est.
+                            1811</span>
+                        <span class="font-body-md text-sm text-on-surface-variant mt-1"
+                            data-i18n="history.badge">Sejarah Militer Indonesia</span>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col gap-6 mt-10 lg:mt-0" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                    <h2 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-[40px] leading-tight text-primary font-bold"
+                        data-i18n="history.title">
+                        Warisan Militer &amp; Semangat Juang</h2>
+                    <p class="font-body-md text-body-lg text-on-surface-variant leading-relaxed"
+                        data-i18n="history.desc">
+                        Cimahi dikenal sebagai pusat militer sejak zaman kolonial. Dengan arsitektur bersejarah yang
+                        masih terjaga hingga kini, kota ini menyimpan ribuan cerita tentang disiplin, perjuangan, dan
+                        kemerdekaan.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                        <div
+                            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="200">
+                            <h3 class="font-label-sm text-label-sm text-secondary-container mb-2"
+                                data-i18n="history.card1.title">Pusdik-pusdik</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant" data-i18n="history.card1.desc">Pusat
+                                pendidikan militer terbaik di Indonesia.</p>
+                        </div>
+                        <div
+                            class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm border border-surface-container hover:shadow-md transition-shadow" data-aos="zoom-in" data-aos-duration="600" data-aos-delay="300">
+                            <h3 class="font-label-sm text-label-sm text-secondary-container mb-2"
+                                data-i18n="history.card2.title">Bangunan Tua</h3>
+                            <p class="font-body-md text-sm text-on-surface-variant" data-i18n="history.card2.desc">
+                                Konservasi bangunan cagar budaya yang artistik.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section - ZIG-ZAG LAYOUT -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest"
+        id="culture">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="font-headline-md text-headline-md text-primary mb-4" data-i18n="culture.title">Budaya &amp;
+                    Tradisi</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto"
+                    data-i18n="culture.subtitle">Kekayaan warisan budaya lokal yang masih terus dilestarikan.</p>
+            </div>
+
+            <div class="culture-grid">
+                <!-- Card 1: Kampung Adat Cireundeu -->
+                <a href="budaya.html" class="culture-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+                    <div class="culture-image">
+                        <img alt="Kampung Adat Cireundeu"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCguHikUAkZ1_vYSKPduNRtf0FrHq16lNTkfN6HUrYFVJDgBbvYDY9gQR9-91h5st98X7Qp6Fw5tllDta5-y7cpdgS4leCGiFGUR47Lsah06IqX2NQh-9flMJF_U6xiyptPr26D1Azoo4vPZRyvCjg4Ijkge2If3sAKJbRkr3GRxnwIfErmWjeMGsJlrk-fNZdLwHNeUaUT3VV11x55DQaIfhm4uNnf3UZi1_oVYtK2-MW17IucFI81amUAOa0mLD7yOVatxibE4kM">
+                    </div>
+                    <div class="culture-content">
+                        <h3 data-i18n="culture.card1.title">Kampung Adat Cireundeu</h3>
+                        <p data-i18n="culture.card1.desc">Terkenal dengan tradisi mengonsumsi Rasi (beras singkong)
+                            sebagai makanan pokok, melambangkan ketahanan pangan dan kearifan lokal.</p>
+                    </div>
+                </a>
+
+                <!-- Card 2: Pencak Silat -->
+                <a href="budaya.html" class="culture-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="culture-image">
+                        <img alt="Pencak Silat"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4UyZ2us_HtnbhszQth3MdEMWeiW6H1YE_FOTmfkAkIKp05oT0esqAA9pXon9KYdHVN2gWpWht2wC_fV0BEySvhQ1f7hP4eV3zaNMzkFfslvnpJKAQ82i_mFyHbEGIuJT-fbFaLIpDztz4Bp3OGFXHx_qzl67cYhPMe3E09IcxFfVRKZRWTpaGuFXBV4eWUb4lG4Q_VlPbVsBdsQ3aornPqruiDAFHeDll9UUtd0hUGtDYVE3CKbnwk3VlQ0beA5Y_78yfZeCsxho">
+                    </div>
+                    <div class="culture-content">
+                        <h3 data-i18n="culture.card2.title">Pencak Silat</h3>
+                        <p data-i18n="culture.card2.desc">Seni bela diri tradisional yang mengakar kuat dalam masyarakat
+                            Cimahi, menjadi bagian integral dari pendidikan karakter generasi muda.</p>
+                    </div>
+                </a>
+
+                <!-- Card 3: Festival Budaya Lokal -->
+                <a href="budaya.html" class="culture-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+                    <div class="culture-image">
+                        <img alt="Festival Budaya"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2K5rY3-c2JSlnW5SkQBQrJgeR6_XxB4JsH-kl7VkNE-bOUmHodmRlO0HtjDLQr6X9GOzn64wwFZBM38BF1BXsdd_TnjuEMPcZKb6xCeb9ekraJHeqw7o60klQSLA-t2srIqB-cIkPkQfJGjlbpRxxxWx79wbQRJbBJC-W2R6ODYE5_zI7mmntNYasUeWNw2CsGFkLF9i1oyMb_8iWGgXt91aXAGKmmsvcamTb2RSsCQJyoIFTl-a3PDTalexw9eKXm9OUYxkkF5E">
+                    </div>
+                    <div class="culture-content">
+                        <h3 data-i18n="culture.card3.title">Festival Budaya Lokal</h3>
+                        <p data-i18n="culture.card3.desc">Perayaan tahunan yang menampilkan kesenian tradisional, musik,
+                            dan tarian, merayakan keberagaman dan kreativitas masyarakat Cimahi.</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culinary Section -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="culinary">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="font-headline-md text-headline-md text-primary mb-4" data-i18n="culinary.title">Kuliner Khas
+                </h2>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto"
+                    data-i18n="culinary.subtitle">Cita rasa autentik yang wajib Anda cicipi saat berkunjung ke Cimahi.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <a href="kuliner.html"
+                    class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col" data-aos="fade-up" data-aos-duration="700" data-aos-delay="100">
+                    <div class="w-full h-40 bg-surface-container rounded-2xl mb-4 overflow-hidden">
+                        <img alt="Denjapi" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoBvvpfXMvJ0KejhS4JZWOEC-_HRk8UAAckSH4eulmrDw7EA7UdZzROn9cC5Azijz3AqdpwjCTRJdt7zgwXWpNNeF2pb8IH_TnyUCIr49P3DntEwLNyZsF72Fb52-bvgrD9lsEkiKcEPFwiwi6CznZ_YK7BxyMZBVg3pkpUeghGcoz9q0Bc4rLCjHJA9E691JPXQeZ7dXnZubKCO8zkixP8UIA6Rmx868Av6NTVruNUHa__GAhYcq_FPsSY8UPE-hRDF-W4dsdkt0">
+                    </div>
+                    <h3 class="font-label-sm text-label-sm text-secondary-container mb-2"
+                        data-i18n="culinary.card1.title">Denjapi</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow"
+                        data-i18n="culinary.card1.desc">Dendeng jantung pisang (Banana heart jerky) dengan bumbu khas,
+                        alternatif lezat dan unik bagi pecinta kuliner nabati.</p>
+                    <div class="font-label-sm text-label-sm text-primary bg-primary-container/20 py-2 px-4 rounded-full inline-block text-center mt-auto"
+                        data-i18n="culinary.card1.price">
+                        Est. Harga: Rp 25.000 - Rp 50.000</div>
+                </a>
+                <a href="kuliner.html"
+                    class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col" data-aos="fade-up" data-aos-duration="700" data-aos-delay="200">
+                    <div class="w-full h-40 bg-surface-container rounded-2xl mb-4 overflow-hidden">
+                        <img alt="Keripik Singkong" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuTsvkExTG5tZGwO9B7QKCjla_dLlCvNOwlp2YQWQGBuZHJMupvITjxML4cGKAxRsON74AvEgqM36l5awKUftii0nZ1cw3EBq4TW0HIjrAIHSVr2JVTJpBDEkqII3ZTnecitliqlTeRA7REoLvmmKAcHW58HJLEAutCZmbUG75WoDjvtlq3x91BxTWRES1Z7haDnggRU8ChvOR-h9EczfhpENTQmOFvDsenK9fzzou8E9kZwjeiBscrF7muQurzxhznYZ8EE28b_U">
+                    </div>
+                    <h3 class="font-label-sm text-label-sm text-secondary-container mb-2"
+                        data-i18n="culinary.card2.title">Keripik Singkong</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow"
+                        data-i18n="culinary.card2.desc">Keripik singkong renyah dengan berbagai varian rasa pedas yang
+                        menggugah selera, camilan favorit khas daerah ini.</p>
+                    <div class="font-label-sm text-label-sm text-primary bg-primary-container/20 py-2 px-4 rounded-full inline-block text-center mt-auto"
+                        data-i18n="culinary.card2.price">
+                        Est. Harga: Rp 15.000 - Rp 30.000</div>
+                </a>
+                <a href="kuliner.html"
+                    class="bg-surface-container-lowest rounded-3xl p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col" data-aos="fade-up" data-aos-duration="700" data-aos-delay="300">
+                    <div class="w-full h-40 bg-surface-container rounded-2xl mb-4 overflow-hidden">
+                        <img alt="Sumpia Udang" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAb5VRtFgzG6_YUKRXp3mW7QVkCyf6oet0e4TKTd3-_n7U7CpDvlInGEwQOL3CXxLiQwCB6SyPMrRdXhUq74YDWJvpVE5vwpC2GGPo75IL1vFFXLaMlRYkmbQ16pz7eoyAIpSFT3NpNnNSX3RNkPvh8jWHrDwQEGaSZMAZEIk9b7Q2yBspw7X-bHB4uUY2xS7bshs8dK5SYnElOGNoIYjGK1UV5ztCrLyjBYHw6aLEVDNHB8TS1lusbSK9W3KIR98z3WFSYGtJPzYs">
+                    </div>
+                    <h3 class="font-label-sm text-label-sm text-secondary-container mb-2"
+                        data-i18n="culinary.card3.title">Sumpia Udang</h3>
+                    <p class="font-body-md text-body-md text-on-surface-variant mb-4 flex-grow"
+                        data-i18n="culinary.card3.desc">Camilan renyah berbentuk gulungan kecil dengan isian udang
+                        kering (ebi) yang gurih dan sedikit manis. Sangat populer sebagai buah tangan khas Cimahi.</p>
+                    <div class="font-label-sm text-label-sm text-primary bg-primary-container/20 py-2 px-4 rounded-full inline-block text-center mt-auto"
+                        data-i18n="culinary.card3.price">
+                        Est. Harga: Rp 15.000 - Rp 35.000</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINATIONS SECTION - CAROUSEL -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface-container-lowest"
+        id="destinations">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="text-center mb-8" data-aos="fade-up" data-aos-duration="800">
+                <h2 class="font-headline-md text-headline-md text-primary mb-4" data-i18n="destinations.title">Destinasi
+                    Wisata</h2>
+                <p class="font-body-md text-body-md text-on-surface-variant max-w-2xl mx-auto"
+                    data-i18n="destinations.subtitle">Jelajahi berbagai pilihan wisata alam, sejarah, dan edukasi di
+                    Cimahi.</p>
+            </div>
+
+            <!-- Carousel Container -->
+            <div class="relative overflow-hidden" data-aos="fade-up" data-aos-duration="800" data-aos-delay="100">
+                <!-- Carousel Track -->
+                <div id="destinationCarousel" class="flex transition-transform duration-500 ease-in-out"
+                    style="transform: translateX(0%);">
+
+                    <!-- Card 1: Alam Wisata Cimahi (AWC) -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Alam Wisata Cimahi (AWC)"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUZ91FPnNnLdcU-o8Uu7uqIHbVMXdPS-TCv4GBE570Hp8obIJaV2n0cqp1QOqGZ-7Jv09B5yDhKOrA-H6Bjp2avQPWx3dKiosFhsclzEGWGZcS5LebSw75eDOLRR32tphaU0xBRq6lFWc2CmA9AcFUda_jr9XP2b_W5j1pneg8W42E7DVCxhoweSn6FQu6N290CowmpjI-uzCcMZfYV4_QmVlrqt1El6OvEjc_L5lElwn4VtnCpyc9LketlvgEzumsOj8RNF9LDmE">
+                                <div class="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.alam">
+                                    Alam</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-primary" data-i18n="destinations.card1.title">Alam Wisata
+                                    Cimahi (AWC)</h3>
+                                <p class="card-desc" data-i18n="destinations.card1.desc">Taman rekreasi keluarga yang
+                                    menawarkan berbagai fasilitas mulai dari kolam renang, area outbond, hingga restoran
+                                    dengan pemandangan alam.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 2: Eco Wisata Cimahi -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Eco Wisata Cimahi"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4n6Qh_7vgH1RnNnw74wQxtfCiexn9TstcwXbRPNRneZ0EwUwhHWlpxnmZ3To7Va4HlcX4dXKYnH6zWb-9jaIN4aNJWQWVO_zCyg4EvSW4hUFBl96yl2iDa2opf00bqQ5dXm2mrHnj49E5lBWROUTXAOYptEXFcq-EVaq3vLs69sDU66YofJOvIkXcW0aJ7Nejfl0wC7mE-3TTiqlpKZXIlVE7wvzR5kCaQYhp3Kn1Nb4KYXsXF99YpZXP9DvPV8z9Y14nHJXONE8">
+                                <div class="absolute top-2 left-2 bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.alam">
+                                    Alam</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-secondary-container" data-i18n="destinations.card2.title">Eco
+                                    Wisata Cimahi</h3>
+                                <p class="card-desc" data-i18n="destinations.card2.desc">Kawasan ekowisata yang asri
+                                    dengan konsep alam dan edukasi pertanian, cocok untuk kegiatan outbound dan rekreasi
+                                    keluarga yang menenangkan.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 3: Curug Cimahi (Air Terjun Pelangi) -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Curug Cimahi (Air Terjun Pelangi)"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXOh04Z35phZEzZEUiTXXEUR8XAzBAHt0rGU-PmD0QhVPXgbDr6TCwUMEderb4R-_KQsLACxxKLT1uX0lAjZXVEI7hAYtI4fe3TH9GMxZZPPLvrxqL_aZ9Ihvu4iEj_hJgTKtf4EMWQM2DvnvT2E2cVWMyfNhoDtgdQ11BenN3jujfn9zkVhMvqHyuj7GNGcppa62RmQW1K3eaTLB8CdLRlBI5mpajqfqyjT4iaYFGS55bVmwnQBykFiBJjNvD90ZRWmUgw3qYeCc">
+                                <div class="absolute top-2 left-2 bg-[#0ea5e9] text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.alam">
+                                    Alam</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-[#0ea5e9]" data-i18n="destinations.card3.title">Curug Cimahi
+                                    (Air Terjun Pelangi)</h3>
+                                <p class="card-desc" data-i18n="destinations.card3.desc">Air terjun setinggi 87 meter
+                                    yang memukau, dikenal dengan instalasi lampu warna-warni di malam hari yang
+                                    menciptakan pemandangan pelangi yang ajaib.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 4: Curug Bugbrug -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Curug Bugbrug"
+                                    src="https://ik.imagekit.io/tvlk/blog/2020/02/wisata-cimahi-2-Tour-Bandung.jpeg?tr=q-70,c-at_max,w-1000,h-600">
+                                <div class="absolute top-2 left-2 bg-emerald-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.alam">
+                                    Alam</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-emerald-600" data-i18n="destinations.card4.title">Curug
+                                    Bugbrug</h3>
+                                <p class="card-desc" data-i18n="destinations.card4.desc">Air terjun yang terletak di
+                                    kawasan Cimahi Utara dengan pemandangan alam yang masih asri dan suasana yang
+                                    menenangkan.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 5: Kampung Buyut Cipageran (Kabuci) Asih Putera -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Kampung Buyut Cipageran (Kabuci) Asih Putera"
+                                    src="https://ik.imagekit.io/tvlk/blog/2020/02/wisata-cimahi-9-Kampung-Buyut-Cipageran.jpg?tr=q-70,c-at_max,w-1000,h-600">
+                                <div class="absolute top-2 left-2 bg-purple-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.sejarah">
+                                    Sejarah</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-purple-600" data-i18n="destinations.card5.title">Kampung
+                                    Buyut Cipageran (Kabuci) Asih Putera</h3>
+                                <p class="card-desc" data-i18n="destinations.card5.desc">Kampung adat yang melestarikan
+                                    tradisi dan budaya Sunda, menjadi destinasi wisata edukasi tentang kearifan lokal.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- Card 6: Kampung Adat Cirendeu -->
+                    <div class="carousel-item flex-shrink-0 px-2 md:px-3">
+                        <a href="wisata.html"
+                            class="dest-card bg-white rounded-2xl overflow-hidden shadow-sm group block">
+                            <div class="card-image relative overflow-hidden">
+                                <img alt="Kampung Adat Cirendeu"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCguHikUAkZ1_vYSKPduNRtf0FrHq16lNTkfN6HUrYFVJDgBbvYDY9gQR9-91h5st98X7Qp6Fw5tllDta5-y7cpdgS4leCGiFGUR47Lsah06IqX2NQh-9flMJF_U6xiyptPr26D1Azoo4vPZRyvCjg4Ijkge2If3sAKJbRkr3GRxnwIfErmWjeMGsJlrk-fNZdLwHNeUaUT3VV11x55DQaIfhm4uNnf3UZi1_oVYtK2-MW17IucFI81amUAOa0mLD7yOVatxibE4kM">
+                                <div class="absolute top-2 left-2 bg-amber-600 text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full"
+                                    data-i18n="destinations.tag.edukasi">
+                                    Edukasi</div>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title text-amber-600" data-i18n="destinations.card6.title">Kampung Adat
+                                    Cirendeu</h3>
+                                <p class="card-desc" data-i18n="destinations.card6.desc">Kampung adat yang terkenal
+                                    dengan tradisi mengonsumsi Rasi (beras singkong) dan kearifan lokal yang masih
+                                    dilestarikan.</p>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+
+                <!-- Carousel Navigation Buttons -->
+                <button id="prevBtn"
+                    class="absolute left-1 md:left-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 md:p-2 shadow-lg transition-all duration-200 hover:scale-110">
+                    <svg class="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button id="nextBtn"
+                    class="absolute right-1 md:right-2 top-1/2 -translate-y-1/2 z-10 bg-white/80 hover:bg-white rounded-full p-1.5 md:p-2 shadow-lg transition-all duration-200 hover:scale-110">
+                    <svg class="w-5 h-5 md:w-6 md:h-6 text-primary" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNO & MODERN HUB SECTION -->
+    <section class="relative py-section-gap px-margin-mobile md:px-margin-desktop bg-surface" id="technopark">
+        <div class="max-w-[1280px] mx-auto">
+            <div class="techno-section-wrapper">
+                <!-- Teks (Judul + Deskripsi + Button Desktop) -->
+                <div class="techno-text" data-aos="fade-right" data-aos-duration="800">
+                    <h2 class="font-headline-md text-headline-md text-[#0ea5e9] mb-4" data-i18n="technopark.badge">
+                        Perkembangan Teknologi Dan Modernisasi
+                    </h2>
+                    <p class="font-body-lg text-body-lg text-on-surface-variant mb-6" data-i18n="technopark.desc">
+                        Perkembangan teknologi di Kota Cimahi berfokus pada transformasi Kota Cyber, pengembangan ekonomi kreatif berbasis teknologi, dan digitalisasi layanan publik. Potensi ini didorong oleh sektor animasi lokal yang menembus pasar internasional serta modernisasi pasar rakyat.
+                    </p>
+                    <!-- Button Desktop (muncul di desktop & tablet) -->
+                    <div class="techno-button-desktop">
+                        <a href="techno.html"
+                            class="inline-flex items-center gap-2 bg-primary text-white font-label-sm text-label-sm px-6 py-3 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md"
+                            data-i18n="technopark.button">
+                            Lihat Selengkapnya
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Gambar (Overlap) dengan Maskot -->
+                <div class="techno-images-wrapper" data-aos="fade-left" data-aos-duration="800" data-aos-delay="100">
+                    <div class="techno-overlap-wrapper">
+                        <!-- IMAGE 1 - posisi di kiri atas -->
+                        <div class="img-1">
+                            <img alt="Cimahi Techno Park Building"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGl0kMiDJslLdDDn9FocrKWaEnSYybmlQRllo_VOfASRRinec1cLIlM68tehccPoqudTgj3yLXaNaQsdr36xFF2tvh1Rh2VJ7xISMffNR3yTLe55YpNnso2tBFA2YMOPm1s4UlcxapTBkx0p4RZE7Bqyj7-h-aZORahgROoLjW3u2SUwj918MoYTNri-5OXnLWmZmWGd251Hon3DKM8AkKHYykT2for7M01uKjlOecAhBnsRbN7vhvDaLAbgOK_pxfZE6U_bs0DqY">
+                        </div>
+                        <!-- IMAGE 2 - posisi di kanan bawah -->
+                        <div class="img-2">
+                            <img alt="BITC Cimahi"
+                                src="images/bitc.jpg">
+                        </div>
+
+                        <!-- MASKOT - Posisi Kanan Atas -->
+                        <div class="maskot-right">
+                            <img alt="Maskot Kota Cimahi" src="images/maskot.png" class="w-full h-auto">
+                        </div>
+
+                        <!-- MASKOT - Posisi Kiri Bawah -->
+                        <div class="maskot-left">
+                            <img alt="Maskot Kota Cimahi" src="images/maskot.png" class="w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Button Mobile (hanya muncul di mobile) -->
+                <div class="techno-button-mobile">
+                    <a href="techno.html"
+                        class="inline-flex items-center gap-2 bg-primary text-white font-label-sm text-label-sm px-6 py-3 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md"
+                        data-i18n="technopark.button">
+                        Lihat Selengkapnya
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         MAP SECTION - DENGAN BACKGROUND IMAGE
+         ============================================================ -->
+    <section class="map-section-wrapper px-margin-mobile md:px-margin-desktop" id="map">
+        <div class="map-card-split" data-aos="zoom-in" data-aos-duration="800">
+            <!-- Gambar Peta di Kiri -->
+            <div class="map-image-container">
+                <img alt="Peta Wilayah Cimahi"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZKkNJIE-A54i_oDyQt-w9sl5Jx7lE9XBO8sEUTOadviEmH-FwJg-GmXF-5Sloc3UABTUqYmqtmgX9PslL_JnL3sgWKb3nYTBEHjyVsDz6sNoLSSKyp-R-8KhbNLmimgGtNPJSvlZyb7sFw_RdAHPsFHdvhBAo1-20znd05THm7JPXBGn9sSW1Yd4ycN6B-bbrBgzoYsKuoNfBN-WsMnJH3n6HabksTkgNu-L8OffLUY-fvn-vUwP0d3rQL7qANKf0cqH8uXTZ8VY">
+            </div>
+
+            <!-- Keterangan di Kanan - Lebih Sempit, Tanpa Icon -->
+            <div class="map-info-container">
+                <h2 data-i18n="map.title">Ayo jelajahi Kota Cimahi lebih jauh</h2>
+                <p class="map-desc" data-i18n="map.desc">
+                    Kenalan dengan lokasi dan sarana-sarana yang ada di Kota Cimahi. Seperti sarana kesehatan, pendidikan, gedung pemerintahan, pariwisata, tempat ibadah DLL
+                </p>
+                <div class="btn-map">
+                    <a href="map.html"
+                        class="inline-flex items-center gap-2 bg-primary text-white font-label-sm text-label-sm px-6 py-3 rounded-full hover:bg-primary-container hover:text-on-primary-container transition-all shadow-md">
+                        <span data-i18n="map.button">Lihat Peta Selengkapnya</span>
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         FOOTER - 3 SECTION (TOP, MID, BOTTOM)
+         ============================================================ -->
+    <footer class="w-full text-white">
+        <!-- ======= TOP FOOTER ======= -->
+        <div class="top-footer">
+            <div class="top-footer-inner">
+                <!-- Kiri: Logo dan Brand -->
+                <div class="top-footer-left">
+                    <div class="flex items-center gap-4">
+                        <img alt="Logo Cimahi" class="h-14 w-auto object-contain" src="images/logo-cimahi.png">
+                        <img alt="Logo Cimahi Campernik" class="h-14 w-auto object-contain" src="images/logo-campernik.png">
+                    </div>
+                </div>
+
+                <!-- Tengah: Alamat -->
+                <div class="top-footer-center">
+                    <p>Jl. Raden Demang Hardjakusumah Blok Jati Cihanjuang No.1,<br>
+                    Kelurahan Cibabat, Kec. Cimahi Utara, Kota Cimahi</p>
+                </div>
+
+                <!-- Kanan: Sosial Media -->
+                <div class="top-footer-right">
+                    <p data-i18n="footer.follow" class="text-center md:text-right">Ikuti kami</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/pemerintahkotacimahi/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/cimahikota/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/user/admincimahi" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= MID FOOTER - Data Lainnya ======= -->
+        <div class="mid-footer">
+            <div class="mid-footer-inner" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                <h3 class="mid-footer-title" data-i18n="footer.otherdata">Data Lainnya</h3>
+                <div class="footer-links-grid">
+                    <a href="profil.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="150">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.profile">Profil Kota Cimahi</span>
+                    </a>
+                    <a href="budaya.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culture">Budaya & Tradisi</span>
+                    </a>
+                    <a href="kuliner.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="250">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culinary">Kuliner Khas</span>
+                    </a>
+                    <a href="wisata.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.destinations">Destinasi Wisata</span>
+                    </a>
+                    <a href="techno.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="350">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.technology">Perkembangan Teknologi & Modernisasi</span>
+                    </a>
+                    <a href="map.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.map">Peta Sarana Cimahi</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= BOTTOM FOOTER ======= -->
+        <div class="bg-[#0f2a1d] border-t border-white/10 py-4">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <p class="text-center text-sm text-white/50">
+                    © 2026 Cimahi Hepi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top FAB -->
+    <a href="#" class="back-to-top" aria-label="Kembali ke atas">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </a>
+
+    <!-- JavaScript -->
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800,
+            once: false,
+            mirror: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // ======= MOBILE/TABLET MENU TOGGLE =======
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function (e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('max-h-0');
+                    mobileMenu.classList.toggle('max-h-96');
+                    mobileMenu.classList.toggle('opacity-0');
+                    mobileMenu.classList.toggle('opacity-100');
+                });
+            }
+            document.addEventListener('click', function (e) {
+                if (!e.target.closest('nav')) {
+                    mobileMenu.classList.add('max-h-0', 'opacity-0');
+                    mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                }
+            });
+
+            // ======= TUTUP MOBILE MENU OTOMATIS SAAT LINK DI KLIK =======
+            if (mobileMenu) {
+                const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+                mobileMenuLinks.forEach(function(link) {
+                    link.addEventListener('click', function() {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    });
+                });
+            }
+
+            // ======= CAROUSEL =======
+            const carousel = document.getElementById('destinationCarousel');
+            if (carousel) {
+                const prevBtn = document.getElementById('prevBtn');
+                const nextBtn = document.getElementById('nextBtn');
+                const items = Array.from(carousel.querySelectorAll('.carousel-item'));
+                const totalSlides = items.length;
+                let currentIndex = 0;
+
+                function getSlidesPerView() {
+                    if (window.innerWidth >= 1024) return 3;
+                    if (window.innerWidth >= 641) return 2;
+                    return 1;
+                }
+
+                function getMaxIndex() {
+                    return Math.max(0, totalSlides - getSlidesPerView());
+                }
+
+                function updateCarousel() {
+                    const maxIndex = getMaxIndex();
+                    if (currentIndex > maxIndex) currentIndex = maxIndex;
+                    const itemWidth = items[0].getBoundingClientRect().width;
+                    const translateX = -(currentIndex * itemWidth);
+                    carousel.style.transform = 'translateX(' + translateX + 'px)';
+                    if (prevBtn) {
+                        prevBtn.disabled = currentIndex <= 0;
+                        prevBtn.classList.toggle('opacity-30', currentIndex <= 0);
+                    }
+                    if (nextBtn) {
+                        nextBtn.disabled = currentIndex >= maxIndex;
+                        nextBtn.classList.toggle('opacity-30', currentIndex >= maxIndex);
+                    }
+                }
+
+                if (prevBtn) {
+                    prevBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        if (currentIndex > 0) { currentIndex--; updateCarousel(); }
+                    });
+                }
+                if (nextBtn) {
+                    nextBtn.addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const maxIndex = getMaxIndex();
+                        if (currentIndex < maxIndex) { currentIndex++; updateCarousel(); }
+                    });
+                }
+
+                let resizeTimeout;
+                window.addEventListener('resize', function () {
+                    clearTimeout(resizeTimeout);
+                    resizeTimeout = setTimeout(updateCarousel, 150);
+                });
+                updateCarousel();
+            }
+
+            // ======= FITUR TRANSLATE =======
+            let currentLang = localStorage.getItem('cimahiLang') || 'id';
+
+            // Fungsi untuk update UI teks bahasa
+            function updateLanguageUI(lang) {
+                const langCodeDesktop = document.getElementById('langCodeDesktop');
+                const langCodeMobile = document.getElementById('langCodeMobile');
+                const langCodeAltDesktop = document.getElementById('langCodeAltDesktop');
+                const langCodeAltMobile = document.getElementById('langCodeAltMobile');
+
+                const activeLang = lang === 'id' ? 'ID' : 'EN';
+                const inactiveLang = lang === 'id' ? 'EN' : 'ID';
+
+                // Update text codes dengan animasi pulse
+                if (langCodeDesktop) {
+                    langCodeDesktop.textContent = activeLang;
+                    langCodeDesktop.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeDesktop.classList.add('active');
+                    void langCodeDesktop.offsetWidth;
+                    langCodeDesktop.classList.add('lang-pulse');
+                }
+                if (langCodeMobile) {
+                    langCodeMobile.textContent = activeLang;
+                    langCodeMobile.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeMobile.classList.add('active');
+                    void langCodeMobile.offsetWidth;
+                    langCodeMobile.classList.add('lang-pulse');
+                }
+                if (langCodeAltDesktop) {
+                    langCodeAltDesktop.textContent = inactiveLang;
+                    langCodeAltDesktop.classList.remove('active', 'inactive');
+                    langCodeAltDesktop.classList.add('inactive');
+                }
+                if (langCodeAltMobile) {
+                    langCodeAltMobile.textContent = inactiveLang;
+                    langCodeAltMobile.classList.remove('active', 'inactive');
+                    langCodeAltMobile.classList.add('inactive');
+                }
+            }
+
+            const translations = {
+                id: {
+                    'nav.profile': 'Profil',
+                    'nav.history': 'Sejarah',
+                    'nav.culture': 'Budaya',
+                    'nav.culinary': 'Kuliner',
+                    'nav.destinations': 'Destinasi',
+                    'nav.technopark': 'Teknologi',
+                    'nav.lang': 'EN/ID',
+                    'hero.title': 'Selamat Datang di Kota Cimahi',
+                    'profile.title': 'Profil Singkat Kota Cimahi',
+                    'profile.p1': 'Cimahi mulai dikenal pada tahun <span class="font-bold text-primary">1811</span>, Gubernur Jendral Willem Daendels membuat jalan Anyer - Panarukan, dengan dibuatnya pos penjagaan (loji) di Alun-alun Cimahi sekarang.',
+                    'profile.p2': 'Tahun <span class="font-bold text-primary">1874 - 1893</span>, dilaksanakan pembuatan jalan kereta api Bandung - Cianjur sekaligus pembuatan stasiun kereta api Cimahi.',
+                    'profile.p3': 'Tahun <span class="font-bold text-primary">1886</span> dimulainya pembangunan pusat pendidikan militer dan fasilitas lainnya (RS Dustira, rumah tahanan militer, dll).',
+                    'profile.button': 'Lihat Profil',
+                    'history.title': 'Warisan Militer & Semangat Juang',
+                    'history.desc': 'Cimahi dikenal sebagai pusat militer sejak zaman kolonial. Dengan arsitektur bersejarah yang masih terjaga hingga kini, kota ini menyimpan ribuan cerita tentang disiplin, perjuangan, dan kemerdekaan.',
+                    'history.badge': 'Sejarah Militer Indonesia',
+                    'history.card1.title': 'Pusdik-pusdik',
+                    'history.card1.desc': 'Pusat pendidikan militer terbaik di Indonesia.',
+                    'history.card2.title': 'Bangunan Tua',
+                    'history.card2.desc': 'Konservasi bangunan cagar budaya yang artistik.',
+                    'culture.title': 'Budaya & Tradisi',
+                    'culture.subtitle': 'Kekayaan warisan budaya lokal yang masih terus dilestarikan.',
+                    'culture.card1.title': 'Kampung Adat Cireundeu',
+                    'culture.card1.desc': 'Terkenal dengan tradisi mengonsumsi Rasi (beras singkong) sebagai makanan pokok, melambangkan ketahanan pangan dan kearifan lokal.',
+                    'culture.card2.title': 'Pencak Silat',
+                    'culture.card2.desc': 'Seni bela diri tradisional yang mengakar kuat dalam masyarakat Cimahi, menjadi bagian integral dari pendidikan karakter generasi muda.',
+                    'culture.card3.title': 'Festival Budaya Lokal',
+                    'culture.card3.desc': 'Perayaan tahunan yang menampilkan kesenian tradisional, musik, dan tarian, merayakan keberagaman dan kreativitas masyarakat Cimahi.',
+                    'culinary.title': 'Kuliner Khas',
+                    'culinary.subtitle': 'Cita rasa autentik yang wajib Anda cicipi saat berkunjung ke Cimahi.',
+                    'culinary.card1.title': 'Denjapi',
+                    'culinary.card1.desc': 'Dendeng jantung pisang (Banana heart jerky) dengan bumbu khas, alternatif lezat dan unik bagi pecinta kuliner nabati.',
+                    'culinary.card1.price': 'Est. Harga: Rp 25.000 - Rp 50.000',
+                    'culinary.card2.title': 'Keripik Singkong',
+                    'culinary.card2.desc': 'Keripik singkong renyah dengan berbagai varian rasa pedas yang menggugah selera, camilan favorit khas daerah ini.',
+                    'culinary.card2.price': 'Est. Harga: Rp 15.000 - Rp 30.000',
+                    'culinary.card3.title': 'Sumpia Udang',
+                    'culinary.card3.desc': 'Camilan renyah berbentuk gulungan kecil dengan isian udang kering (ebi) yang gurih dan sedikit manis. Sangat populer sebagai buah tangan khas Cimahi.',
+                    'culinary.card3.price': 'Est. Harga: Rp 15.000 - Rp 35.000',
+                    'destinations.title': 'Destinasi Wisata',
+                    'destinations.subtitle': 'Jelajahi berbagai pilihan wisata alam, sejarah, dan edukasi di Cimahi.',
+                    'destinations.tag.alam': 'Alam',
+                    'destinations.tag.sejarah': 'Sejarah',
+                    'destinations.tag.edukasi': 'Edukasi',
+                    'destinations.card1.title': 'Alam Wisata Cimahi (AWC)',
+                    'destinations.card1.desc': 'Taman rekreasi keluarga yang menawarkan berbagai fasilitas mulai dari kolam renang, area outbond, hingga restoran dengan pemandangan alam.',
+                    'destinations.card2.title': 'Eco Wisata Cimahi',
+                    'destinations.card2.desc': 'Kawasan ekowisata yang asri dengan konsep alam dan edukasi pertanian, cocok untuk kegiatan outbound dan rekreasi keluarga yang menenangkan.',
+                    'destinations.card3.title': 'Curug Cimahi (Air Terjun Pelangi)',
+                    'destinations.card3.desc': 'Air terjun setinggi 87 meter yang memukau, dikenal dengan instalasi lampu warna-warni di malam hari yang menciptakan pemandangan pelangi yang ajaib.',
+                    'destinations.card4.title': 'Curug Bugbrug',
+                    'destinations.card4.desc': 'Air terjun yang terletak di kawasan Cimahi Utara dengan pemandangan alam yang masih asri dan suasana yang menenangkan.',
+                    'destinations.card5.title': 'Kampung Buyut Cipageran (Kabuci) Asih Putera',
+                    'destinations.card5.desc': 'Kampung adat yang melestarikan tradisi dan budaya Sunda, menjadi destinasi wisata edukasi tentang kearifan lokal.',
+                    'destinations.card6.title': 'Kampung Adat Cirendeu',
+                    'destinations.card6.desc': 'Kampung adat yang terkenal dengan tradisi mengonsumsi Rasi (beras singkong) dan kearifan lokal yang masih dilestarikan.',
+                    'technopark.badge': 'Perkembangan Teknologi Dan Modernisasi',
+                    'technopark.desc': 'Perkembangan teknologi di Kota Cimahi berfokus pada transformasi Kota Cyber, pengembangan ekonomi kreatif berbasis teknologi, dan digitalisasi layanan publik. Potensi ini didorong oleh sektor animasi lokal yang menembus pasar internasional serta modernisasi pasar rakyat.',
+                    'technopark.button': 'Lihat Selengkapnya',
+                    'map.title': 'Ayo jelajahi Kota Cimahi lebih jauh',
+                    'map.desc': 'Kenalan dengan lokasi dan sarana-sarana yang ada di Kota Cimahi. Seperti sarana kesehatan, pendidikan, gedung pemerintahan, pariwisata, tempat ibadah DLL',
+                    'map.button': 'Lihat Peta Selengkapnya',
+                    'footer.follow': 'Ikuti kami',
+                    'footer.otherdata': 'Data Lainnya',
+                    'footer.link.profile': 'Profil Kota Cimahi',
+                    'footer.link.culture': 'Budaya & Tradisi',
+                    'footer.link.culinary': 'Kuliner Khas',
+                    'footer.link.destinations': 'Destinasi Wisata',
+                    'footer.link.technology': 'Perkembangan Teknologi & Modernisasi',
+                    'footer.link.map': 'Peta Sarana Cimahi'
+                },
+                en: {
+                    'nav.profile': 'Profile',
+                    'nav.history': 'History',
+                    'nav.culture': 'Culture',
+                    'nav.culinary': 'Culinary',
+                    'nav.destinations': 'Destinations',
+                    'nav.technopark': 'Technology',
+                    'nav.lang': 'ID/EN',
+                    'hero.title': 'Welcome to Cimahi City',
+                    'profile.title': 'Brief Profile of Cimahi City',
+                    'profile.p1': 'Cimahi began to be known in <span class="font-bold text-primary">1811</span>, when Governor General Willem Daendels built the Anyer - Panarukan road, along with a guard post (loji) at what is now Cimahi Square.',
+                    'profile.p2': 'In <span class="font-bold text-primary">1874 - 1893</span>, the Bandung - Cianjur railway line was constructed, along with the Cimahi railway station.',
+                    'profile.p3': 'In <span class="font-bold text-primary">1886</span>, the construction of a military education center and other facilities (RS Dustira, military detention house, etc.) began.',
+                    'profile.button': 'View Profile',
+                    'history.title': 'Military Heritage & Spirit of Struggle',
+                    'history.desc': 'Cimahi has been known as a military center since colonial times. With historical architecture still preserved today, this city holds thousands of stories about discipline, struggle, and independence.',
+                    'history.badge': 'Indonesian Military History',
+                    'history.card1.title': 'Training Centers',
+                    'history.card1.desc': 'The best military education centers in Indonesia.',
+                    'history.card2.title': 'Old Buildings',
+                    'history.card2.desc': 'Conservation of artistic cultural heritage buildings.',
+                    'culture.title': 'Culture & Traditions',
+                    'culture.subtitle': 'The richness of local cultural heritage that continues to be preserved.',
+                    'culture.card1.title': 'Cireundeu Traditional Village',
+                    'culture.card1.desc': 'Famous for the tradition of consuming Rasi (cassava rice) as a staple food, symbolizing food security and local wisdom.',
+                    'culture.card2.title': 'Pencak Silat',
+                    'culture.card2.desc': 'Traditional martial art deeply rooted in Cimahi society, an integral part of character education for the younger generation.',
+                    'culture.card3.title': 'Local Cultural Festival',
+                    'culture.card3.desc': 'Annual celebration featuring traditional arts, music, and dance, celebrating the diversity and creativity of Cimahi community.',
+                    'culinary.title': 'Signature Culinary',
+                    'culinary.subtitle': 'Authentic flavors you must taste when visiting Cimahi.',
+                    'culinary.card1.title': 'Denjapi',
+                    'culinary.card1.desc': 'Banana heart jerky with special spices, a delicious and unique alternative for plant-based food lovers.',
+                    'culinary.card1.price': 'Est. Price: Rp 25,000 - Rp 50,000',
+                    'culinary.card2.title': 'Cassava Chips',
+                    'culinary.card2.desc': 'Crispy cassava chips with various spicy flavors, a favorite snack from this region.',
+                    'culinary.card2.price': 'Est. Price: Rp 15,000 - Rp 30,000',
+                    'culinary.card3.title': 'Shrimp Sumpia',
+                    'culinary.card3.desc': 'Crispy small rolls filled with dried shrimp (ebi), savory and slightly sweet. Very popular as a typical Cimahi souvenir.',
+                    'culinary.card3.price': 'Est. Price: Rp 15,000 - Rp 35,000',
+                    'destinations.title': 'Tourist Destinations',
+                    'destinations.subtitle': 'Explore various nature, history, and educational tourism options in Cimahi.',
+                    'destinations.tag.alam': 'Nature',
+                    'destinations.tag.sejarah': 'History',
+                    'destinations.tag.edukasi': 'Education',
+                    'destinations.card1.title': 'Alam Wisata Cimahi (AWC)',
+                    'destinations.card1.desc': 'A family recreation park offering various facilities ranging from swimming pools, outbound areas, to restaurants with natural views.',
+                    'destinations.card2.title': 'Eco Wisata Cimahi',
+                    'destinations.card2.desc': 'A lush ecotourism area with a nature and agricultural education concept, suitable for outbound activities and relaxing family recreation.',
+                    'destinations.card3.title': 'Curug Cimahi (Rainbow Waterfall)',
+                    'destinations.card3.desc': 'A stunning 87-meter waterfall, known for its colorful lighting installations at night that create a magical rainbow view.',
+                    'destinations.card4.title': 'Curug Bugbrug',
+                    'destinations.card4.desc': 'A waterfall located in North Cimahi with still pristine natural scenery and a calming atmosphere.',
+                    'destinations.card5.title': 'Kampung Buyut Cipageran (Kabuci) Asih Putera',
+                    'destinations.card5.desc': 'A traditional village preserving Sundanese traditions and culture, an educational tourism destination about local wisdom.',
+                    'destinations.card6.title': 'Cirendeu Traditional Village',
+                    'destinations.card6.desc': 'A traditional village famous for the tradition of consuming Rasi (cassava rice) and preserving local wisdom.',
+                    'technopark.badge': 'Technology Development & Modernization',
+                    'technopark.desc': 'Technology development in Cimahi City focuses on Cyber City transformation, technology-based creative economy development, and public service digitalization. This potential is driven by the local animation sector that penetrates international markets and the modernization of traditional markets.',
+                    'technopark.button': 'Learn More',
+                    'map.title': 'Explore Cimahi City further',
+                    'map.desc': 'Get to know the locations and facilities in Cimahi City. Such as health facilities, education, government buildings, tourism, places of worship, etc.',
+                    'map.button': 'View Full Map',
+                    'footer.follow': 'Follow Us',
+                    'footer.otherdata': 'Other Data',
+                    'footer.link.profile': 'Cimahi City Profile',
+                    'footer.link.culture': 'Culture & Traditions',
+                    'footer.link.culinary': 'Signature Culinary',
+                    'footer.link.destinations': 'Tourist Destinations',
+                    'footer.link.technology': 'Technology Development & Modernization',
+                    'footer.link.map': 'Cimahi Facilities Map'
+                }
+            };
+
+            function applyLanguage(lang) {
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key] !== undefined) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                updateLanguageUI(lang);
+                currentLang = lang;
+                localStorage.setItem('cimahiLang', lang);
+            }
+
+            applyLanguage(currentLang);
+
+            document.querySelectorAll('.lang-btn, .mobile-lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var nextLang = currentLang === 'id' ? 'en' : 'id';
+                    applyLanguage(nextLang);
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>

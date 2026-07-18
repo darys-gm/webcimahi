@@ -1,0 +1,2975 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
+    <title>Peta Interaktif Sarana Cimahi</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+        html {
+            scroll-behavior: smooth;
+            height: 100%;
+        }
+
+        /* ========== NAVBAR ========== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(249, 249, 249, 0.9);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        nav .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1rem;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            nav .nav-container {
+                padding: 1rem 2.5rem;
+            }
+        }
+
+        nav .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        nav .nav-brand img {
+            height: 2.5rem;
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 480px) {
+            nav .nav-brand img {
+                height: 1.8rem;
+            }
+        }
+
+        nav .nav-menu-desktop {
+            display: none;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            nav .nav-menu-desktop {
+                display: flex;
+            }
+        }
+
+        nav .nav-menu-desktop a {
+            color: #3f4a3c;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            padding: 0.25rem 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav .nav-menu-desktop a:hover {
+            color: #ffb05f;
+            border-bottom-color: #ffb05f;
+        }
+
+        nav .nav-menu-desktop a.active {
+            color: #005313;
+            border-bottom-color: #005313;
+        }
+
+        nav .menu-btn {
+            display: flex;
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #1a3c1a;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        nav .menu-btn:hover {
+            background: #eaf1ea;
+        }
+
+        nav .menu-btn .material-symbols-outlined {
+            font-size: 28px;
+        }
+
+        @media (min-width: 1024px) {
+            nav .menu-btn {
+                display: none !important;
+            }
+        }
+
+        nav .mobile-menu {
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.4s ease-in-out;
+            max-height: 0;
+            opacity: 0;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+            border-radius: 0 0 16px 16px;
+            width: 100%;
+        }
+
+        nav .mobile-menu.open {
+            max-height: 70vh;
+            opacity: 1;
+            overflow-y: auto;
+        }
+
+        nav .mobile-menu .menu-items {
+            display: flex;
+            flex-direction: column;
+            padding: 0.75rem 1.5rem;
+            gap: 0.25rem;
+        }
+
+        nav .mobile-menu .menu-items a {
+            display: block;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            color: #3f4a3c;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        nav .mobile-menu .menu-items a:last-child {
+            border-bottom: none;
+        }
+
+        nav .mobile-menu .menu-items a:hover {
+            color: #ffb05f;
+        }
+
+        nav .mobile-menu .menu-items a.active {
+            color: #005313;
+        }
+
+        /* ========== TOMBOL BAHASA ========== */
+        .lang-btn, .mobile-lang-btn {
+            background: transparent;
+            border: 1px solid #005313;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before, .mobile-lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .lang-btn:hover::before, .mobile-lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .lang-btn:hover, .mobile-lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .lang-btn .lang-code, .mobile-lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .lang-btn .lang-code.active, .mobile-lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .lang-btn:hover .lang-code.active, .mobile-lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .lang-btn .lang-code.inactive, .mobile-lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .lang-btn:hover .lang-code.inactive, .mobile-lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-btn .lang-divider, .mobile-lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .lang-btn:hover .lang-divider, .mobile-lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .lang-btn .lang-icon-globe, .mobile-lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-btn:hover .lang-icon-globe, .mobile-lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        .mobile-lang-btn {
+            margin-top: 0.5rem;
+            align-self: flex-start;
+        }
+
+        @keyframes langPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .lang-pulse {
+            animation: langPulse 0.4s ease-in-out;
+        }
+
+        /* ========== MAP FULL ========== */
+        #mapWrapper {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            height: calc(100vh - 72px);
+            z-index: 1;
+            background: #e5e7eb;
+        }
+
+        @media (max-width: 480px) {
+            #mapWrapper {
+                top: 64px;
+                height: calc(100vh - 64px);
+            }
+        }
+
+        #cimahiMap {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* ================================================================
+           KONTROL DROPDOWN BERTINGKAT VERTIKAL + REFRESH
+           ================================================================ */
+        .tree-control-wrapper {
+            display: flex;
+            gap: 6px;
+            align-items: flex-start;
+            margin-top: 10px;
+            margin-left: 10px;
+            position: relative;
+            z-index: 1000;
+        }
+
+        @media (max-width: 1024px) {
+            .tree-control-wrapper {
+                margin-top: 80px;
+                margin-left: 8px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tree-control-wrapper {
+                margin-top: 85px;
+                margin-left: 8px;
+                gap: 4px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tree-control-wrapper {
+                margin-top: 80px;
+                margin-left: 6px;
+                gap: 4px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .tree-control-wrapper {
+                margin-top: 75px;
+                margin-left: 4px;
+                gap: 3px;
+            }
+        }
+
+        /* ================================================================
+           DROPDOWN - FIX SCROLLING MOBILE
+           ================================================================ */
+        .tree-control {
+            background: white !important;
+            padding: 0 !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+            font-family: 'Plus Jakarta Sans', sans-serif !important;
+            min-width: 260px;
+            max-width: 340px;
+            border: 1px solid #e8ece8;
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
+            flex-shrink: 0;
+            position: relative;
+            /* Mencegah scroll keluar dari dropdown */
+            touch-action: pan-y;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .tree-control {
+                min-width: 240px;
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tree-control {
+                min-width: 220px;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tree-control {
+                min-width: 200px;
+                max-width: 280px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .tree-control {
+                min-width: 170px;
+                max-width: 240px;
+            }
+        }
+
+        .tree-control .tree-header {
+            padding: 10px 14px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #1a3c1a;
+            border-bottom: 1px solid #e8ece8;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            background: #ffffff;
+            border-radius: 12px;
+            user-select: none;
+            flex-shrink: 0;
+            transition: background 0.15s;
+            min-height: 44px;
+            position: relative;
+            z-index: 2;
+            touch-action: manipulation;
+        }
+        .tree-control .tree-header:hover {
+            background: #f5f8f5;
+        }
+        .tree-control .tree-header .header-icon {
+            font-size: 20px;
+            color: #2d6a2d;
+        }
+        .tree-control .tree-header .header-title {
+            flex: 1;
+            font-size: 12px;
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .tree-control .tree-header .header-arrow {
+            font-size: 18px;
+            color: #6b8f6b;
+            transition: transform 0.3s ease;
+        }
+        .tree-control .tree-header.open .header-arrow {
+            transform: rotate(180deg);
+        }
+        .tree-control .tree-header .header-clear {
+            font-size: 12px;
+            color: #e74c3c;
+            cursor: pointer;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+            display: none;
+        }
+        .tree-control .tree-header .header-clear:hover {
+            background: #fee;
+        }
+        .tree-control .tree-header .header-clear.show {
+            display: inline-block;
+        }
+
+        /* ================================================================
+           TREE BODY - SCROLLING MOBILE FIX
+           ================================================================ */
+        .tree-control .tree-body {
+            padding: 4px 0 8px 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background: #ffffff;
+            border-radius: 0 0 12px 12px;
+            flex: 0 1 auto;
+            max-height: 0;
+            overscroll-behavior: contain;
+            -webkit-overflow-scrolling: touch;
+            display: none;
+            width: 100%;
+            min-width: 260px;
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            transition: max-height 0.3s ease;
+            position: relative;
+            z-index: 1;
+            /* Mencegah scroll keluar */
+            touch-action: pan-y;
+            -webkit-touch-callout: none;
+        }
+
+        .tree-control .tree-body.show {
+            display: block;
+            max-height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e8ece8;
+            border-top: none;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+        }
+
+        /* Styling scrollbar - WebKit */
+        .tree-control .tree-body::-webkit-scrollbar {
+            width: 4px;
+        }
+        .tree-control .tree-body::-webkit-scrollbar-track {
+            background: #f0f3f0;
+            border-radius: 10px;
+        }
+        .tree-control .tree-body::-webkit-scrollbar-thumb {
+            background: #a8c8a8;
+            border-radius: 10px;
+        }
+
+        /* Untuk Firefox */
+        .tree-control .tree-body {
+            scrollbar-width: thin;
+            scrollbar-color: #a8c8a8 #f0f3f0;
+        }
+
+        @media (max-width: 1024px) {
+            .tree-control .tree-body {
+                min-width: 240px;
+            }
+            .tree-control .tree-body.show {
+                max-height: 350px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .tree-control .tree-body {
+                min-width: 220px;
+            }
+            .tree-control .tree-body.show {
+                max-height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tree-control .tree-body {
+                min-width: 200px;
+            }
+            .tree-control .tree-body.show {
+                max-height: 250px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .tree-control .tree-body {
+                min-width: 170px;
+            }
+            .tree-control .tree-body.show {
+                max-height: 200px;
+            }
+        }
+
+        .tree-control .tree-item {
+            padding: 6px 14px 6px 16px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #2d3a2d;
+            transition: background 0.12s ease;
+            border-left: 3px solid transparent;
+            user-select: none;
+            width: 100%;
+            flex-wrap: wrap;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        .tree-control .tree-item:hover {
+            background: #f0f7f0;
+        }
+        .tree-control .tree-item .item-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+        }
+        .tree-control .tree-item .item-name {
+            flex: 1;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 12px;
+            color: #1a3c1a;
+            letter-spacing: 0.2px;
+        }
+        .tree-control .tree-item .item-arrow {
+            font-size: 18px;
+            color: #999;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            padding: 0 4px;
+        }
+        .tree-control .tree-item .item-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        /* SUB ITEM - muncul di bawah kategori dengan indentasi */
+        .tree-control .sub-item {
+            padding: 4px 14px 4px 42px !important;
+            font-size: 12px;
+            border-left: 3px solid transparent;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .tree-control .sub-item .item-icon {
+            width: 20px;
+            height: 20px;
+        }
+        .tree-control .sub-item .item-name {
+            font-weight: 600;
+            text-transform: none;
+            font-size: 11px;
+            color: #444;
+        }
+        .tree-control .sub-item:hover {
+            background: #e8f0e8;
+        }
+
+        /* SUB BODY - container untuk sub kategori yang muncul di bawah */
+        .tree-control .sub-body {
+            display: none;
+            overflow: hidden;
+            width: 100%;
+            flex: 0 0 100%;
+            order: 10;
+            background: #fafcfa;
+            border-radius: 0 0 8px 8px;
+            margin: 2px 0 4px 0;
+            padding: 0;
+        }
+        .tree-control .sub-body.open {
+            display: block;
+        }
+
+        .tree-control .category-item.has-subs .item-name {
+            color: #005313;
+        }
+
+        .tree-control .category-item {
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .refresh-control {
+            background: white !important;
+            padding: 0 !important;
+            border-radius: 12px !important;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+            border: 1px solid #e8ece8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 44px;
+            min-height: 44px;
+            cursor: pointer;
+            transition: background 0.15s;
+            flex-shrink: 0;
+            height: 44px;
+            position: relative;
+            z-index: 2;
+            touch-action: manipulation;
+            margin-top: 10px;
+        }
+        .refresh-control:hover {
+            background: #f5f8f5;
+        }
+        .refresh-control .refresh-icon {
+            font-size: 24px;
+            color: #2d6a2d;
+        }
+
+        @media (max-width: 480px) {
+            .refresh-control {
+                min-width: 40px;
+                min-height: 40px;
+                height: 40px;
+            }
+            .refresh-control .refresh-icon {
+                font-size: 20px;
+            }
+            .tree-control .tree-item {
+                font-size: 11px;
+                padding: 5px 10px 5px 12px;
+                gap: 6px;
+            }
+            .tree-control .tree-item .item-icon {
+                width: 20px;
+                height: 20px;
+            }
+            .tree-control .tree-item .item-name {
+                font-size: 10px;
+            }
+            .tree-control .tree-header {
+                padding: 8px 10px;
+                font-size: 12px;
+                min-height: 40px;
+            }
+            .tree-control .tree-header .header-icon {
+                font-size: 18px;
+            }
+            .tree-control .tree-header .header-title {
+                font-size: 10px;
+            }
+            .tree-control .sub-item {
+                padding: 4px 10px 4px 32px !important;
+            }
+            .tree-control .sub-item .item-name {
+                font-size: 10px;
+            }
+            .tree-control .sub-item .item-icon {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .refresh-control {
+                min-width: 36px;
+                min-height: 36px;
+                height: 36px;
+            }
+            .refresh-control .refresh-icon {
+                font-size: 18px;
+            }
+            .tree-control .sub-item {
+                padding: 3px 8px 3px 28px !important;
+            }
+        }
+
+        /* ========== ZOOM CONTROL ========== */
+        .leaflet-control-zoom {
+            margin-bottom: 20px !important;
+        }
+
+        @media (max-width: 1024px) {
+            .leaflet-control-zoom {
+                margin-bottom: 100px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .leaflet-control-zoom {
+                margin-bottom: 105px !important;
+            }
+            .leaflet-control-zoom a {
+                width: 32px !important;
+                height: 32px !important;
+                line-height: 32px !important;
+                font-size: 18px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .leaflet-control-zoom {
+                margin-bottom: 95px !important;
+                margin-right: 8px !important;
+            }
+            .leaflet-control-zoom a {
+                width: 28px !important;
+                height: 28px !important;
+                line-height: 28px !important;
+                font-size: 16px !important;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .leaflet-control-zoom {
+                margin-bottom: 90px !important;
+                margin-right: 4px !important;
+            }
+            .leaflet-control-zoom a {
+                width: 24px !important;
+                height: 24px !important;
+                line-height: 24px !important;
+                font-size: 14px !important;
+            }
+        }
+
+        /* ========== CUSTOM POPUP ========== */
+        .custom-popup .leaflet-popup-content-wrapper {
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+        }
+        .custom-popup .leaflet-popup-content {
+            padding: 10px 14px;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            min-width: 150px;
+        }
+        .popup-title {
+            font-weight: 700;
+            color: #005313;
+            font-size: 0.9rem;
+            margin-bottom: 2px;
+        }
+        .popup-cat {
+            display: inline-block;
+            padding: 1px 10px;
+            border-radius: 12px;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: white;
+            margin-top: 4px;
+        }
+        .popup-desc {
+            color: #4a4a4a;
+            font-size: 0.75rem;
+            margin: 2px 0;
+        }
+        .popup-subcat {
+            font-size: 0.6rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        footer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-brand">
+                <a href="index.html">
+                    <img src="images/logo-cimahi.png" alt="Logo Cimahi">
+                </a>
+                <img src="images/logo-campernik.png" alt="Logo Campernik">
+            </div>
+
+            <div class="nav-menu-desktop">
+                <a href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a href="index.html#history" data-i18n="nav.history">History</a>
+                <a href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a href="index.html#technopark" data-i18n="nav.technopark">Techno Park</a>
+                
+                <button class="lang-btn" id="langToggleDesktop" data-i18n="nav.lang">
+                    <span id="langCodeDesktop" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltDesktop" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+
+            <button class="menu-btn" id="menuToggle">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="menu-items">
+                <a href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a href="index.html#history" data-i18n="nav.history">History</a>
+                <a href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a href="index.html#technopark" data-i18n="nav.technopark">Techno Park</a>
+                
+                <button class="mobile-lang-btn" id="langToggleMobile" data-i18n="nav.lang">
+                
+                    <span id="langCodeMobile" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltMobile" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== MAP FULL ========== -->
+    <div id="mapWrapper">
+        <div id="cimahiMap"></div>
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer>
+        <div>
+            <div class="brand">Cimahi Hepi</div>
+            <div class="copy">© 2024 Cimahi Hepi Portal. Explore the Lush Landscapes.</div>
+        </div>
+        <div class="links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Contact Us</a>
+            <a href="#">Official Portal</a>
+        </div>
+    </footer>
+
+    <!-- ========== LEAFLET JS ========== -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
+    </script>
+
+    <!-- ========== MAIN JS ========== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // ============================================================
+            // 1. NAVBAR MOBILE TOGGLE
+            // ============================================================
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                mobileMenu.classList.toggle('open');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav')) {
+                    mobileMenu.classList.remove('open');
+                }
+            });
+
+            // ============================================================
+            // 2. FITUR TRANSLATE
+            // ============================================================
+            let currentLang = localStorage.getItem('cimahiLang') || 'id';
+
+            function updateLanguageUI(lang) {
+                const langCodeDesktop = document.getElementById('langCodeDesktop');
+                const langCodeMobile = document.getElementById('langCodeMobile');
+                const langCodeAltDesktop = document.getElementById('langCodeAltDesktop');
+                const langCodeAltMobile = document.getElementById('langCodeAltMobile');
+
+                const activeLang = lang === 'id' ? 'ID' : 'EN';
+                const inactiveLang = lang === 'id' ? 'EN' : 'ID';
+
+                if (langCodeDesktop) {
+                    langCodeDesktop.textContent = activeLang;
+                    langCodeDesktop.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeDesktop.classList.add('active');
+                    void langCodeDesktop.offsetWidth;
+                    langCodeDesktop.classList.add('lang-pulse');
+                }
+                if (langCodeMobile) {
+                    langCodeMobile.textContent = activeLang;
+                    langCodeMobile.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeMobile.classList.add('active');
+                    void langCodeMobile.offsetWidth;
+                    langCodeMobile.classList.add('lang-pulse');
+                }
+                if (langCodeAltDesktop) {
+                    langCodeAltDesktop.textContent = inactiveLang;
+                    langCodeAltDesktop.classList.remove('active', 'inactive');
+                    langCodeAltDesktop.classList.add('inactive');
+                }
+                if (langCodeAltMobile) {
+                    langCodeAltMobile.textContent = inactiveLang;
+                    langCodeAltMobile.classList.remove('active', 'inactive');
+                    langCodeAltMobile.classList.add('inactive');
+                }
+            }
+
+            const translations = {
+                id: {
+                    'nav.profile': 'Profil',
+                    'nav.history': 'Sejarah',
+                    'nav.culture': 'Budaya',
+                    'nav.culinary': 'Kuliner',
+                    'nav.destinations': 'Destinasi',
+                    'nav.technopark': 'Techno Park',
+                    'nav.map': 'Peta',
+                    'nav.lang': 'EN/ID',
+                    'dropdown.title': 'SARANA CIMAHI'
+                },
+                en: {
+                    'nav.profile': 'Profile',
+                    'nav.history': 'History',
+                    'nav.culture': 'Culture',
+                    'nav.culinary': 'Culinary',
+                    'nav.destinations': 'Destinations',
+                    'nav.technopark': 'Techno Park',
+                    'nav.map': 'Map',
+                    'nav.lang': 'ID/EN',
+                    'dropdown.title': 'CIMAHI FACILITIES'
+                }
+            };
+
+            // ============================================================
+            // 3. DATA KATEGORI & SUB KATEGORI
+            // ============================================================
+            const categoryData = {
+                'kesehatan': {
+                    label: 'Kesehatan',
+                    color: '#e74c3c',
+                    subs: ['Rumah Sakit', 'Puskesmas', 'Laboratorium', 'Klinik', 'Apotek', 'Dokter Hewan']
+                },
+                'pemerintahan': {
+                    label: 'Pemerintahan',
+                    color: '#2c3e50',
+                    subs: ['Kantor Kecamatan', 'Kantor Kelurahan', 'Kantor Dinas']
+                },
+                'ibadah': {
+                    label: 'Ibadah',
+                    color: '#8e44ad',
+                    subs: ['Pura', 'Masjid', 'Gereja']
+                },
+                'pendidikan': {
+                    label: 'Pendidikan',
+                    color: '#3498db',
+                    subs: ['TK', 'SD', 'SMP', 'SMA', 'SMK', 'Perguruan Tinggi', 'Pusat Pendidikan']
+                },
+                'olahraga': {
+                    label: 'Olahraga',
+                    color: '#1abc9c',
+                    subs: ['Kolam Renang', 'GOR', 'Lapangan', 'Gedung Olahraga']
+                },
+                'minimarket': {
+                    label: 'Minimarket',
+                    color: '#f39c12',
+                    subs: []
+                },
+                'spbu': {
+                    label: 'SPBU',
+                    color: '#2c3e50',
+                    subs: []
+                },
+                'perekonomian': {
+                    label: 'Perekonomian',
+                    color: '#e67e22',
+                    subs: ['Pasar', 'Bank', 'Mall', 'Toko']
+                },
+                'transportasi': {
+                    label: 'Transportasi',
+                    color: '#2ecc71',
+                    subs: ['Terminal', 'Stasiun']
+                },
+                'teknologi': {
+                    label: 'Gedung Teknologi',
+                    color: '#00bcd4',
+                    subs: []
+                },
+                'pariwisata': {
+                    label: 'Pariwisata',
+                    color: '#27ae60',
+                    subs: ['Taman', 'Wisata Alam']
+                },
+                'kuliner': {
+                    label: 'Kuliner',
+                    color: '#f39c12',
+                    subs: ['Restoran', 'Cafe', 'Bakery']
+                }
+            };
+
+            const categoryTranslations = {
+                id: {
+                    'kesehatan': 'Kesehatan',
+                    'pemerintahan': 'Pemerintahan',
+                    'ibadah': 'Ibadah',
+                    'pendidikan': 'Pendidikan',
+                    'olahraga': 'Olahraga',
+                    'minimarket': 'Minimarket',
+                    'spbu': 'SPBU',
+                    'perekonomian': 'Perekonomian',
+                    'transportasi': 'Transportasi',
+                    'teknologi': 'Gedung Teknologi',
+                    'pariwisata': 'Pariwisata',
+                    'kuliner': 'Kuliner',
+                    'Rumah Sakit': 'Rumah Sakit',
+                    'Puskesmas': 'Puskesmas',
+                    'Laboratorium': 'Laboratorium',
+                    'Klinik': 'Klinik',
+                    'Apotek': 'Apotek',
+                    'Dokter Hewan': 'Dokter Hewan',
+                    'Kantor Kecamatan': 'Kantor Kecamatan',
+                    'Kantor Kelurahan': 'Kantor Kelurahan',
+                    'Kantor Dinas': 'Kantor Dinas',
+                    'Pura': 'Pura',
+                    'Masjid': 'Masjid',
+                    'Gereja': 'Gereja',
+                    'TK': 'TK',
+                    'SD': 'SD',
+                    'SMP': 'SMP',
+                    'SMA': 'SMA',
+                    'SMK': 'SMK',
+                    'Perguruan Tinggi': 'Perguruan Tinggi',
+                    'Pusat Pendidikan': 'Pusat Pendidikan',
+                    'Kolam Renang': 'Kolam Renang',
+                    'GOR': 'GOR',
+                    'Lapangan': 'Lapangan',
+                    'Gedung Olahraga': 'Gedung Olahraga',
+                    'Minimarket': 'Minimarket',
+                    'SPBU': 'SPBU',
+                    'Pasar': 'Pasar',
+                    'Bank': 'Bank',
+                    'Mall': 'Mall',
+                    'Toko': 'Toko',
+                    'Terminal': 'Terminal',
+                    'Stasiun': 'Stasiun',
+                    'Gedung Teknologi': 'Gedung Teknologi',
+                    'Taman': 'Taman',
+                    'Wisata Alam': 'Wisata Alam',
+                    'Restoran': 'Restoran',
+                    'Cafe': 'Cafe',
+                    'Bakery': 'Bakery'
+                },
+                en: {
+                    'kesehatan': 'Health',
+                    'pemerintahan': 'Government',
+                    'ibadah': 'Worship',
+                    'pendidikan': 'Education',
+                    'olahraga': 'Sports',
+                    'minimarket': 'Minimarket',
+                    'spbu': 'Gas Station',
+                    'perekonomian': 'Economy',
+                    'transportasi': 'Transportation',
+                    'teknologi': 'Technology Building',
+                    'pariwisata': 'Tourism',
+                    'kuliner': 'Culinary',
+                    'Rumah Sakit': 'Hospital',
+                    'Puskesmas': 'Health Center',
+                    'Laboratorium': 'Laboratory',
+                    'Klinik': 'Clinic',
+                    'Apotek': 'Pharmacy',
+                    'Dokter Hewan': 'Veterinarian',
+                    'Kantor Kecamatan': 'District Office',
+                    'Kantor Kelurahan': 'Village Office',
+                    'Kantor Dinas': 'Government Office',
+                    'Pura': 'Temple',
+                    'Masjid': 'Mosque',
+                    'Gereja': 'Church',
+                    'TK': 'Kindergarten',
+                    'SD': 'Elementary School',
+                    'SMP': 'Junior High School',
+                    'SMA': 'Senior High School',
+                    'SMK': 'Vocational School',
+                    'Perguruan Tinggi': 'University',
+                    'Pusat Pendidikan': 'Education Center',
+                    'Kolam Renang': 'Swimming Pool',
+                    'GOR': 'Sports Hall',
+                    'Lapangan': 'Field',
+                    'Gedung Olahraga': 'Sports Building',
+                    'Minimarket': 'Minimarket',
+                    'SPBU': 'Gas Station',
+                    'Pasar': 'Market',
+                    'Bank': 'Bank',
+                    'Mall': 'Mall',
+                    'Toko': 'Store',
+                    'Terminal': 'Terminal',
+                    'Stasiun': 'Station',
+                    'Gedung Teknologi': 'Technology Building',
+                    'Taman': 'Park',
+                    'Wisata Alam': 'Nature Tourism',
+                    'Restoran': 'Restaurant',
+                    'Cafe': 'Cafe',
+                    'Bakery': 'Bakery'
+                }
+            };
+
+            function getTranslated(text, lang) {
+                if (categoryTranslations[lang] && categoryTranslations[lang][text]) {
+                    return categoryTranslations[lang][text];
+                }
+                return text;
+            }
+
+            function updateCategoryLanguage(lang) {
+                const items = document.querySelectorAll('.tree-item .item-name, .tree-item .sub-item .item-name');
+                items.forEach(function(item) {
+                    var key = item.getAttribute('data-key');
+                    if (key) {
+                        var translated = getTranslated(key, lang);
+                        item.textContent = translated;
+                    }
+                });
+            }
+
+            // ============================================================
+            // 4. DATA LOKASI LENGKAP
+            // ============================================================
+            const locations = [
+                // ==================== KESEHATAN ====================
+                // RUMAH SAKIT (9)
+                { lat: -6.9001013, lng: 107.5472677, name: 'RS Umum Kasih Bunda', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum' },
+                { lat: -6.9209402, lng: 107.5556904, name: 'RS Umum Avisena', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum' },
+                { lat: -6.8837357, lng: 107.5526741, name: 'RS Mitra Kasih Cimahi', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum Swasta' },
+                { lat: -6.8679588, lng: 107.5444523, name: 'RS Gigi & Mulut UNJANI', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Pendidikan' },
+                { lat: -6.8787383, lng: 107.5504247, name: 'RSUD Cibabat Kota Cimahi', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum Daerah' },
+                { lat: -6.8850904, lng: 107.5347900, name: 'RS Dustira Kota Cimahi', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Militer' },
+                { lat: -6.8995664, lng: 107.5558282, name: 'RS Mitra Anugrah Lestari', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum' },
+                { lat: -6.8904142, lng: 107.5367650, name: 'RSU Baros', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Umum' },
+                { lat: -6.8906243, lng: 107.5370522, name: 'RSB Harapan Bunda', cat: 'kesehatan', sub: 'Rumah Sakit',
+                    desc: 'RS Bersalin' },
+
+                // PUSKESMAS (14)
+                { lat: -6.9218090, lng: 107.5534694, name: 'Puskesmas Melong Tengah', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8530669, lng: 107.5384041, name: 'Puskesmas Cipageran Cimahi', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8727062, lng: 107.5281172, name: 'Puskesmas Padasuka Cimahi', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8607241, lng: 107.5457972, name: 'Puskesmas Citeureup', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8708744, lng: 107.5421561, name: 'Puskesmas Cimahi Tengah', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.9004895, lng: 107.5358735, name: 'Puskesmas Cimahi Selatan', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8733033, lng: 107.5620652, name: 'Puskesmas Cimahi Utara', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8866240, lng: 107.5485019, name: 'Puskesmas Cigugur Tengah', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8998362, lng: 107.5627344, name: 'Puskesmas Cibeureum', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8927076, lng: 107.5197677, name: 'Puskesmas Cibeber', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.9228152, lng: 107.5631025, name: 'Puskesmas Melong Asih', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.9030868, lng: 107.5220946, name: 'Puskesmas Leuwigajah', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8851885, lng: 107.5694216, name: 'Puskesmas Pasir Kaliki', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+                { lat: -6.8445749, lng: 107.5468550, name: 'Puskesmas Cimenteng Sehat', cat: 'kesehatan', sub: 'Puskesmas',
+                    desc: 'Puskesmas' },
+
+                // LABORATORIUM (8)
+                { lat: -6.8785951, lng: 107.5438620, name: 'Laboratorium Klinik Cimahi', cat: 'kesehatan',
+                    sub: 'Laboratorium', desc: 'Lab Klinik' },
+                { lat: -6.8689564, lng: 107.5355308, name: 'Lab Klinik Pramita Cimahi', cat: 'kesehatan',
+                    sub: 'Laboratorium', desc: 'Lab Klinik' },
+                { lat: -6.8742311, lng: 107.5441075, name: 'Lab Klinik Prodia Cimahi', cat: 'kesehatan',
+                    sub: 'Laboratorium', desc: 'Lab Klinik' },
+                { lat: -6.8679144, lng: 107.5352983, name: 'Nova Laboratorium', cat: 'kesehatan', sub: 'Laboratorium',
+                    desc: 'Lab Klinik' },
+                { lat: -6.8712892, lng: 107.5447223, name: 'Bio Kimia Laboratorium', cat: 'kesehatan', sub: 'Laboratorium',
+                    desc: 'Lab Klinik' },
+                { lat: -6.8652557, lng: 107.5548366, name: 'Laboratorium Adikalpa', cat: 'kesehatan', sub: 'Laboratorium',
+                    desc: 'Lab Klinik' },
+                { lat: -6.8700780, lng: 107.5418959, name: 'Plasma Diagnostic', cat: 'kesehatan', sub: 'Laboratorium',
+                    desc: 'Lab Klinik' },
+                { lat: -6.8688998, lng: 107.5543546, name: 'UPTD Lab Lingkungan Cimahi', cat: 'kesehatan',
+                    sub: 'Laboratorium', desc: 'Lab Lingkungan' },
+
+                // KLINIK (27)
+                { lat: -6.8648678, lng: 107.5388717, name: 'Klinik Dr.Nur Cimahi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8835420, lng: 107.5367572, name: 'Klinik Siliwangi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8702929, lng: 107.5420362, name: 'Klinik Pratama Amanah', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Pratama' },
+                { lat: -6.8712391, lng: 107.5389180, name: 'Klinik Pratama Rahmani Pojok', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Pratama' },
+                { lat: -6.8677454, lng: 107.5426359, name: 'Klinik Sehat Sakinah', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8935263, lng: 107.5596666, name: 'Klinik Pratama Asryfa II', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Pratama' },
+                { lat: -6.8754483, lng: 107.5520222, name: 'Klinik Kimia Farma Cihanjuang', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Kimia Farma' },
+                { lat: -6.8891060, lng: 107.5550057, name: 'Klinik Sindang Sari', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8718003, lng: 107.5398571, name: 'Klinik Utama Cimahi Sehat', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Utama' },
+                { lat: -6.8638033, lng: 107.5409725, name: 'Estetik Klinik Sangkuriang Cimahi', cat: 'kesehatan',
+                    sub: 'Klinik', desc: 'Klinik Estetik' },
+                { lat: -6.8713422, lng: 107.5351535, name: 'Klinik Sehat Mandiri', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8836992, lng: 107.5345311, name: 'Klinik Griya Geulis RS Dustira', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik RS Dustira' },
+                { lat: -6.8767903, lng: 107.5499430, name: 'Klinik Luhur Medica Center', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Medica' },
+                { lat: -6.8962085, lng: 107.5370109, name: 'Klinik Pratama Dewi Sartika', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Pratama' },
+                { lat: -6.8967684, lng: 107.5568697, name: 'Klinik Dr. Avisena', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8754626, lng: 107.5465674, name: 'Holistik Estetika Cimahi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Perawatan Kulit' },
+                { lat: -6.8754989, lng: 107.5475378, name: 'Adeeva Aesthetic Clinic Cimahi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Estetik' },
+                { lat: -6.8997622, lng: 107.5355421, name: 'Klinik Nayaka Husada Baros', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8725798, lng: 107.5427519, name: 'Klinik Nayaka Husada Karangmekar', cat: 'kesehatan',
+                    sub: 'Klinik', desc: 'Klinik Umum' },
+                { lat: -6.8736014, lng: 107.5459276, name: 'Klinik Budi Rahayu', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8722863, lng: 107.5529403, name: 'Klinik Bungsu Cihanjuang', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8608230, lng: 107.5448279, name: 'Klinik Kasih Ibu', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8781654, lng: 107.5422456, name: 'Klinik Serumpun Bambu', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8813638, lng: 107.5523341, name: 'Carissa Clinic Skincare Cimahi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Skincare' },
+                { lat: -6.8709033, lng: 107.5384985, name: 'Klinik Alana', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Umum' },
+                { lat: -6.8848701, lng: 107.5538641, name: 'Klinik Pratama Polres Cimahi', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Polres' },
+                { lat: -6.8698995, lng: 107.5369995, name: 'Klinik Utama Ellen Medika', cat: 'kesehatan', sub: 'Klinik',
+                    desc: 'Klinik Utama' },
+                { lat: -6.9029713, lng: 107.5322498, name: 'Klinik Pratama Sehat Budi Luhur', cat: 'kesehatan',
+                    sub: 'Klinik', desc: 'Klinik Pratama' },
+
+                // APOTEK (46)
+                { lat: -6.8700350, lng: 107.5527190, name: 'Apotek K24 Cihanjuang Cimahi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek K24' },
+                { lat: -6.8750442, lng: 107.5459237, name: 'Apotek Kimia Farma Cimahi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek Kimia Farma' },
+                { lat: -6.8714554, lng: 107.5405238, name: 'Apotek Rama Farma Cimahi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8781894, lng: 107.5441614, name: 'Apotek Serumpun Bambu Cimahi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8684100, lng: 107.5330967, name: 'Apotek Cinta Sehat Cimahi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8829019, lng: 107.5528213, name: 'Apotik Anna', cat: 'kesehatan', sub: 'Apotek', desc: 'Apotek' },
+                { lat: -6.8823631, lng: 107.5354785, name: 'Apotek Contong', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8746490, lng: 107.5450623, name: 'Apotek Kimia Farma Tagog', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek Kimia Farma' },
+                { lat: -6.8948486, lng: 107.5364540, name: 'Apotek Baros El & Praktek Dokter', cat: 'kesehatan',
+                    sub: 'Apotek', desc: 'Apotek & Praktek' },
+                { lat: -6.8721248, lng: 107.5471604, name: 'Apotek Terusan', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8745070, lng: 107.5410005, name: 'Apotek Utama Jaya', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8771875, lng: 107.5445855, name: 'Apotek Wulandari', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8995765, lng: 107.5471226, name: 'Kasih Bunda Apotik', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8767443, lng: 107.5417781, name: 'Apotek Mahkota', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8967374, lng: 107.5609975, name: 'Apotek Bima Jaya', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8694852, lng: 107.5388644, name: 'Apotek K 24 Cisangkan', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek K24' },
+                { lat: -6.8604493, lng: 107.5475510, name: 'Apotek Cipageran', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8742847, lng: 107.5449162, name: 'Bina Farma Apotik', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8611491, lng: 107.5546415, name: 'Apotek Permana', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8683441, lng: 107.5460234, name: 'Apotek Winata', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8992790, lng: 107.5641799, name: 'Apotek Surya Kita Cibeureum', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8668566, lng: 107.5551909, name: 'Apotek Hijau Farma', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8653012, lng: 107.5511091, name: 'Apotek Citeureup', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8642283, lng: 107.5636314, name: 'Apotek Ganerik Daeng Andiwinata', cat: 'kesehatan',
+                    sub: 'Apotek', desc: 'Apotek' },
+                { lat: -6.8815411, lng: 107.5357857, name: 'Apotek Sriwijaya', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8762503, lng: 107.5397833, name: 'Apotek Dhuha', cat: 'kesehatan', sub: 'Apotek', desc: 'Apotek' },
+                { lat: -6.9170958, lng: 107.5632028, name: 'Apotek 33', cat: 'kesehatan', sub: 'Apotek', desc: 'Apotek' },
+                { lat: -6.8965869, lng: 107.5593575, name: 'Apotek Al-Fiyah', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8946276, lng: 107.5376014, name: 'Apotek Baros Abadi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.9167975, lng: 107.5664576, name: 'Apotek Sontani Farma', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.9077969, lng: 107.5647732, name: 'Apotek Griya Farma Kebon Kopi', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8709448, lng: 107.5411117, name: 'Pojok Farma Apotik', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8653015, lng: 107.5398214, name: 'Apotek Berkat', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8710447, lng: 107.5455757, name: 'Apotek Wulan Kasih', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8804163, lng: 107.5436431, name: 'Apotek Surya Medika', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8892356, lng: 107.5434797, name: 'Apotek DNA Farma', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.9079623, lng: 107.5667161, name: 'Apotek Tiga Sehat', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8599011, lng: 107.5425154, name: 'Apotek K 24 Cipageran', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek K24' },
+                { lat: -6.8588340, lng: 107.5437846, name: 'Apotek Madya', cat: 'kesehatan', sub: 'Apotek', desc: 'Apotek' },
+                { lat: -6.8567428, lng: 107.5424965, name: 'Apotek Izzatul', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8598679, lng: 107.5363376, name: 'Apotek Surya Medika Farma', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8750295, lng: 107.5627135, name: 'Apotek Karomah', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8702884, lng: 107.5452547, name: 'Apotek Madira', cat: 'kesehatan', sub: 'Apotek',
+                    desc: 'Apotek' },
+                { lat: -6.8752838, lng: 107.5638187, name: 'Yoko Apotek', cat: 'kesehatan', sub: 'Apotek', desc: 'Apotek' },
+
+                // DOKTER HEWAN (10)
+                { lat: -6.8880140, lng: 107.5428003, name: 'Puskeswan Cimahi', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Puskeswan' },
+                { lat: -6.8972567, lng: 107.5232667, name: 'Praktek Dokter Hewan drh.Yusni', cat: 'kesehatan',
+                    sub: 'Dokter Hewan', desc: 'Praktek Dokter Hewan' },
+                { lat: -6.8627055, lng: 107.5657038, name: 'Dokter Hewan Vicce Kinanti', cat: 'kesehatan',
+                    sub: 'Dokter Hewan', desc: 'Dokter Hewan' },
+                { lat: -6.8800144, lng: 107.5624106, name: 'Drh.Samiarso Laksno', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Dokter Hewan' },
+                { lat: -6.8759305, lng: 107.5501164, name: 'Dokter Hewan (Aorta Vet)', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Dokter Hewan' },
+                { lat: -6.8719628, lng: 107.5632063, name: 'Dokter Hewan Ade Tedi', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Dokter Hewan' },
+                { lat: -6.8594453, lng: 107.5503355, name: 'Praktek Dokter Hewan Wieke Setiowati', cat: 'kesehatan',
+                    sub: 'Dokter Hewan', desc: 'Dokter Hewan' },
+                { lat: -6.8815599, lng: 107.5731912, name: 'Klinik Hewan Happiness - Drh.Alexander Saba', cat: 'kesehatan',
+                    sub: 'Dokter Hewan', desc: 'Klinik Hewan' },
+                { lat: -6.8866394, lng: 107.5665136, name: 'Winner Brid Fram', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Dokter Hewan' },
+                { lat: -6.9226444, lng: 107.5637339, name: 'Zam Zam Vet', cat: 'kesehatan', sub: 'Dokter Hewan',
+                    desc: 'Klinik Hewan' },
+
+                // ==================== PEMERINTAHAN ====================
+                // KANTOR KECAMATAN (3)
+                { lat: -6.8737202, lng: 107.5566864, name: 'Kantor Kecamatan Cimahi Utara', cat: 'pemerintahan',
+                    sub: 'Kantor Kecamatan', desc: 'Kantor Kecamatan' },
+                { lat: -6.8722033, lng: 107.5468563, name: 'Kantor Kecamatan Cimahi Tengah', cat: 'pemerintahan',
+                    sub: 'Kantor Kecamatan', desc: 'Kantor Kecamatan' },
+                { lat: -6.9012792, lng: 107.5365357, name: 'Kantor Kecamatan Cimahi Selatan', cat: 'pemerintahan',
+                    sub: 'Kantor Kecamatan', desc: 'Kantor Kecamatan' },
+
+                // KANTOR KELURAHAN (17)
+                { lat: -6.8758731, lng: 107.5441202, name: 'Kantor Kelurahan Karang Mekar', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8727577, lng: 107.5298512, name: 'Kantor Kelurahan Padasuka', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8718995, lng: 107.5467808, name: 'Kantor Kelurahan Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8906590, lng: 107.5378262, name: 'Kantor Kelurahan Baros', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8908960, lng: 107.5546151, name: 'Kantor Kelurahan Cigugur Tengah', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8726958, lng: 107.5407433, name: 'Kantor Kelurahan Setiamanah', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8887193, lng: 107.5707423, name: 'Kantor Kelurahan Pasirkaliki', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8551359, lng: 107.5438577, name: 'Kantor Kelurahan Cipageran', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8603970, lng: 107.5480138, name: 'Kantor Kelurahan Citereup', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8750318, lng: 107.5556682, name: 'Kantor Kelurahan Cibabat', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.9001120, lng: 107.5637684, name: 'Kantor Kelurahan Cibeureum', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.9055998, lng: 107.5339227, name: 'Kantor Kelurahan Utama', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.9023476, lng: 107.5317592, name: 'Kantor Kelurahan Leuwigajah', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.8924887, lng: 107.5193950, name: 'Kantor Kelurahan Cibeber', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+                { lat: -6.9203673, lng: 107.5594063, name: 'Kantor Kelurahan Melong', cat: 'pemerintahan',
+                    sub: 'Kantor Kelurahan', desc: 'Kantor Kelurahan' },
+
+                // KANTOR DINAS (43)
+                { lat: -6.8692336, lng: 107.5596772, name: 'Kantor Dinas Pamong Praja', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dinas' },
+                { lat: -6.8692855, lng: 107.5550821, name: 'Dinas Pangan dan Pertanian', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dinas' },
+                { lat: -6.8853691, lng: 107.5548621, name: 'Dinas Sosial Provinsi Jawa Barat', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dinas Sosial' },
+                { lat: -6.8645740, lng: 107.5493251, name: 'Dinas Perhubungan Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dishub' },
+                { lat: -6.8708708, lng: 107.5547427, name: 'Dinas Pendidikan Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Disdik' },
+                { lat: -6.8703914, lng: 107.5559443, name: 'Dinas Perekonomian Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dinas Perekonomian' },
+                { lat: -6.8823758, lng: 107.5624844, name: 'Dinas Kependudukan dan Pencatatan Sipil', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Disdukcapil' },
+                { lat: -6.8703351, lng: 107.5553832, name: 'Kantor Pemerintah Kota', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Pemkot' },
+                { lat: -6.8705522, lng: 107.5555167, name: 'Dinas Kebudayaan Pariwisata Pemuda dan Olahraga',
+                    cat: 'pemerintahan', sub: 'Kantor Dinas', desc: 'Disbudpora' },
+                { lat: -6.8701201, lng: 107.5551250, name: 'Kantor DinsosP2KBP3A Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dinsos' },
+                { lat: -6.8765346, lng: 107.5481638, name: 'Rumah Dinas Djp Cibabat', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Rumah Dinas' },
+                { lat: -6.8873098, lng: 107.5538778, name: 'UPTD PPKS', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'UPTD' },
+                { lat: -6.8698790, lng: 107.5537769, name: 'Dinas Komunikasi dan Informatika', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Diskominfo' },
+                { lat: -6.9015847, lng: 107.5365782, name: 'Kantor Pemadam Kebakaran', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Damkar' },
+                { lat: -6.8774789, lng: 107.5755546, name: 'Kantor DISDUKCAPIL', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'Disdukcapil' },
+                { lat: -6.8706248, lng: 107.5551864, name: 'Kantor LPSE Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'LPSE' },
+                { lat: -6.8705510, lng: 107.5555567, name: 'Kantor ULP Kota Cimahi', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'ULP' },
+                { lat: -6.8601104, lng: 107.5491930, name: 'Kantor BPJS Kesehatan', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'BPJS Kesehatan' },
+                { lat: -6.8605631, lng: 107.5466452, name: 'Badan Pusat Statistik Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'BPS' },
+                { lat: -6.8690267, lng: 107.5291392, name: 'Kantor BPJS Ketenagakerjaan', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'BPJS TK' },
+                { lat: -6.8684817, lng: 107.5284921, name: 'Kantor Pelayanan Pajak Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Pajak' },
+                { lat: -6.8709681, lng: 107.5583033, name: 'Kantor BNN Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'BNN' },
+                { lat: -6.8703777, lng: 107.5557533, name: 'Kantor Walikota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Walikota' },
+                { lat: -6.8722205, lng: 107.5431077, name: 'Kantor DPRD Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'DPRD' },
+                { lat: -6.8734406, lng: 107.5530762, name: 'Kantor BPBD Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'BPBD' },
+                { lat: -6.8851001, lng: 107.5534228, name: 'Kantor Polres Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Polres' },
+                { lat: -6.8874523, lng: 107.5552092, name: 'Kantor Samsat Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Samsat' },
+                { lat: -6.8604400, lng: 107.5466698, name: 'Kantor Badan Pertahanan Nasional', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Badan Pertahanan' },
+                { lat: -6.8585935, lng: 107.5499930, name: 'Kantor Kementrian Agama Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Kemenag' },
+                { lat: -6.8631836, lng: 107.5416877, name: 'Kantor Kejaksaan Negeri Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Kejaksaan' },
+                { lat: -6.8693423, lng: 107.5540875, name: 'Kantor DISHUB Pemerintah Kota Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Dishub' },
+                { lat: -6.8752964, lng: 107.5305283, name: 'Sekretariat Pusat LSM Kompas', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'LSM' },
+                { lat: -6.8828601, lng: 107.5621131, name: 'Kantor DPMPTSP Cimahi', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'DPMPTSP' },
+                { lat: -6.8646480, lng: 107.5517036, name: 'Polsek Cimahi', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'Polsek' },
+                { lat: -6.8842802, lng: 107.5528131, name: 'Satpas SIM Polres Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Satpas' },
+                { lat: -6.9187657, lng: 107.5590796, name: 'Polsek Pharmindo', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'Polsek' },
+                { lat: -6.8863399, lng: 107.5523929, name: 'Kantor Sat Samapta Polres Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Sat Samapta' },
+                { lat: -6.8847403, lng: 107.5538877, name: 'Unit Resmob Res Cimahi', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'Resmob' },
+                { lat: -6.8856870, lng: 107.5592358, name: 'Balai Rehabilitas Sosial Penyandang Disabilitas',
+                    cat: 'pemerintahan', sub: 'Kantor Dinas', desc: 'Rehabilitasi' },
+                { lat: -6.8859476, lng: 107.5544299, name: 'Balai Pemberdayaan Sosial Bina Remaja Cimahi',
+                    cat: 'pemerintahan', sub: 'Kantor Dinas', desc: 'Bina Remaja' },
+                { lat: -6.8862172, lng: 107.5560976, name: 'Jasa Raharja Cimahi', cat: 'pemerintahan', sub: 'Kantor Dinas',
+                    desc: 'Jasa Raharja' },
+                { lat: -6.8983072, lng: 107.5547033, name: 'PT PLN (Persero) ULP Cimahi Selatan', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'PLN' },
+                { lat: -6.8754313, lng: 107.5455796, name: 'PLN Prima Cimahi (PLN Industri)', cat: 'pemerintahan',
+                    sub: 'Kantor Dinas', desc: 'PLN Industri' },
+
+                // ==================== IBADAH ====================
+                // PURA (1)
+                { lat: -6.8840267, lng: 107.5354911, name: 'Pura Agung Wira Loka Natha', cat: 'ibadah', sub: 'Pura',
+                    desc: 'Pura Agung' },
+
+                // MASJID (17)
+                { lat: -6.8724049, lng: 107.5421592, name: 'Masjid Agung Kota Cimahi', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Agung' },
+                { lat: -6.8646379, lng: 107.5655895, name: 'Masjid Al Mukhlis', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8760531, lng: 107.5516849, name: 'Masjid Nurul Hasan', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.9106374, lng: 107.5336149, name: 'Masjid Al-Ikhlas Leuwigajah', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8625210, lng: 107.5533503, name: 'Masjid Jami At-Taqwa', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Jami' },
+                { lat: -6.8797206, lng: 107.5542983, name: 'Masjid Misykatul Anwar', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8863238, lng: 107.5384363, name: 'Masjid Abri', cat: 'ibadah', sub: 'Masjid', desc: 'Masjid' },
+                { lat: -6.8857055, lng: 107.5503128, name: 'Masjid Al Mubarokah', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8657581, lng: 107.5528821, name: 'Masjid Al Abror', cat: 'ibadah', sub: 'Masjid', desc: 'Masjid' },
+                { lat: -6.8707063, lng: 107.5520157, name: 'Masjid Jami Darul Ihsan', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Jami' },
+                { lat: -6.8806652, lng: 107.5526806, name: 'Masjid Baiturrohman Cibabat', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8827871, lng: 107.5597130, name: 'Masjid Jami Al Baakhirah', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Jami' },
+                { lat: -6.8872904, lng: 107.5570053, name: 'Masjid Jami Cibabat', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Jami' },
+                { lat: -6.8677024, lng: 107.5526435, name: 'Masjid Al Ikhlas Citeureup', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8740758, lng: 107.5528495, name: 'Masjid Raya Cimahi Utara', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Raya' },
+                { lat: -6.8646540, lng: 107.5387405, name: 'Masjid Baiturrahman Sangkuriang', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid' },
+                { lat: -6.8660557, lng: 107.5396842, name: 'Masjid Jami AL Hikmah Sangkuriang', cat: 'ibadah', sub: 'Masjid',
+                    desc: 'Masjid Jami' },
+
+                // GEREJA (15)
+                { lat: -6.8768815, lng: 107.5457829, name: 'GSJA Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'Gereja Sidang Jemaat Allah' },
+                { lat: -6.8768425, lng: 107.5459701, name: 'GSJK Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'Gereja Sidang Jemaat Kristus' },
+                { lat: -6.8776299, lng: 107.5450809, name: 'GKP Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'Gereja Kristen Pasundan' },
+                { lat: -6.8807958, lng: 107.5447859, name: 'GBI Cimahi', cat: 'ibadah', sub: 'Gereja', desc: 'GBI' },
+                { lat: -6.8810511, lng: 107.5430584, name: 'GKPB Fajar Pengharapan Sat.Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GKPB' },
+                { lat: -6.8846016, lng: 107.5451445, name: 'Gereja Bethel Tebemakel', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'Gereja Bethel' },
+                { lat: -6.8991048, lng: 107.5526383, name: 'GPDI Bukit Hermon', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GPDI' },
+                { lat: -6.8927461, lng: 107.5429084, name: 'GSJA Sangkakala', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GSJA' },
+                { lat: -6.8905621, lng: 107.5364125, name: 'Gereja Katolik St.Ignatius', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'Gereja Katolik' },
+                { lat: -6.8752993, lng: 107.5373752, name: 'HKBP Ressort Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'HKBP' },
+                { lat: -6.8780891, lng: 107.5355570, name: 'GBI Cimahi "Citra"', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GBI' },
+                { lat: -6.8689914, lng: 107.5427614, name: 'GPDI Haleluyah', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GPDI' },
+                { lat: -6.8709695, lng: 107.5442839, name: 'GKI Cimahi', cat: 'ibadah', sub: 'Gereja', desc: 'GKI' },
+                { lat: -6.8735291, lng: 107.5443985, name: 'GKSI Maranatha Cimahi', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GKSI' },
+                { lat: -6.9007575, lng: 107.5378603, name: 'GBI Cimahi Pilarmas', cat: 'ibadah', sub: 'Gereja',
+                    desc: 'GBI' },
+
+                // ==================== PENDIDIKAN ====================
+                // TK (21)
+                { lat: -6.8962303, lng: 107.5368026, name: 'TK Santa Theresia Cimahi', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.8812330, lng: 107.5561276, name: 'TK Asih Putera', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8675075, lng: 107.5467266, name: 'TK Tridaya Tunas Bangsa', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.8600099, lng: 107.5501373, name: 'TK Auladi Kindergarten', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.8963866, lng: 107.5415973, name: 'TK Uswatun Hasanah', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8796938, lng: 107.5377265, name: 'TK Kartika X 14', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8904904, lng: 107.5425737, name: 'TK Kartika X 10', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8889748, lng: 107.5356259, name: 'TK Kartika XIX-22', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8903629, lng: 107.5387952, name: 'TK Melati Tunas Harapan', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.8785776, lng: 107.5346065, name: 'TK Miftahul Iman', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8771822, lng: 107.5483695, name: 'TK Aisyiyah 1', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8776917, lng: 107.5428862, name: 'TK Bunga Alami 2', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8813427, lng: 107.5476677, name: 'TK Purnama', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8755522, lng: 107.5554037, name: 'TK Pandiga Mutiara', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8802980, lng: 107.5544141, name: 'TK Lima', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.8896897, lng: 107.5364560, name: 'TK Idhata Sejahtera', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.8799536, lng: 107.5352259, name: 'TK Attaqwa', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.9239117, lng: 107.5595414, name: 'TK Nusa Indah Cimahi', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.9085444, lng: 107.5610919, name: 'TK Shandy Putra Telkom', cat: 'pendidikan', sub: 'TK',
+                    desc: 'TK' },
+                { lat: -6.9024662, lng: 107.5225044, name: 'TK Negeri Pembina', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+                { lat: -6.9026111, lng: 107.5303014, name: 'TK Budi Luhur', cat: 'pendidikan', sub: 'TK', desc: 'TK' },
+
+                // SD (72)
+                { lat: -6.8720169, lng: 107.5430809, name: 'SDN Cimahi Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8720960, lng: 107.5418344, name: 'SDN Cimahi Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8665771, lng: 107.5544977, name: 'SDN Citereup Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9026942, lng: 107.5303353, name: 'SD Budiluhur', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8983562, lng: 107.5606650, name: 'SD Hikmah Teladan', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8993457, lng: 107.5277293, name: 'SD Kreatif Harapan Bangsa', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8927349, lng: 107.5329640, name: 'SD Kartika XIX-2', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8987784, lng: 107.5554291, name: 'SD Negeri Bina Harapan', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8887869, lng: 107.5525687, name: 'SD Negeri Budhi Karya', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8877715, lng: 107.5577507, name: 'SD It Al-Maqom', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8707636, lng: 107.5576150, name: 'SD Negeri Cibabat 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8897359, lng: 107.5348858, name: 'SDN Baros Mandiri 6', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9201102, lng: 107.5559548, name: 'SDN Melong Mandiri 5', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9222124, lng: 107.5510474, name: 'SDN Melong Mandiri 6', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9210974, lng: 107.5597026, name: 'SDN Melong Mandiri 7', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8963523, lng: 107.5369598, name: 'SD Santo Yusup Cimahi', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8730789, lng: 107.5473043, name: 'SDN Mandiri 3', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8679718, lng: 107.5616742, name: 'SDN Cibabat Mandiri 3', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8438368, lng: 107.5460628, name: 'SD It Cipta Cendikia Indonesia', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8725001, lng: 107.5520639, name: 'SD It Nur Al-Rahman', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8670556, lng: 107.5457376, name: 'SDK Bpk Penabur', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9081262, lng: 107.5598026, name: 'SDN Cibeureum Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9007579, lng: 107.5622886, name: 'SDN Cibeureum 5', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8920386, lng: 107.5519443, name: 'SDN Sukanampa', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8739328, lng: 107.5506145, name: 'SDN Cibabat Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8882420, lng: 107.5529756, name: 'SDN Cigugur Tengah Mandiri', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8648818, lng: 107.5428603, name: 'SDN Cipageran Mandiri 4', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9025404, lng: 107.5393274, name: 'SDN Utama Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8886676, lng: 107.5363516, name: 'SD Kartika XIX-5', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8889918, lng: 107.5362959, name: 'SD Kartika XIX-4', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9095749, lng: 107.5551983, name: 'MI Ar-Riyadl', cat: 'pendidikan', sub: 'SD', desc: 'MI' },
+                { lat: -6.8986837, lng: 107.5558158, name: 'SDN Cimindi 4', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9208551, lng: 107.5597378, name: 'SDN Melong Mandiri 3', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9208727, lng: 107.5588942, name: 'SDN Melong Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8972684, lng: 107.5585497, name: 'SDN Cibeureum Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9079738, lng: 107.5340258, name: 'SDN Utama 6', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9125929, lng: 107.5374966, name: 'SDN 2 Cibodas', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9129421, lng: 107.5462935, name: 'SDN Cibodas 3', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9280000, lng: 107.5622238, name: 'SD Plus Al-Furqon', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9247453, lng: 107.5542085, name: 'SDN Melong Mandiri 4', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8953713, lng: 107.5543007, name: 'MI Cahaya', cat: 'pendidikan', sub: 'SD', desc: 'MI' },
+                { lat: -6.8996176, lng: 107.5622997, name: 'MI Cimindi', cat: 'pendidikan', sub: 'SD', desc: 'MI' },
+                { lat: -6.9020718, lng: 107.5596977, name: 'SDN Tunas Mekar', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9242384, lng: 107.5585256, name: 'SDN Melong Asih 8', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9245312, lng: 107.5585833, name: 'SDN Melong Asih 4', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.9258331, lng: 107.5604194, name: 'SDN Melong Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8915171, lng: 107.5377153, name: 'SDN Kebonsari 2', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8897442, lng: 107.5348797, name: 'SDN Baros Mandiri 6', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8816678, lng: 107.5338468, name: 'SDN Setiamanah mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8820388, lng: 107.5466486, name: 'SD Purnama', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8717255, lng: 107.5460653, name: 'SDN Cimahi Mandiri 4', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8616198, lng: 107.5560497, name: 'SD Plus Nurul Aulia', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8731277, lng: 107.5326052, name: 'SDN Padasuka Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8807194, lng: 107.5584607, name: 'SDN Cibabat Mandiri 5', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8729352, lng: 107.5443091, name: 'SD Islam Terpadu Uswatun Hasanah', cat: 'pendidikan',
+                    sub: 'SD', desc: 'SD' },
+                { lat: -6.8792312, lng: 107.5499362, name: 'SD Karya Bakti', cat: 'pendidikan', sub: 'SD', desc: 'SD' },
+                { lat: -6.8761287, lng: 107.5458560, name: 'SDN Karang Mekar Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8873695, lng: 107.5378307, name: 'SDN Baros Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8651752, lng: 107.5426306, name: 'SDN Cipageran Mandiri 3', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8662931, lng: 107.5345262, name: 'SDN Cipageran Mandiri 2', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8548283, lng: 107.5395487, name: 'SDN Cipageran Mandiri 1', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.9041989, lng: 107.5617247, name: 'SD Islam Al Kautsar Cimahi', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+                { lat: -6.8437993, lng: 107.5475255, name: 'SDN Setia Warga Cimahi', cat: 'pendidikan', sub: 'SD',
+                    desc: 'SD' },
+
+                // SMP (37)
+                { lat: -6.8551769, lng: 107.5386886, name: 'SMPN 5 Kota Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9080329, lng: 107.5597686, name: 'SMP IT Baitulanshor', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9244216, lng: 107.5633837, name: 'SMP Negeri 4 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9053644, lng: 107.5622794, name: 'SMP Negeri 7 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8441232, lng: 107.5479942, name: 'SMP Negeri 11 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8682224, lng: 107.5513061, name: 'SMP Pasundan 1', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.8756601, lng: 107.5516120, name: 'SMP PGRI 4 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8814733, lng: 107.5335151, name: 'SMP Negeri 3 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8966224, lng: 107.5377163, name: 'SMP Santo Mikael Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8769545, lng: 107.5443099, name: 'SMP Negeri 1 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9029326, lng: 107.5214950, name: 'SMP Negeri 8 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8676663, lng: 107.5616580, name: 'SMP Negeri 10 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8899667, lng: 107.5342693, name: 'SMP Negeri 2 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9021357, lng: 107.5164176, name: 'SMP-IT Budi Luhur', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8924684, lng: 107.5547552, name: 'SMP PGRI 5', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.8762594, lng: 107.5442936, name: 'SMP PGRI 1', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.9094396, lng: 107.5602250, name: 'SMP Muslimin', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.9251676, lng: 107.5638761, name: 'SMP Pasundan 2 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9026582, lng: 107.5372853, name: 'SMP Negeri 9 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9000826, lng: 107.5475902, name: 'MTS Nurul Falah', cat: 'pendidikan', sub: 'SMP', desc: 'MTS' },
+                { lat: -6.9069231, lng: 107.5363814, name: 'SMP Plus Darussurur', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.9235374, lng: 107.5496272, name: 'MTS Darussalam', cat: 'pendidikan', sub: 'SMP', desc: 'MTS' },
+                { lat: -6.8899886, lng: 107.5351081, name: 'SMP Wiyata Bakti', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8774939, lng: 107.5453903, name: 'SMPN 6 Cimahi', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.8722366, lng: 107.5461493, name: 'SMP Pasundan 3 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8793080, lng: 107.5484131, name: 'SMP PGRI 3 Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8727601, lng: 107.5526579, name: 'SMP IT Nur Ar Rahman', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8968957, lng: 107.5595644, name: 'SMP Dharma Kartini', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8669449, lng: 107.5360618, name: 'SMP Taruna Mandiri', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8860683, lng: 107.5645929, name: 'SMPN 12 Cimahi', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.8963772, lng: 107.5228272, name: 'SMPN 15 Cimahi', cat: 'pendidikan', sub: 'SMP', desc: 'SMP' },
+                { lat: -6.8959209, lng: 107.5537505, name: 'MTS Fatahillah', cat: 'pendidikan', sub: 'SMP', desc: 'MTS' },
+                { lat: -6.8778062, lng: 107.5346860, name: 'MTS Persatuan Ummat Islam', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'MTS' },
+                { lat: -6.8613168, lng: 107.5517785, name: 'MTS Pasundan Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'MTS' },
+                { lat: -6.8669517, lng: 107.5458818, name: 'SMPK BPK Penabur Cimahi', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+                { lat: -6.8922133, lng: 107.5573620, name: 'MTS Al-Musyahadah', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'MTS' },
+                { lat: -6.8974858, lng: 107.5292283, name: 'MTs Swasta Sadarmanah', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'MTS' },
+                { lat: -6.9034269, lng: 107.5209481, name: 'SMP PGRI Leuwi Gajah', cat: 'pendidikan', sub: 'SMP',
+                    desc: 'SMP' },
+
+                // SMA (17)
+                { lat: -6.8924640, lng: 107.5330250, name: 'SMAS Kartika XIX-4', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.9248261, lng: 107.5636160, name: 'SMAS Pasundan 2', cat: 'pendidikan', sub: 'SMA', desc: 'SMA' },
+                { lat: -6.8766944, lng: 107.5454090, name: 'SMA Santa Maria 3 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8710239, lng: 107.5434492, name: 'SMA Negeri 1 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8821770, lng: 107.5342663, name: 'SMA Negeri 2 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8738926, lng: 107.5598233, name: 'SMA Negeri 3 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.9023424, lng: 107.5222476, name: 'SMA Negeri 4 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8718218, lng: 107.5441464, name: 'SMA Negeri 5 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.9242047, lng: 107.5628294, name: 'SMA Negeri 6 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8666080, lng: 107.5359381, name: 'SMA Putra Mandiri Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8613455, lng: 107.5514018, name: 'SMA Pasundan 3 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8796486, lng: 107.5495529, name: 'SMA Muhammadiyah 1', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8937178, lng: 107.5182366, name: 'SMA Warga Bakti', cat: 'pendidikan', sub: 'SMA', desc: 'SMA' },
+                { lat: -6.8722774, lng: 107.5460971, name: 'SMA Pasundan 1 Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'SMA' },
+                { lat: -6.8972469, lng: 107.5296166, name: 'MA As-Sa`adah Cimahi', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'MA' },
+                { lat: -6.9019876, lng: 107.5163097, name: 'SMA IT Baitul Anshor Berbudi Luhur', cat: 'pendidikan',
+                    sub: 'SMA', desc: 'SMA IT' },
+                { lat: -6.8585364, lng: 107.5491949, name: 'MA Swasta Al Musdariyah', cat: 'pendidikan', sub: 'SMA',
+                    desc: 'MA' },
+
+                // SMK (23)
+                { lat: -6.9022939, lng: 107.5384378, name: 'SMKN 1 Cimahi', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8514169, lng: 107.5506297, name: 'SMKN 2 Cimahi', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8597921, lng: 107.5567604, name: 'SMKN 3 Cimahi', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8876846, lng: 107.5423662, name: 'SMKS Karya Bakti Pusdikpal', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8643136, lng: 107.5518292, name: 'SMKS Kesehatan Bakti Kencana', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8668857, lng: 107.5375185, name: 'SMK-TI Garuda Nusantara Cimahi', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8706235, lng: 107.5479350, name: 'SMK PGRI 1 Cimahi', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8688997, lng: 107.5469970, name: 'SMK PGRI 2 Cimahi', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8648125, lng: 107.5398887, name: 'SMK 1 Sangkuriang Cimahi', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8972791, lng: 107.5157279, name: 'SMK TI Pembangunan', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8964482, lng: 107.5228863, name: 'SMK Pasundan 2', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.9048882, lng: 107.5369921, name: 'SMK Wiraswasta', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8669529, lng: 107.5360733, name: 'SMK Taruna Mandiri', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8722819, lng: 107.5459974, name: 'SMK Pasundan Putra', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8719992, lng: 107.5461997, name: 'SMK PGRI 3', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8648179, lng: 107.5398851, name: 'SMK Sangkuriang 2', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8818373, lng: 107.5457547, name: 'SMK Pusdikhubad', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.8612782, lng: 107.5515657, name: 'SMK Pasundan 1', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.9250891, lng: 107.5637532, name: 'SMK Pasundan 3 Cimahi', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.9074055, lng: 107.5358908, name: 'SMK Plus Darussurur', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.8640783, lng: 107.5629694, name: 'SMK Bina Essa', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+                { lat: -6.9164028, lng: 107.5362867, name: 'MTS/SMK Mohamad Toha', cat: 'pendidikan', sub: 'SMK',
+                    desc: 'SMK' },
+                { lat: -6.9043279, lng: 107.5205979, name: 'SMK Surya Global', cat: 'pendidikan', sub: 'SMK', desc: 'SMK' },
+
+                // PERGURUAN TINGGI (7)
+                { lat: -6.8585251, lng: 107.5491665, name: 'STAI Al Musdariyah', cat: 'pendidikan',
+                    sub: 'Perguruan Tinggi', desc: 'STAI' },
+                { lat: -6.8939890, lng: 107.5180435, name: 'STIA Cimahi', cat: 'pendidikan', sub: 'Perguruan Tinggi',
+                    desc: 'STIA' },
+                { lat: -6.8588842, lng: 107.5527210, name: 'STKIP Pasundan', cat: 'pendidikan', sub: 'Perguruan Tinggi',
+                    desc: 'STKIP' },
+                { lat: -6.8875444, lng: 107.5299516, name: 'IKIP Siliwangi', cat: 'pendidikan', sub: 'Perguruan Tinggi',
+                    desc: 'IKIP' },
+                { lat: -6.9056796, lng: 107.5193118, name: 'STIKes Budi Luhur Cimahi', cat: 'pendidikan',
+                    sub: 'Perguruan Tinggi', desc: 'STIKes' },
+                { lat: -6.8868862, lng: 107.5282108, name: 'UNJANI', cat: 'pendidikan', sub: 'Perguruan Tinggi',
+                    desc: 'Universitas' },
+                { lat: -6.8722043, lng: 107.5438287, name: 'Perpustakaan Umum Kota Cimahi', cat: 'pendidikan',
+                    sub: 'Perguruan Tinggi', desc: 'Perpustakaan' },
+
+                // PUSAT PENDIDIKAN (7)
+                { lat: -6.8823064, lng: 107.5417441, name: 'Pusdik Pengmilum TNI AD', cat: 'pendidikan',
+                    sub: 'Pusat Pendidikan', desc: 'Pusdik' },
+                { lat: -6.8905743, lng: 107.5440818, name: 'Pusat Pendidikan Polisi Militer TNI-AD', cat: 'pendidikan',
+                    sub: 'Pusat Pendidikan', desc: 'Pusdik' },
+                { lat: -6.8833472, lng: 107.5396230, name: 'Pusdikbekang', cat: 'pendidikan', sub: 'Pusat Pendidikan',
+                    desc: 'Pusdik' },
+                { lat: -6.8883838, lng: 107.5373326, name: 'Pusat Pendidikan Artileri Medan', cat: 'pendidikan',
+                    sub: 'Pusat Pendidikan', desc: 'Pusdik' },
+                { lat: -6.8847853, lng: 107.5379692, name: 'Pusdikhub TNI AD', cat: 'pendidikan', sub: 'Pusat Pendidikan',
+                    desc: 'Pusdik' },
+                { lat: -6.8882331, lng: 107.5415285, name: 'Pusdikjas TNI AD', cat: 'pendidikan', sub: 'Pusat Pendidikan',
+                    desc: 'Pusdik' },
+                { lat: -6.8862406, lng: 107.5422287, name: 'Pusdikpal TNI AD', cat: 'pendidikan', sub: 'Pusat Pendidikan',
+                    desc: 'Pusdik' },
+
+                // ==================== OLAHRAGA ====================
+                // KOLAM RENANG (10)
+                { lat: -6.8615436, lng: 107.5510603, name: 'Kolam Renang Bumi Arena Cimahi', cat: 'olahraga',
+                    sub: 'Kolam Renang', desc: 'Kolam Renang' },
+                { lat: -6.8679045, lng: 107.5527002, name: 'Kolam Renang Ciawitali', cat: 'olahraga', sub: 'Kolam Renang',
+                    desc: 'Kolam Renang' },
+                { lat: -6.8923176, lng: 107.5308569, name: 'Kolam Renang Tirta Budhi Bhakti Brigif', cat: 'olahraga',
+                    sub: 'Kolam Renang', desc: 'Kolam Renang' },
+                { lat: -6.8755805, lng: 107.5554387, name: 'Pandiga Educreation Sport', cat: 'olahraga',
+                    sub: 'Kolam Renang', desc: 'Kolam Renang' },
+                { lat: -6.8607856, lng: 107.5482513, name: 'Kolam Renang Cempaka', cat: 'olahraga', sub: 'Kolam Renang',
+                    desc: 'Kolam Renang' },
+                { lat: -6.8770463, lng: 107.5634518, name: 'Kolam Renang Tirta Asri', cat: 'olahraga', sub: 'Kolam Renang',
+                    desc: 'Kolam Renang' },
+                { lat: -6.8859559, lng: 107.5421032, name: 'Kolam Renang Tirta Yudha', cat: 'olahraga',
+                    sub: 'Kolam Renang', desc: 'Kolam Renang' },
+                { lat: -6.8602532, lng: 107.5418529, name: 'Kolam Renang Cipageran', cat: 'olahraga', sub: 'Kolam Renang',
+                    desc: 'Kolam Renang' },
+                { lat: -6.8555990, lng: 107.5552923, name: 'Kolam Renang KENFER', cat: 'olahraga', sub: 'Kolam Renang',
+                    desc: 'Kolam Renang' },
+                { lat: -6.8629121, lng: 107.5561474, name: 'Kolam Renang Fajar Panorama', cat: 'olahraga',
+                    sub: 'Kolam Renang', desc: 'Kolam Renang' },
+
+                // GOR (27)
+                { lat: -6.8680941, lng: 107.5520455, name: 'Gor Tiga Saudara', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8966663, lng: 107.5199875, name: 'Gor Bumi Aki', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8798104, lng: 107.5474677, name: 'Gor Saluyu Abadi', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8828230, lng: 107.5262129, name: 'Gor Bulu Tangkis Merci', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8809276, lng: 107.5578744, name: 'Gor Rahayu Badminton', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8813874, lng: 107.5498186, name: 'Gor Galaxy Taman Mutiara', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8744154, lng: 107.5367856, name: 'Gor Bulu Tangkis Bonsa', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8683838, lng: 107.5358168, name: 'Gor Sangkuriang', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8941960, lng: 107.5546753, name: 'Gor Ardi Rahayu', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8621422, lng: 107.5559195, name: 'Gor Nasional', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8555035, lng: 107.5402245, name: 'Gor Libra', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8713513, lng: 107.5616622, name: 'Gor Tren 208', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8604177, lng: 107.5380497, name: 'Gor Puri Sukmawati', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8819740, lng: 107.5585665, name: 'Gor Lions', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8877906, lng: 107.5720777, name: 'Gor Pusaka Mekar Cidamar', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8755681, lng: 107.5555801, name: 'Gor Pandiga Jati Cimahi', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8929775, lng: 107.5192698, name: 'Gor Badminton Puri Fajar', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8845561, lng: 107.5682740, name: 'Gor Bulu Tangkis Bukit Intan', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8930991, lng: 107.5190582, name: 'Gor Bulu Tangkis HADE', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.9131619, lng: 107.5638409, name: 'Gor Aldy Putra', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8737604, lng: 107.5357449, name: 'Gor Olympic', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.9024729, lng: 107.5251543, name: 'Gor Michelle Pasaribu Cam Cuy', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8876147, lng: 107.5497322, name: 'Gor Citra Tangkil', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8777561, lng: 107.5274071, name: 'Gor Puri Araqia', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8748972, lng: 107.5297049, name: 'Gor LKMD Padasuka', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+                { lat: -6.8558392, lng: 107.5446148, name: 'Gor Walet', cat: 'olahraga', sub: 'GOR', desc: 'GOR' },
+                { lat: -6.8737582, lng: 107.5357440, name: 'Gor Olympic Pojok', cat: 'olahraga', sub: 'GOR',
+                    desc: 'GOR' },
+
+                // LAPANGAN (25)
+                { lat: -6.8835356, lng: 107.5406511, name: 'Lapangan Bola Rajawali', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8688257, lng: 107.5364572, name: 'Stadion Sangkuriang', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Stadion' },
+                { lat: -6.8922136, lng: 107.5290861, name: 'Lapangan Brigif 15 Kujang', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8957342, lng: 107.5398046, name: 'Lapangan Nasdem', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8785311, lng: 107.5357938, name: 'Lapangan Volley Pusen', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8976808, lng: 107.5556850, name: 'Lapang Futsal Januar', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8973523, lng: 107.5557694, name: 'Lapang Futsal Zidan', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.9049872, lng: 107.5619328, name: 'Lapang Futsal 227', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.9054302, lng: 107.5613491, name: 'Lapang Futsal Jabulani', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.9148299, lng: 107.5630918, name: 'Bintang Mini Soccer', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8949933, lng: 107.5422344, name: 'Lapangan Disjas', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8537181, lng: 107.5690741, name: 'Lapangan Basket Mini', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8794508, lng: 107.5343102, name: 'Lapang Volly Sriwijaya Baru', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.8792292, lng: 107.5363139, name: 'Lapangan Arhanud', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8821919, lng: 107.5438085, name: 'Lapangan Tenis Kalidam', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8890036, lng: 107.5482257, name: 'Fanshop Mini Soccer Stadium', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.8946853, lng: 107.5527792, name: 'Lapangan Oriental', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.8494304, lng: 107.5425925, name: 'Lapangan Cibaligo Cipageran Asri', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.8612491, lng: 107.5355738, name: 'Lapang Volly Cipageran Indah 1 Blok H3', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.8895676, lng: 107.5354642, name: 'Treelogia Padel & Social Club', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.9025616, lng: 107.5414914, name: 'Oasis Padel', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.9068321, lng: 107.5665415, name: 'The Good Padel Club - Cimahi', cat: 'olahraga',
+                    sub: 'Lapangan', desc: 'Lapangan' },
+                { lat: -6.8962593, lng: 107.5442283, name: 'Burwood Sports Club', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+                { lat: -6.9096735, lng: 107.5516547, name: 'Kayoo Padel Court', cat: 'olahraga', sub: 'Lapangan',
+                    desc: 'Lapangan' },
+
+                // GEDUNG OLAHRAGA (2)
+                { lat: -6.8739177, lng: 107.5290309, name: 'Gedung Olahraga Velodrome Kota Cimahi', cat: 'olahraga',
+                    sub: 'Gedung Olahraga', desc: 'Gedung Olahraga' },
+                { lat: -6.8683344, lng: 107.5358688, name: 'KONI Kota Cimahi', cat: 'olahraga', sub: 'Gedung Olahraga',
+                    desc: 'KONI' },
+
+                // ==================== MINIMARKET ====================
+                { lat: -6.8718460, lng: 107.5391175, name: 'Alfamart Pojok Cimahi', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8859329, lng: 107.5342164, name: 'Alfamart Jl.Dustira', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8889385, lng: 107.5342514, name: 'Alfamart Sudirman', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8794372, lng: 107.5293493, name: 'Alfamart Panembakan', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8744982, lng: 107.5413405, name: 'Alfamart Gandawijaya', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8666283, lng: 107.5373847, name: 'Alfamart Sangkuriang', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8955986, lng: 107.5366384, name: 'Alfamart Baros', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8930688, lng: 107.5412018, name: 'Alfamart Raya Baros', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.9020965, lng: 107.5425798, name: 'Alfamart Jalan Mahar Marta Negara', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8622603, lng: 107.5509072, name: 'Alfamart Citeureup', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.9015390, lng: 107.6441605, name: 'Alfamart Padasuka', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8857701, lng: 107.5363015, name: 'Alfa Express - Stasiun Cimahi', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8738294, lng: 107.5559417, name: 'Yomart Cihanjuang', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8858931, lng: 107.5543596, name: 'Superindo Cimahi', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8832678, lng: 107.5334107, name: 'Yomart Contong', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8856786, lng: 107.5362286, name: 'Indomaret Point Stasiun Cimahi', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8926343, lng: 107.5387216, name: 'Indomaret Plus Baros 63', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8606462, lng: 107.5459608, name: 'Alfamart Citeureup', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8801551, lng: 107.5533436, name: 'Alfamart Cibabat Sentral', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.88289197, lng: 107.5520991, name: 'Indomaret Cibabat', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.9021622, lng: 107.5314694, name: 'Indomaret Sadarmanah 22', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8978254, lng: 107.5567265, name: 'Indomaret Leuwigajah', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8811740, lng: 107.5580665, name: 'Indomaret Pesantren', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8713095, lng: 107.5445082, name: 'Indomaret Babakan', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.9021527, lng: 107.5405147, name: 'Indomaret SPBU Leuwigajah', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8709194, lng: 107.5387513, name: 'Indomaret SPBU Amir Mahmud', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8974419, lng: 107.5373832, name: 'Yomart Baros', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8545747, lng: 107.5398293, name: 'Indomaret Cipageran 81', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8781525, lng: 107.5448258, name: 'Indomaret Gatot Subroto', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8638452, lng: 107.5628849, name: 'Indomaret Cihanjuang 269', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8671880, lng: 107.5428316, name: 'Indomaret Kec.Cimahi 91', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8629945, lng: 107.5418211, name: 'Indomaret Sangkuriang', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8719815, lng: 107.5336089, name: 'Indomaret Cisangkan 17', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8705801, lng: 107.5256489, name: 'Indomaret Padasuka Indah', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.9004856, lng: 107.5627909, name: 'Indomaret Cibeureum', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8664674, lng: 107.5378975, name: 'Indomaret Sangkuriang 40', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8778417, lng: 107.5492795, name: 'Indomaret Cibabat 160', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8568117, lng: 107.5673670, name: 'Indomaret Cihanjuang 1', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8583886, lng: 107.5390476, name: 'Indomaret Puri Cipageran', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8608081, lng: 107.5477502, name: 'Indomaret Encep Kartawiria 01', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.9080474, lng: 107.5637092, name: 'Indomaret Kebon Kopi', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8606762, lng: 107.5448425, name: 'Indomaret Kolonel Masturi 200A', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8673094, lng: 107.5464811, name: 'Indomaret Citeureup 440', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.9048941, lng: 107.5268471, name: 'Indomaret Kerkof', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8987440, lng: 107.5236131, name: 'Indomaret Sadarmanah 157', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8955165, lng: 107.5366418, name: 'Indomaret Pasar Baros', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.9209653, lng: 107.5586668, name: 'Indomaret Melong Raya 74', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.9049379, lng: 107.5265986, name: 'Alfamart Kerkof', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8662004, lng: 107.5545998, name: 'Alfamart Ciawitali', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+                { lat: -6.8817028, lng: 107.5578733, name: 'Alfamart Pesantren 153', cat: 'minimarket',
+                    sub: 'Minimarket', desc: 'Minimarket' },
+                { lat: -6.8873218, lng: 107.5675006, name: 'Alfamart Rancabali', cat: 'minimarket', sub: 'Minimarket',
+                    desc: 'Minimarket' },
+
+                // ==================== SPBU ====================
+                { lat: -6.8884962, lng: 107.5559784, name: 'SPBU Pertamina Cibabat', cat: 'spbu', sub: 'SPBU',
+                    desc: 'SPBU' },
+                { lat: -6.8917495, lng: 107.5368640, name: 'SPBU Pertamina Baros 1', cat: 'spbu', sub: 'SPBU',
+                    desc: 'SPBU' },
+                { lat: -6.8927730, lng: 107.5388869, name: 'SPBU Pertamina Baros 2', cat: 'spbu', sub: 'SPBU',
+                    desc: 'SPBU' },
+                { lat: -6.8710401, lng: 107.5384289, name: 'SPBU Pertamina Cisangkan', cat: 'spbu', sub: 'SPBU',
+                    desc: 'SPBU' },
+                { lat: -6.8665442, lng: 107.5376201, name: 'SPBU Sangkuriang', cat: 'spbu', sub: 'SPBU', desc: 'SPBU' },
+                { lat: -6.8679247, lng: 107.5456203, name: 'SPBU Pertamina 34.40517 Citeureup', cat: 'spbu',
+                    sub: 'SPBU', desc: 'SPBU' },
+                { lat: -6.8727157, lng: 107.5531822, name: 'SPBU Cihanjuang', cat: 'spbu', sub: 'SPBU', desc: 'SPBU' },
+                { lat: -6.9043300, lng: 107.5176306, name: 'SPBU Kerkof', cat: 'spbu', sub: 'SPBU', desc: 'SPBU' },
+                { lat: -6.8931642, lng: 107.5581839, name: 'SPBU Amir Machmud 809', cat: 'spbu', sub: 'SPBU',
+                    desc: 'SPBU' },
+
+                // ==================== PEREKONOMIAN ====================
+                // PASAR (7)
+                { lat: -6.9053816, lng: 107.5589864, name: 'Pasar Rancabentang', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8800039, lng: 107.5386585, name: 'Pasar Antri Baru', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8690528, lng: 107.5426538, name: 'Pasar Atas Baru', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8710458, lng: 107.5430417, name: 'Pasar Citeureup', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8955150, lng: 107.5366396, name: 'Pasar Baros', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8981665, lng: 107.5562652, name: 'Pasar Cimindi', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+                { lat: -6.8733250, lng: 107.5545031, name: 'Pasar Jati Cihanjuang', cat: 'perekonomian', sub: 'Pasar',
+                    desc: 'Pasar' },
+
+                // BANK (25)
+                { lat: -6.8685054, lng: 107.5268252, name: 'Bank BRI KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8740531, lng: 107.5431280, name: 'Bank Mandiri Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8801840, lng: 107.5504372, name: 'Bank BJB Syariah Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8744730, lng: 107.5440644, name: 'Bank Maybank KCP Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8753922, lng: 107.5455262, name: 'Bank CIMB Niaga Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8747303, lng: 107.5438542, name: 'Bank BCA KCP Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8775431, lng: 107.5477375, name: 'Bank BTN KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8696258, lng: 107.5335791, name: 'Bank Mega Syariah KC Cimahi', cat: 'perekonomian',
+                    sub: 'Bank', desc: 'Bank' },
+                { lat: -6.8784032, lng: 107.5492557, name: 'Bank BJB KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8832418, lng: 107.5523970, name: 'Bank Danamon KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8828532, lng: 107.5525320, name: 'Bank BNI KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8867769, lng: 107.5549137, name: 'Bank Woori Saudara KC Cimahi', cat: 'perekonomian',
+                    sub: 'Bank', desc: 'Bank' },
+                { lat: -6.8906390, lng: 107.5568847, name: 'Bank Muamalat KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8793871, lng: 107.5499768, name: 'Bank BTPN KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8768909, lng: 107.5452137, name: 'Bank OCBC NISP KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8798929, lng: 107.5503468, name: 'Permata Bank Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8818640, lng: 107.5521016, name: 'Bank Mandiri Taspen Cimahi', cat: 'perekonomian',
+                    sub: 'Bank', desc: 'Bank' },
+                { lat: -6.8830130, lng: 107.5525427, name: 'Bank Bukopin KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8690501, lng: 107.5270827, name: 'Bank BTN Syariah Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8686739, lng: 107.5293314, name: 'Bank Bumi Arta', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8772629, lng: 107.5484627, name: 'Bank BRI Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8766442, lng: 107.5468673, name: 'Bank Sinarmas KC Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8689828, lng: 107.5290633, name: 'BPR Supra Cimahi', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'Bank' },
+                { lat: -6.8702503, lng: 107.5547476, name: 'ATM Bank BJB Pemkot Cimahi', cat: 'perekonomian',
+                    sub: 'Bank', desc: 'ATM' },
+                { lat: -6.9002467, lng: 107.5471930, name: 'ATM Bank BNI', cat: 'perekonomian', sub: 'Bank',
+                    desc: 'ATM' },
+
+                // MALL (5)
+                { lat: -6.8784704, lng: 107.5395467, name: 'Cimahi Mall', cat: 'perekonomian', sub: 'Mall',
+                    desc: 'Mall' },
+                { lat: -6.8805005, lng: 107.5513939, name: 'Yogya Shopping Mall Cimahi', cat: 'perekonomian',
+                    sub: 'Mall', desc: 'Mall' },
+                { lat: -6.8695238, lng: 107.5333584, name: 'Transmart Carrefour Cimahi', cat: 'perekonomian',
+                    sub: 'Mall', desc: 'Mall' },
+                { lat: -6.8729608, lng: 107.5431028, name: 'Ramayana Fashion Store', cat: 'perekonomian', sub: 'Mall',
+                    desc: 'Mall' },
+                { lat: -6.8729570, lng: 107.5431000, name: 'RX Rio X\'entre Cimahi', cat: 'perekonomian', sub: 'Mall',
+                    desc: 'Mall' },
+
+                // TOKO (8)
+                { lat: -6.8760864, lng: 107.5468343, name: 'Rabbani Store Cimahi', cat: 'perekonomian', sub: 'Toko',
+                    desc: 'Toko' },
+                { lat: -6.8742175, lng: 107.5427685, name: 'Eiger Store Cimahi', cat: 'perekonomian', sub: 'Toko',
+                    desc: 'Toko' },
+                { lat: -6.8692539, lng: 107.5329049, name: 'Respiro Store Cimahi', cat: 'perekonomian', sub: 'Toko',
+                    desc: 'Toko' },
+                { lat: -6.8843745, lng: 107.5533882, name: 'Rei Store Cimahi', cat: 'perekonomian', sub: 'Toko',
+                    desc: 'Toko' },
+                { lat: -6.8798925, lng: 107.5503533, name: 'Samsung Service Center Cimahi', cat: 'perekonomian',
+                    sub: 'Toko', desc: 'Toko' },
+                { lat: -6.8727646, lng: 107.5537117, name: 'Borma Toserba Cihanjuang', cat: 'perekonomian',
+                    sub: 'Toko', desc: 'Toko' },
+                { lat: -6.9043507, lng: 107.5316274, name: 'Borma Toserba Kerkof', cat: 'perekonomian', sub: 'Toko',
+                    desc: 'Toko' },
+                { lat: -6.8687294, lng: 107.5317689, name: 'Borma Toserba Rancabelut', cat: 'perekonomian',
+                    sub: 'Toko', desc: 'Toko' },
+
+                // ==================== TRANSPORTASI ====================
+                // TERMINAL (3)
+                { lat: -6.8970736, lng: 107.5588704, name: 'Terminal Cimindi', cat: 'transportasi', sub: 'Terminal',
+                    desc: 'Terminal' },
+                { lat: -6.8805614, lng: 107.5381233, name: 'Terminal Pasar Antri Baru', cat: 'transportasi',
+                    sub: 'Terminal', desc: 'Terminal' },
+                { lat: -6.8619368, lng: 107.5434077, name: 'Terminal Citeureup', cat: 'transportasi', sub: 'Terminal',
+                    desc: 'Terminal' },
+
+                // STASIUN (1)
+                { lat: -6.8856993, lng: 107.5362423, name: 'Stasiun Cimahi', cat: 'transportasi', sub: 'Stasiun',
+                    desc: 'Stasiun Kereta Api' },
+
+                // ==================== GEDUNG TEKNOLOGI ====================
+                { lat: -6.9013512, lng: 107.5367334, name: 'Cimahi Technopark', cat: 'teknologi', sub: 'Gedung Teknologi',
+                    desc: 'Pusat Inovasi Digital' },
+                { lat: -6.8953613, lng: 107.5422910, name: 'BITC (Baros Information Technology And Creative Center)',
+                    cat: 'teknologi', sub: 'Gedung Teknologi', desc: 'Pusat Teknologi & Kreatif' },
+
+                // ==================== PARIWISATA ====================
+                // TAMAN (21)
+                { lat: -6.8421991, lng: 107.5448788, name: 'Taman Kehati Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8726068, lng: 107.5418192, name: 'Taman Aspirasi Kota Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8795073, lng: 107.5399439, name: 'Taman Hutan Kota Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8826120, lng: 107.5604757, name: 'Taman Aruman', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8883730, lng: 107.5366927, name: 'Taman Kartini', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8880312, lng: 107.5354656, name: 'Taman Urip Sumaharjo', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8731630, lng: 107.5423039, name: 'Taman Alun-Alun Kota Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8709286, lng: 107.5535600, name: 'Taman Rakyat Pemkot Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8882026, lng: 107.5329860, name: 'Taman Adiraga', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8942576, lng: 107.5414839, name: 'Taman Perjuangan Baros', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8883042, lng: 107.5213407, name: 'Taman Cibeber', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8798388, lng: 107.5397268, name: 'Taman Tank', cat: 'pariwisata', sub: 'Taman', desc: 'Taman' },
+                { lat: -6.8912697, lng: 107.5365946, name: 'Taman Wihelmina Queen Park Cimahi', cat: 'pariwisata',
+                    sub: 'Taman', desc: 'Taman' },
+                { lat: -6.9228826, lng: 107.5545169, name: 'Taman Lalu Lintas Melong Green Garden', cat: 'pariwisata',
+                    sub: 'Taman', desc: 'Taman' },
+                { lat: -6.9191448, lng: 107.5555518, name: 'Taman Bougenville', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.9239150, lng: 107.5646421, name: 'Taman Warga Asih 31 Melong', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.9007855, lng: 107.5443988, name: 'Taman Kota Cimahi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8742420, lng: 107.5586349, name: 'Taman Vaksinasi', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8944675, lng: 107.5415533, name: 'Taman Median', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.8921482, lng: 107.5365142, name: 'Taman Meriam', cat: 'pariwisata', sub: 'Taman',
+                    desc: 'Taman' },
+                { lat: -6.9029252, lng: 107.5355679, name: 'Taman Kota Bunderan Leuwigajah', cat: 'pariwisata',
+                    sub: 'Taman', desc: 'Taman' },
+
+                // WISATA ALAM (8)
+                { lat: -6.8357299, lng: 107.5348030, name: 'Wisata Kuda Pakuhaji', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+                { lat: -6.8419212, lng: 107.5465583, name: 'Kp.Torobosan Cimenteng Cimahi', cat: 'pariwisata',
+                    sub: 'Wisata Alam', desc: 'Wisata Alam' },
+                { lat: -6.8408289, lng: 107.5512427, name: 'Alam Wisata Cimahi', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+                { lat: -6.8399196, lng: 107.5510462, name: 'Kalenja Family Camp', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+                { lat: -6.8480307, lng: 107.5487991, name: 'Kampung Buyut Cipageran (KABUCI)', cat: 'pariwisata',
+                    sub: 'Wisata Alam', desc: 'Wisata Alam' },
+                { lat: -6.9142691, lng: 107.5234230, name: 'Kampung Adat Cirendeu', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+                { lat: -6.7920796, lng: 107.5800837, name: 'Curug Bugbrug', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+                { lat: -6.7987468, lng: 107.5760924, name: 'Curug Cimahi', cat: 'pariwisata', sub: 'Wisata Alam',
+                    desc: 'Wisata Alam' },
+
+                // ==================== KULINER ====================
+                // RESTORAN (20)
+                { lat: -6.8695801, lng: 107.5334802, name: 'Restoran Wendys', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8817167, lng: 107.5517764, name: 'Restoran Pizza Hut Cibabat', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8803251, lng: 107.5509566, name: 'Sushi Yay! - Cimahi', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8796661, lng: 107.5501307, name: 'Restoran Domino Pizza Cibabat', cat: 'kuliner',
+                    sub: 'Restoran', desc: '' },
+                { lat: -6.8717600, lng: 107.5391599, name: 'Restoran Bebek Goreng H Slamet (Asli) Cimahi', cat: 'kuliner',
+                    sub: 'Restoran', desc: '' },
+                { lat: -6.8718761, lng: 107.5395760, name: 'Oharang BBQ (아랑) Cimahi', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8724433, lng: 107.5400343, name: 'Restoran Pizza Hut Delivery Cimahi', cat: 'kuliner',
+                    sub: 'Restoran', desc: '' },
+                { lat: -6.8969330, lng: 107.5348770, name: 'DK Resto', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8695008, lng: 107.5346191, name: 'McDonalds', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8700803, lng: 107.5358020, name: 'Mie Gacoan Padasuka', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8863501, lng: 107.5549242, name: 'Mie Gacoan Cibabat', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8763904, lng: 107.5460625, name: 'Wizzmie Cimahi', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8692731, lng: 107.5334751, name: 'Warung Nasi Alam Sunda Cimahi', cat: 'kuliner',
+                    sub: 'Restoran', desc: '' },
+                { lat: -6.8788197, lng: 107.5500322, name: 'KFC Cibabat', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8790032, lng: 107.5498186, name: 'Richeese Factory Cibabat', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8791295, lng: 107.5498834, name: 'Almaz Fried Chicken Cimahi', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+                { lat: -6.8777432, lng: 107.5451216, name: 'Bebek Ali Borme', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8795184, lng: 107.5500462, name: 'Warung Nasi Khas Sunda Laksana', cat: 'kuliner',
+                    sub: 'Restoran', desc: '' },
+                { lat: -6.8694272, lng: 107.5341593, name: 'Waroeng Steak', cat: 'kuliner', sub: 'Restoran', desc: '' },
+                { lat: -6.8710095, lng: 107.5384303, name: 'Sunda Nikmat Family Resto', cat: 'kuliner', sub: 'Restoran',
+                    desc: '' },
+
+                // CAFE (20)
+                { lat: -6.8833357, lng: 107.5524098, name: 'Temara Coffee Space', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.9077461, lng: 107.5294874, name: 'INS Cafe Cimahi', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.9038594, lng: 107.5302923, name: 'Otutu Coffee and Kitchen', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8921116, lng: 107.5175581, name: 'Inaka Coffee', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.8904185, lng: 107.5201510, name: 'Osiris Coffee Cimahi', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8921887, lng: 107.5368744, name: 'Kopi Insight Cabang Baros Cimahi', cat: 'kuliner',
+                    sub: 'Cafe', desc: '' },
+                { lat: -6.8883707, lng: 107.5352443, name: 'Cafe Garage 81', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.8853805, lng: 107.5295970, name: 'Halsean Coffee and Eatery', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8745307, lng: 107.5223995, name: 'Space 56', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.8757638, lng: 107.5250667, name: 'Bukit Senja Cafe & Venue', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8808956, lng: 107.5304099, name: 'Duduk Cerita Coffee', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8855432, lng: 107.5382893, name: 'Bagi Kopi Cimahi Tengah', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8765500, lng: 107.5444273, name: 'Roempi Coffee Cimahi', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8770072, lng: 107.5449527, name: 'Kopi Boutique Cimahi', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8708545, lng: 107.5432865, name: '911 Coffee Cimahi', cat: 'kuliner', sub: 'Cafe', desc: '' },
+                { lat: -6.8703177, lng: 107.5437340, name: '2ndbeans Coffee & Eatery', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8681291, lng: 107.5452081, name: 'Lhenta Coffee & Eatery', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8797066, lng: 107.5501568, name: 'TOMORO COFFEE - Cimahi', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8795833, lng: 107.5501372, name: 'Fore Coffee - Cimahi', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+                { lat: -6.8722565, lng: 107.5531921, name: 'TEMU KITA COFFEE TERRACE', cat: 'kuliner', sub: 'Cafe',
+                    desc: '' },
+
+                // BAKERY (8)
+                { lat: -6.8803707, lng: 107.5506338, name: 'Holland Bakery - Cimahi Cibabat', cat: 'kuliner',
+                    sub: 'Bakery', desc: '' },
+                { lat: -6.8818369, lng: 107.5518492, name: 'Bandung Cheesecuit Cimahi', cat: 'kuliner', sub: 'Bakery',
+                    desc: '' },
+                { lat: -6.8767325, lng: 107.5476095, name: 'Kartika Sari Cimahi', cat: 'kuliner', sub: 'Bakery',
+                    desc: '' },
+                { lat: -6.8782358, lng: 107.5496538, name: 'SINCERE Cimahi', cat: 'kuliner', sub: 'Bakery', desc: '' },
+                { lat: -6.8785359, lng: 107.5498919, name: 'Roti O Coffee Cimahi', cat: 'kuliner', sub: 'Bakery',
+                    desc: '' },
+                { lat: -6.8786026, lng: 107.5498930, name: 'Beard Papa\'s Cibabat', cat: 'kuliner', sub: 'Bakery',
+                    desc: '' },
+                { lat: -6.8699021, lng: 107.5344267, name: 'The Harvest Cakes - Cimahi', cat: 'kuliner', sub: 'Bakery',
+                    desc: '' },
+                { lat: -6.8695596, lng: 107.5349732, name: 'Sucré Pâtissier and Chocolatier - Cimahi', cat: 'kuliner',
+                    sub: 'Bakery', desc: '' }
+            ];
+
+            // ============================================================
+            // 5. INISIALISASI PETA
+            // ============================================================
+            const map = L.map('cimahiMap', {
+                center: [-6.8797, 107.5425],
+                zoom: 13,
+                zoomControl: false,
+                scrollWheelZoom: true
+            });
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+
+            L.control.zoom({ position: 'bottomright' }).addTo(map);
+            L.control.scale({ position: 'bottomleft', metric: true, imperial: false }).addTo(map);
+
+            // ============================================================
+            // 6. LAYER GROUP PER SUB KATEGORI
+            // ============================================================
+            const subLayerGroups = {};
+            const markerCounts = {};
+
+            Object.keys(categoryData).forEach(function(catId) {
+                var subs = categoryData[catId].subs;
+                if (subs && subs.length > 0) {
+                    subs.forEach(function(sub) {
+                        var key = catId + '-' + sub;
+                        subLayerGroups[key] = L.layerGroup();
+                        markerCounts[key] = 0;
+                    });
+                } else {
+                    var keyCat = catId;
+                    subLayerGroups[keyCat] = L.layerGroup();
+                    markerCounts[keyCat] = 0;
+                    var subLabel = categoryData[catId].label;
+                    var keySub = catId + '-' + subLabel;
+                    subLayerGroups[keySub] = L.layerGroup();
+                    markerCounts[keySub] = 0;
+                }
+            });
+
+            const catColorMap = {};
+            Object.keys(categoryData).forEach(function(catId) {
+                catColorMap[catId] = categoryData[catId].color;
+            });
+
+            // ============================================================
+            // 7. CUSTOM ICON PER KATEGORI
+            // ============================================================
+            const iconCache = {};
+
+            function getIconForCategory(catId) {
+                if (!iconCache[catId]) {
+                    iconCache[catId] = L.icon({
+                        iconUrl: 'images/pin-' + catId + '.png',
+                        iconSize: [32, 32],
+                        iconAnchor: [16, 32],
+                        popupAnchor: [0, -28]
+                    });
+                }
+                return iconCache[catId];
+            }
+
+            const defaultIcon = L.icon({
+                iconUrl: 'images/pin-default.png',
+                iconSize: [15, 15],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -28]
+            });
+
+            // ============================================================
+            // 8. TAMBAHKAN MARKER PER SUB KATEGORI
+            // ============================================================
+            const allMarkers = [];
+
+            locations.forEach(function(loc) {
+                var catId = loc.cat;
+                var sub = loc.sub;
+                var key = catId + '-' + sub;
+                var group = subLayerGroups[key];
+
+                if (!group) {
+                    group = subLayerGroups[catId];
+                }
+                if (!group) return;
+
+                var color = catColorMap[catId] || '#888';
+
+                var icon;
+                try {
+                    icon = getIconForCategory(catId);
+                } catch (e) {
+                    icon = defaultIcon;
+                }
+
+                var marker = L.marker([loc.lat, loc.lng], {
+                    icon: icon
+                });
+
+                marker._catId = catId;
+                marker._sub = sub;
+                marker._locName = loc.name;
+                marker._desc = loc.desc || '';
+
+                function updatePopup(lang) {
+                    var translatedCat = getTranslated(catId, lang);
+                    var translatedSub = sub ? getTranslated(sub, lang) : '';
+
+                    var popupContent = `
+                                <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:140px;">
+                                    <div class="popup-title">${loc.name}</div>
+                                    <div class="popup-subcat">${translatedSub}</div>
+                                    <div class="popup-desc">${loc.desc || ''}</div>
+                                    <span class="popup-cat" style="background:${color};" data-cat-id="${catId}">${translatedCat}</span>
+                                </div>
+                            `;
+                    marker.setPopupContent(popupContent);
+                }
+
+                var initialCat = getTranslated(catId, currentLang);
+                var initialSub = sub ? getTranslated(sub, currentLang) : '';
+
+                var popupContent = `
+                            <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:140px;">
+                                <div class="popup-title">${loc.name}</div>
+                                <div class="popup-subcat">${initialSub}</div>
+                                <div class="popup-desc">${loc.desc || ''}</div>
+                                <span class="popup-cat" style="background:${color};" data-cat-id="${catId}">${initialCat}</span>
+                            </div>
+                        `;
+                marker.bindPopup(popupContent, { className: 'custom-popup' });
+                marker.on('mouseover', function() { this.openPopup(); });
+
+                marker._updatePopup = updatePopup;
+
+                group.addLayer(marker);
+                markerCounts[key] = (markerCounts[key] || 0) + 1;
+                if (key !== catId) {
+                    markerCounts[catId] = (markerCounts[catId] || 0) + 1;
+                }
+                allMarkers.push(marker);
+            });
+
+            // ============================================================
+            // 9. FUNGSI FILTER
+            // ============================================================
+            let currentFilter = null;
+
+            function showCategory(catId) {
+                Object.keys(subLayerGroups).forEach(function(key) {
+                    map.removeLayer(subLayerGroups[key]);
+                });
+
+                Object.keys(subLayerGroups).forEach(function(key) {
+                    if (key.startsWith(catId + '-') || key === catId) {
+                        if (markerCounts[key] > 0) {
+                            map.addLayer(subLayerGroups[key]);
+                        }
+                    }
+                });
+
+                currentFilter = catId;
+                updateHeaderTitle();
+            }
+
+            function showSubCategory(key) {
+                Object.keys(subLayerGroups).forEach(function(k) {
+                    map.removeLayer(subLayerGroups[k]);
+                });
+
+                if (subLayerGroups[key] && markerCounts[key] > 0) {
+                    map.addLayer(subLayerGroups[key]);
+                }
+
+                currentFilter = key;
+                updateHeaderTitle();
+            }
+
+            function resetMap() {
+                Object.keys(subLayerGroups).forEach(function(key) {
+                    map.removeLayer(subLayerGroups[key]);
+                });
+                currentFilter = null;
+                updateHeaderTitle();
+                map.setView([-6.8797, 107.5425], 13);
+            }
+
+            function updateHeaderTitle() {
+                var headerTitle = document.querySelector('.tree-header .header-title');
+                var clearBtn = document.querySelector('.header-clear');
+                if (!headerTitle) return;
+
+                if (currentFilter === null) {
+                    headerTitle.textContent = translations[currentLang]['dropdown.title'] || 'SARANA CIMAHI';
+                    if (clearBtn) clearBtn.classList.remove('show');
+                } else if (typeof currentFilter === 'string' && currentFilter.includes('-')) {
+                    var parts = currentFilter.split('-');
+                    var subName = parts[1];
+                    var translated = getTranslated(subName, currentLang);
+                    headerTitle.textContent = translated;
+                    if (clearBtn) clearBtn.classList.add('show');
+                } else {
+                    var catName = currentFilter;
+                    var translatedCat = getTranslated(catName, currentLang);
+                    headerTitle.textContent = translatedCat;
+                    if (clearBtn) clearBtn.classList.add('show');
+                }
+            }
+
+            // ============================================================
+            // 10. FUNGSI APPLY LANGUAGE
+            // ============================================================
+            function applyLanguage(lang) {
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key] !== undefined) {
+                        el.textContent = translations[lang][key];
+                    }
+                });
+
+                var headerTitle = document.querySelector('.tree-header .header-title');
+                if (headerTitle) {
+                    if (currentFilter === null) {
+                        headerTitle.textContent = translations[lang]['dropdown.title'] || 'SARANA CIMAHI';
+                    } else if (typeof currentFilter === 'string' && currentFilter.includes('-')) {
+                        var parts = currentFilter.split('-');
+                        headerTitle.textContent = getTranslated(parts[1], lang);
+                    } else if (currentFilter) {
+                        headerTitle.textContent = getTranslated(currentFilter, lang);
+                    }
+                }
+
+                document.querySelectorAll('.tree-item .item-name, .tree-item .sub-item .item-name').forEach(function(item) {
+                    var key = item.getAttribute('data-key');
+                    if (key) {
+                        item.textContent = getTranslated(key, lang);
+                    }
+                });
+
+                allMarkers.forEach(function(marker) {
+                    if (marker._updatePopup) {
+                        marker._updatePopup(lang);
+                    }
+                });
+
+                updateLanguageUI(lang);
+                currentLang = lang;
+                localStorage.setItem('cimahiLang', lang);
+            }
+
+            // ============================================================
+            // 11. KONTROL DROPDOWN BERTINGKAT VERTIKAL - FIX SCROLL MOBILE
+            // ============================================================
+            var ControlContainer = L.Control.extend({
+                options: { position: 'topleft' },
+                onAdd: function(map) {
+                    var wrapper = L.DomUtil.create('div', 'tree-control-wrapper');
+                    wrapper.style.display = 'flex';
+                    wrapper.style.gap = '6px';
+                    wrapper.style.alignItems = 'flex-start';
+
+                    var dropdownContainer = L.DomUtil.create('div', 'tree-control', wrapper);
+                    dropdownContainer.style.flex = '0 0 auto';
+
+                    var header = L.DomUtil.create('div', 'tree-header', dropdownContainer);
+                    header.innerHTML = `
+                                <span class="header-icon material-symbols-outlined">menu</span>
+                                <span class="header-title" data-i18n="dropdown.title">SARANA CIMAHI</span>
+                                <span class="header-clear" id="clearFilterBtn">✕</span>
+                                <span class="header-arrow material-symbols-outlined">expand_more</span>
+                            `;
+
+                    var body = L.DomUtil.create('div', 'tree-body', dropdownContainer);
+                    body.style.display = 'none';
+
+                    // ============================================================
+                    // FIX SCROLLING MOBILE - Mencegah event scroll merambat ke peta
+                    // ============================================================
+                    body.addEventListener('touchstart', function(e) {
+                        // Mencegah event touch merambat ke peta
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    body.addEventListener('touchmove', function(e) {
+                        // Mencegah event touch move merambat ke peta
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    body.addEventListener('wheel', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    dropdownContainer.addEventListener('wheel', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    // Juga mencegah event dari header dan wrapper
+                    header.addEventListener('touchstart', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    header.addEventListener('touchmove', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    header.addEventListener('click', function(e) {
+                        if (e.target.closest('.header-clear')) {
+                            e.stopPropagation();
+                            if (body.style.display === 'none') {
+                                body.style.display = 'block';
+                                body.classList.add('show');
+                                header.classList.add('open');
+                            } else {
+                                body.style.display = 'none';
+                                body.classList.remove('show');
+                                header.classList.remove('open');
+                            }
+                            return;
+                        }
+                        e.stopPropagation();
+                        if (body.style.display === 'none') {
+                            body.style.display = 'block';
+                            body.classList.add('show');
+                            header.classList.add('open');
+                        } else {
+                            body.style.display = 'none';
+                            body.classList.remove('show');
+                            header.classList.remove('open');
+                        }
+                    });
+
+                    var clearBtn = document.getElementById('clearFilterBtn');
+                    if (clearBtn) {
+                        clearBtn.addEventListener('click', function(e) {
+                            e.stopPropagation();
+                            resetMap();
+                            body.style.display = 'block';
+                            body.classList.add('show');
+                            header.classList.add('open');
+                        });
+                    }
+
+                    // ============================================================
+                    // BUILD MENU
+                    // ============================================================
+                    Object.keys(categoryData).forEach(function(catId) {
+                        var cat = categoryData[catId];
+                        var hasSubs = cat.subs && cat.subs.length > 0;
+
+                        var catItem = document.createElement('div');
+                        catItem.className = 'tree-item category-item';
+                        if (hasSubs) {
+                            catItem.classList.add('has-subs');
+                        }
+
+                        var iconImg = document.createElement('img');
+                        iconImg.className = 'item-icon';
+                        iconImg.src = 'images/pin-' + catId + '.png';
+                        iconImg.alt = catId;
+                        iconImg.onerror = function() {
+                            this.style.display = 'none';
+                        };
+
+                        var nameSpan = document.createElement('span');
+                        nameSpan.className = 'item-name';
+                        nameSpan.setAttribute('data-key', catId);
+                        nameSpan.textContent = getTranslated(catId, currentLang);
+
+                        var arrowSpan = document.createElement('span');
+                        arrowSpan.className = 'item-arrow material-symbols-outlined';
+                        arrowSpan.textContent = hasSubs ? 'expand_more' : '';
+
+                        catItem.appendChild(iconImg);
+                        catItem.appendChild(nameSpan);
+                        if (hasSubs) {
+                            catItem.appendChild(arrowSpan);
+                        }
+
+                        if (hasSubs) {
+                            var subBody = document.createElement('div');
+                            subBody.className = 'sub-body';
+
+                            cat.subs.forEach(function(sub) {
+                                var subKey = catId + '-' + sub;
+                                if (markerCounts[subKey] === 0) return;
+
+                                var subItem = document.createElement('div');
+                                subItem.className = 'tree-item sub-item';
+
+                                var subIcon = document.createElement('img');
+                                subIcon.className = 'item-icon';
+                                subIcon.src = 'images/pin-' + catId + '.png';
+                                subIcon.alt = sub;
+                                subIcon.onerror = function() {
+                                    this.style.display = 'none';
+                                };
+
+                                var subName = document.createElement('span');
+                                subName.className = 'item-name';
+                                subName.setAttribute('data-key', sub);
+                                subName.textContent = getTranslated(sub, currentLang);
+
+                                subItem.appendChild(subIcon);
+                                subItem.appendChild(subName);
+
+                                subItem.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    showSubCategory(subKey);
+                                    body.style.display = 'none';
+                                    body.classList.remove('show');
+                                    header.classList.remove('open');
+                                });
+
+                                // Mencegah scroll merambat
+                                subItem.addEventListener('touchstart', function(e) {
+                                    e.stopPropagation();
+                                }, { passive: true });
+
+                                subBody.appendChild(subItem);
+                            });
+
+                            catItem.appendChild(subBody);
+
+                            catItem.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                if (e.target.closest('.sub-item')) return;
+
+                                var bodyEl = this.querySelector('.sub-body');
+                                var arrowEl = this.querySelector('.item-arrow');
+                                if (bodyEl) {
+                                    bodyEl.classList.toggle('open');
+                                    if (arrowEl) {
+                                        arrowEl.classList.toggle('open');
+                                    }
+                                }
+
+                                showCategory(catId);
+                            });
+
+                            arrowSpan.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                var parent = this.closest('.tree-item');
+                                var bodyEl = parent.querySelector('.sub-body');
+                                if (bodyEl) {
+                                    bodyEl.classList.toggle('open');
+                                    this.classList.toggle('open');
+                                }
+                            });
+
+                        } else {
+                            catItem.addEventListener('click', function(e) {
+                                e.stopPropagation();
+                                showCategory(catId);
+                            });
+                        }
+
+                        // Mencegah scroll merambat
+                        catItem.addEventListener('touchstart', function(e) {
+                            e.stopPropagation();
+                        }, { passive: true });
+
+                        body.appendChild(catItem);
+                    });
+
+                    // Refresh button
+                    var refreshContainer = L.DomUtil.create('div', 'refresh-control', wrapper);
+                    refreshContainer.innerHTML = `
+                                <span class="refresh-icon material-symbols-outlined">refresh</span>
+                            `;
+                    refreshContainer.style.height = '44px';
+                    refreshContainer.style.flexShrink = '0';
+
+                    refreshContainer.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        resetMap();
+                        body.style.display = 'block';
+                        body.classList.add('show');
+                        header.classList.add('open');
+                    });
+
+                    // Mencegah scroll merambat dari refresh button
+                    refreshContainer.addEventListener('touchstart', function(e) {
+                        e.stopPropagation();
+                    }, { passive: true });
+
+                    document.addEventListener('click', function(e) {
+                        if (!e.target.closest('.tree-control') && !e.target.closest('.refresh-control')) {
+                            body.style.display = 'none';
+                            body.classList.remove('show');
+                            header.classList.remove('open');
+                        }
+                    });
+
+                    return wrapper;
+                }
+            });
+
+            map.addControl(new ControlContainer());
+
+            // ============================================================
+            // 12. INISIALISASI - PETA KOSONG
+            // ============================================================
+            resetMap();
+
+            // ============================================================
+            // 13. RESIZE
+            // ============================================================
+            var resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() { map.invalidateSize(); }, 300);
+            });
+
+            // ============================================================
+            // 14. EVENT LISTENER TOMBOL BAHASA
+            // ============================================================
+            document.querySelectorAll('.lang-btn, .mobile-lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var nextLang = currentLang === 'id' ? 'en' : 'id';
+                    applyLanguage(nextLang);
+                    if (mobileMenu) {
+                        mobileMenu.classList.remove('open');
+                    }
+                });
+            });
+
+            applyLanguage(currentLang);
+        });
+    </script>
+
+</body>
+</html>

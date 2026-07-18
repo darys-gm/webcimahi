@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport">
+    <title>Profil Kota Cimahi - Portal Wisata Digital</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&amp;family=Quicksand:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    
+    <!-- AOS Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#5b4300",
+                        "error-container": "#ffdad6",
+                        "primary-container": "#4caf50",
+                        "primary-fixed": "#99f894",
+                        "surface-variant": "#e2e2e2",
+                        "on-tertiary": "#ffffff",
+                        "on-error-container": "#93000a",
+                        "primary": "#005313",
+                        "secondary-container": "#ffb05f",
+                        "primary-fixed-dim": "#7edb7b",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-surface-variant": "#3f4a3c",
+                        "inverse-surface": "#2f3131",
+                        "tertiary-container": "#785900",
+                        "on-surface": "#1a1c1c",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-low": "#f3f3f3",
+                        "on-background": "#1a1c1c",
+                        "outline-variant": "#bfcab9",
+                        "surface-bright": "#f9f9f9",
+                        "on-secondary-container": "#754300",
+                        "surface-dim": "#dadada",
+                        "tertiary-fixed-dim": "#ebc166",
+                        "secondary-fixed-dim": "#ffb871",
+                        "surface": "#f9f9f9",
+                        "background": "#f9f9f9",
+                        "surface-tint": "#006e1c",
+                        "on-tertiary-container": "#fdd275",
+                        "surface-container": "#eeeeee",
+                        "inverse-on-surface": "#f1f1f1",
+                        "secondary": "#8b5000",
+                        "tertiary-fixed": "#ffdf9e",
+                        "outline": "#6f7a6b",
+                        "on-primary-container": "#8fee8b",
+                        "inverse-primary": "#7edb7b",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#005313",
+                        "on-tertiary-fixed": "#261a00",
+                        "on-secondary-fixed-variant": "#6a3c00",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed": "#2d1600",
+                        "secondary-fixed": "#ffdcbe",
+                        "on-primary-fixed": "#002204",
+                        "tertiary": "#5b4200",
+                        "surface-container-high": "#e8e8e8",
+                        "on-primary": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "64px",
+                        "base": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Quicksand"],
+                        "label-sm": ["Plus Jakarta Sans"],
+                        "display-lg-mobile": ["Quicksand"],
+                        "body-md": ["Plus Jakarta Sans"],
+                        "headline-md": ["Quicksand"],
+                        "body-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["14px", { "lineHeight": "20px", "fontWeight": "600" }],
+                        "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        html { 
+            scroll-behavior: smooth; 
+            overflow-x: hidden;
+            width: 100%;
+        }
+        body {
+            background: #f9f9f9;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        /* ============================================================
+           ANIMASI AOS CUSTOM
+           ============================================================ */
+        [data-aos] {
+            opacity: 0;
+            transition-property: opacity, transform;
+        }
+        [data-aos].aos-animate {
+            opacity: 1;
+        }
+
+        /* Animasi fade-up */
+        [data-aos="fade-up"] {
+            transform: translateY(30px);
+        }
+        [data-aos="fade-up"].aos-animate {
+            transform: translateY(0);
+        }
+
+        /* Animasi fade-left */
+        [data-aos="fade-left"] {
+            transform: translateX(-40px);
+        }
+        [data-aos="fade-left"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi fade-right */
+        [data-aos="fade-right"] {
+            transform: translateX(40px);
+        }
+        [data-aos="fade-right"].aos-animate {
+            transform: translateX(0);
+        }
+
+        /* Animasi zoom-in */
+        [data-aos="zoom-in"] {
+            transform: scale(0.9);
+        }
+        [data-aos="zoom-in"].aos-animate {
+            transform: scale(1);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #6b7280;
+            transition: all 0.2s;
+            font-size: 0.875rem;
+        }
+        .back-btn:hover {
+            background: #fed7aa;
+            color: #ea580c;
+        }
+        .back-btn span {
+            font-size: 1rem;
+        }
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: translateY(99%);
+            z-index: 10;
+        }
+        .wave-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 50px;
+        }
+        .wave-divider .shape-fill { fill: var(--wave-color, #f9f9f9); }
+
+        /* Animasi Awan */
+        @keyframes floatCloudRight {
+            0% { transform: translateX(-10vw) scale(1); }
+            100% { transform: translateX(calc(100vw + 10vw)) scale(1.1); }
+        }
+        @keyframes floatCloudLeft {
+            0% { transform: translateX(calc(100vw + 10vw)) scale(1); }
+            100% { transform: translateX(-10vw) scale(1.1); }
+        }
+        .cloud-hover:hover { animation-play-state: paused !important; }
+
+        /* ============================================================
+           TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH
+           ============================================================ */
+        .lang-btn {
+            background: transparent;
+            border: 1px solid #005313;
+            padding: 0.3rem 1rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        /* Mobile version */
+        .mobile-lang-btn {
+            margin-top: 0.5rem;
+            padding: 0.4rem 1rem;
+            align-self: flex-start;
+            background: transparent;
+            border: 1px solid #005313;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: #005313;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            letter-spacing: 0.3px;
+            background: rgba(0, 83, 19, 0.05);
+            min-height: 36px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mobile-lang-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .mobile-lang-btn:hover::before {
+            left: 100%;
+        }
+
+        .mobile-lang-btn:hover {
+            transform: scale(1.05);
+            background: #005313;
+            color: white;
+            box-shadow: 0 4px 20px rgba(0, 83, 19, 0.35);
+        }
+
+        .mobile-lang-btn .lang-code {
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+            padding: 0 0.1rem;
+        }
+
+        .mobile-lang-btn .lang-code.active {
+            color: #005313;
+            font-weight: 800;
+        }
+
+        .mobile-lang-btn:hover .lang-code.active {
+            color: white;
+        }
+
+        .mobile-lang-btn .lang-code.inactive {
+            opacity: 0.4;
+            font-weight: 400;
+        }
+
+        .mobile-lang-btn:hover .lang-code.inactive {
+            opacity: 0.7;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .mobile-lang-btn .lang-divider {
+            opacity: 0.3;
+            font-weight: 300;
+            font-size: 0.7rem;
+        }
+
+        .mobile-lang-btn:hover .lang-divider {
+            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mobile-lang-btn .lang-icon-globe {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-lang-btn:hover .lang-icon-globe {
+            transform: rotate(20deg) scale(1.1);
+        }
+
+        @keyframes langPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .lang-pulse {
+            animation: langPulse 0.4s ease-in-out;
+        }
+
+        /* Back to Top FAB - Fix agar tidak keluar layar */
+        .back-to-top {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #ffb05f;
+            color: #754300;
+            border: none;
+            box-shadow: 0 8px 30px rgba(255, 176, 95, 0.4);
+            cursor: pointer;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-4px);
+            box-shadow: 0 12px 40px rgba(255, 176, 95, 0.6);
+            background: #ffb871;
+        }
+
+        .back-to-top:active {
+            transform: scale(0.95);
+        }
+
+        .back-to-top .material-symbols-outlined {
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 640px) {
+            .back-to-top {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+                min-width: 48px;
+                min-height: 48px;
+                max-width: 48px;
+                max-height: 48px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 24px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .back-to-top {
+                bottom: 12px;
+                right: 12px;
+                width: 44px;
+                height: 44px;
+                min-width: 44px;
+                min-height: 44px;
+                max-width: 44px;
+                max-height: 44px;
+            }
+            .back-to-top .material-symbols-outlined {
+                font-size: 20px;
+            }
+        }
+
+        /* ============================================================
+           AWAN - POSISI DINAIKKAN UNTUK SEMUA UKURAN LAYAR
+           ============================================================ */
+        /* Desktop (≥ 1025px) */
+        .cloud-container { 
+            height: 35% !important; 
+            top: 0% !important;
+        }
+        .cloud-1 { 
+            top: 2% !important; 
+        }
+        .cloud-2 { 
+            top: 15% !important; 
+        }
+        .cloud-3 { 
+            top: 35% !important; 
+        }
+        .cloud-4 { 
+            top: 60% !important; 
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .cloud-container { 
+                height: 38% !important; 
+                top: 0% !important;
+            }
+            .cloud-1 { top: 3% !important; }
+            .cloud-2 { top: 18% !important; }
+            .cloud-3 { top: 38% !important; }
+            .cloud-4 { top: 62% !important; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-logo { height: 2rem !important; }
+            .nav-logo-second { height: 2.25rem !important; }
+            
+            /* Hero background fix untuk mobile */
+            .hero-section {
+                background-size: cover !important;
+                background-position: 50% 30% !important;
+                background-attachment: scroll !important;
+                min-height: 50vh !important;
+            }
+            
+            /* Awan - posisi lebih tinggi */
+            .cloud-container { 
+                height: 40% !important; 
+                top: 0% !important;
+            }
+            .cloud-1 { 
+                width: 5rem !important; 
+                top: 2% !important; 
+                opacity: 0.7 !important;
+            }
+            .cloud-2 { 
+                width: 4rem !important; 
+                top: 18% !important; 
+                opacity: 0.6 !important;
+            }
+            .cloud-3 { 
+                width: 6rem !important; 
+                top: 38% !important; 
+                opacity: 0.5 !important;
+            }
+            .cloud-4 { 
+                width: 3.5rem !important; 
+                top: 60% !important; 
+                opacity: 0.55 !important;
+            }
+            .hero-title { font-size: 2rem !important; }
+            .card-content { padding: 1.25rem !important; }
+            .info-item { flex-direction: column !important; align-items: flex-start !important; gap: 0.25rem !important; padding: 0.75rem 0 !important; }
+        }
+        @media (max-width: 480px) {
+            /* Hero background fix untuk mobile kecil */
+            .hero-section {
+                background-size: cover !important;
+                background-position: 50% 25% !important;
+                background-attachment: scroll !important;
+                min-height: 45vh !important;
+            }
+            
+            .cloud-container { 
+                height: 45% !important; 
+                top: 0% !important;
+            }
+            .cloud-1 { 
+                width: 4rem !important; 
+                top: 2% !important; 
+            }
+            .cloud-2 { 
+                width: 3.2rem !important; 
+                top: 16% !important; 
+            }
+            .cloud-3 { 
+                width: 5rem !important; 
+                top: 35% !important; 
+            }
+            .cloud-4 { 
+                width: 2.8rem !important; 
+                top: 55% !important; 
+            }
+            .hero-title { font-size: 1.5rem !important; }
+            .card-content { padding: 1rem !important; }
+            .history-text { font-size: 0.875rem !important; line-height: 1.6 !important; }
+        }
+
+        /* Footer - Tanpa Corner Radius */
+        footer {
+            border-radius: 0 !important;
+        }
+
+        /* ============================================================
+           FOOTER - 3 SECTION (TOP, MID, BOTTOM)
+           ============================================================ */
+        /* Top Footer */
+        .top-footer {
+            background-color: #1a3c2a;
+            padding: 3rem 0;
+        }
+
+        .top-footer .top-footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .top-footer .top-footer-inner .top-footer-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center {
+            flex: 1;
+            text-align: left;
+            padding: 0 1rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-center p {
+            font-size: 0.8rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .top-footer .top-footer-inner .top-footer-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            flex-shrink: 0;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right .social-icons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .top-footer .top-footer-inner .top-footer-right p {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0.5rem;
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: #ffb05f;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .top-footer {
+                padding: 2rem 0;
+            }
+            .top-footer .top-footer-inner {
+                flex-direction: column !important;
+                gap: 1.5rem !important;
+                text-align: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-left,
+            .top-footer .top-footer-inner .top-footer-center,
+            .top-footer .top-footer-inner .top-footer-right {
+                flex: 1 1 100% !important;
+                text-align: center !important;
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-right .social-icons {
+                justify-content: center !important;
+            }
+            .top-footer .top-footer-inner .top-footer-center {
+                padding: 0 !important;
+            }
+            /* FOLLOW US - CENTER DI MOBILE */
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-footer {
+                padding: 1.5rem 0;
+            }
+            .top-footer .top-footer-inner .top-footer-right p {
+                text-align: center !important;
+                width: 100% !important;
+                display: block !important;
+            }
+        }
+
+        /* Mid Footer - Background Image */
+        .mid-footer {
+            background-image: url('images/footer-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            padding: 3rem 0;
+        }
+
+        .mid-footer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(26, 60, 42, 0.75);
+            z-index: 1;
+        }
+
+        .mid-footer > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .mid-footer .mid-footer-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .mid-footer .mid-footer-title {
+            color: #ffb05f;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            text-align: left;
+            width: 100%;
+            max-width: 450px;
+        }
+
+        .mid-footer .footer-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            padding: 0.3rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            justify-content: flex-start;
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item:hover {
+            color: #ffb05f;
+            border-bottom-color: #ffb05f;
+            transform: translateX(4px);
+        }
+
+        .mid-footer .footer-links-grid .footer-link-item .bullet {
+            color: #ffb05f;
+            font-size: 0.6rem;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 768px) {
+            .mid-footer .mid-footer-inner {
+                align-items: center;
+                padding: 0 1rem;
+            }
+            .mid-footer .mid-footer-title {
+                text-align: center;
+                max-width: 100%;
+                font-size: 1.2rem;
+            }
+            .mid-footer .footer-links-grid {
+                max-width: 100%;
+            }
+            .mid-footer {
+                background-attachment: scroll !important;
+                background-size: cover !important;
+                background-position: left center !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .mid-footer .footer-links-grid .footer-link-item {
+                font-size: 0.85rem;
+                padding: 0.4rem 0;
+            }
+        }
+
+        /* Bottom Footer */
+        .bottom-footer {
+            background-color: #0f2a1d;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+        }
+
+        .footer-link {
+            transition: color 0.2s ease;
+        }
+        .footer-link:hover {
+            color: #ffb05f;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 w-full z-[100] bg-surface/90 dark:bg-surface-container/90 backdrop-blur-md shadow-sm dark:shadow-none font-body-md text-body-md">
+        <div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-[1280px] mx-auto">
+            <!-- FIX: Logo Cimahi Campernik diletakkan di navbar sebelah kanan logo Cimahi -->
+            <div class="flex items-center gap-4 md:gap-6">
+                <a href="index.html">
+                    <img alt="Logo Cimahi" class="h-10 w-auto object-contain" src="images/logo-cimahi.png">
+                </a>
+                <img alt="Logo Cimahi Campernik" class="h-10 w-auto object-contain" src="images/logo-campernik.png">
+            </div>
+            <!-- Menu desktop (hanya muncul di layar >= 1024px) -->
+            <div class="hidden lg:flex gap-6 items-center">
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant dark:text-outline-variant hover:text-secondary-container dark:hover:text-secondary-fixed transition-colors hover:scale-105 duration-200 font-semibold" href="index.html#technopark" data-i18n="nav.technopark">Technology</a>
+                <!-- TOMBOL BAHASA DENGAN TEKS ID/EN - STYLISH -->
+                <button id="langToggleDesktop" class="lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeDesktop" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltDesktop" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+            <!-- Tombol burger muncul di bawah 1024px (tablet dan mobile) -->
+            <div class="lg:hidden">
+                <button id="menuToggle" class="p-2 text-on-surface"><span class="material-symbols-outlined">menu</span></button>
+            </div>
+        </div>
+        <!-- Mobile/Tablet menu dropdown (slide down) - LOGO DIHILANGKAN -->
+        <div id="mobileMenu" class="lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0 bg-white shadow-md">
+            <div class="flex flex-col px-6 py-4 gap-2">
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#profile" data-i18n="nav.profile">Profil</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#history" data-i18n="nav.history">History</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#culture" data-i18n="nav.culture">Culture</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#culinary" data-i18n="nav.culinary">Culinary</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#destinations" data-i18n="nav.destinations">Destinations</a>
+                <a class="text-on-surface-variant hover:text-secondary-container transition-colors font-semibold py-2 border-b border-gray-100" href="index.html#technopark" data-i18n="nav.technopark">Technology</a>
+                <!-- TOMBOL BAHASA MOBILE DENGAN TEKS ID/EN - STYLISH -->
+                <button id="langToggleMobile" class="mobile-lang-btn" data-i18n="nav.lang">
+                    <span id="langCodeMobile" class="lang-code active">ID</span>
+                    <span class="lang-divider">|</span>
+                    <span id="langCodeAltMobile" class="lang-code inactive">EN</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section Profil - Subtitle dihapus -->
+    <header class="hero-section relative min-h-[60vh] md:min-h-[80vh] lg:min-h-[95vh] flex items-center justify-center pt-20 md:pt-24 pb-8 md:pb-12 px-4 md:px-margin-desktop overflow-hidden" 
+            style="background-image: url('images/hero-profil-bg.png'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;">
+        
+        <div class="absolute inset-0 bg-black/50 z-0"></div>
+        
+        <!-- Awan Animasi - Posisi dinaikkan -->
+        <div class="cloud-container absolute top-0 left-0 w-full z-[1] overflow-hidden pointer-events-none">
+            <img src="images/awan.png" alt="Awan" 
+                 class="cloud-1 absolute w-24 md:w-32 lg:w-48 opacity-60 cloud-hover"
+                 style="animation: floatCloudRight 20s ease-in-out infinite alternate;">
+            <img src="images/awan.png" alt="Awan" 
+                 class="cloud-2 absolute w-20 md:w-24 lg:w-36 opacity-50 cloud-hover"
+                 style="animation: floatCloudLeft 25s ease-in-out infinite alternate; animation-delay: 3s;">
+            <img src="images/awan.png" alt="Awan" 
+                 class="cloud-3 absolute w-28 md:w-32 lg:w-56 opacity-40 cloud-hover"
+                 style="animation: floatCloudRight 30s ease-in-out infinite alternate; animation-delay: 5s;">
+            <img src="images/awan.png" alt="Awan" 
+                 class="cloud-4 absolute w-16 md:w-20 lg:w-32 opacity-45 cloud-hover"
+                 style="animation: floatCloudLeft 18s ease-in-out infinite alternate; animation-delay: 2s;">
+        </div>
+        
+        <div class="relative z-10 text-center max-w-4xl px-4">
+            <h1 class="hero-title font-display-lg text-3xl md:text-4xl lg:text-5xl text-white drop-shadow-lg font-bold mb-0 md:mb-0" data-aos="fade-up" data-aos-duration="1000" data-i18n="profile.hero.title">Profil Kota Cimahi</h1>
+        </div>
+        
+        <div class="wave-divider" style="--wave-color: #f9f9f9;">
+            <svg data-name="Layer 1" preserveAspectRatio="none" viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg">
+                <path class="shape-fill" d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="relative py-8 md:py-section-gap px-4 md:px-margin-desktop bg-surface-container-lowest">
+        <div class="max-w-[1200px] mx-auto">
+            
+            <!-- Tombol Kembali -->
+            <a href="index.html" class="back-btn mb-6 md:mb-8 inline-flex" data-aos="fade-right" data-aos-duration="600">
+                <span class="material-symbols-outlined text-sm">arrow_back</span>
+                <span data-i18n="profile.back">Kembali ke Beranda</span>
+            </a>
+
+            <!-- Grid 2 Kolom -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start">
+                
+                <!-- Kolom Kiri: Video YouTube -->
+                <div data-aos="fade-right" data-aos-duration="800" data-aos-delay="100">
+                    <div class="card-content bg-surface rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-sm border border-surface-container">
+                        <h2 class="section-title font-headline-md text-headline-md text-primary mb-2" data-i18n="profile.video.title">Video Profil Cimahi</h2>
+                        <div class="w-10 md:w-12 h-1 bg-secondary-container rounded-full mb-4 md:mb-6"></div>
+                        
+                        <a href="https://www.youtube.com/watch?v=UCaqzifm7BM" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           class="block rounded-xl md:rounded-2xl overflow-hidden shadow-lg group relative">
+                            
+                            <img 
+                                src="https://img.youtube.com/vi/UCaqzifm7BM/maxresdefault.jpg" 
+                                alt="Video Profil Cimahi" 
+                                class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-300"
+                                onerror="this.src='https://img.youtube.com/vi/UCaqzifm7BM/hqdefault.jpg'"
+                            >
+                            
+                            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-all flex items-center justify-center">
+                                <div class="w-12 h-12 md:w-14 md:h-14 bg-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-red-700 transition-all">
+                                    <svg class="w-6 h-6 md:w-7 md:h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M8 5v14l11-7z"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                        <p class="text-center text-on-surface-variant text-xs md:text-sm mt-2 md:mt-3" data-i18n="profile.video.hint">
+                            Klik thumbnail untuk menonton di YouTube
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Kolom Kanan: Informasi Singkat -->
+                <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="card-content bg-surface rounded-2xl md:rounded-3xl p-4 md:p-6 lg:p-8 shadow-sm border border-surface-container">
+                        <h2 class="section-title font-headline-md text-headline-md text-primary mb-2" data-i18n="profile.info.title">Informasi Singkat</h2>
+                        <div class="w-10 md:w-12 h-1 bg-secondary-container rounded-full mb-4 md:mb-6"></div>
+                        
+                        <div class="space-y-1 md:space-y-2">
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3 border-b border-surface-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="250">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.area">Luas Wilayah</span>
+                                <span class="font-semibold text-primary text-sm md:text-base">40,47 km²</span>
+                            </div>
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3 border-b border-surface-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="300">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.population">Penduduk (2026)</span>
+                                <span class="font-semibold text-primary text-sm md:text-base" data-i18n="profile.info.content.population">614.304 jiwa</span>
+                            </div>
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3 border-b border-surface-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="350">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.growth">Pertumbuhan Penduduk</span>
+                                <span class="font-semibold text-primary text-sm md:text-base" data-i18n="profile.info.content.growth">1,30% / tahun</span>
+                            </div>
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3 border-b border-surface-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="400">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.status">Status</span>
+                                <span class="font-semibold text-primary text-sm md:text-base" data-i18n="profile.info.content.status">Kota Otonom</span>
+                            </div>
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3 border-b border-surface-container" data-aos="fade-up" data-aos-duration="500" data-aos-delay="450">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.founded">Hari Ulang Tahun Kota</span>
+                                <span class="font-semibold text-primary text-sm md:text-base" data-i18n="profile.info.content.founded">21 Juni</span>
+                            </div>
+                            <div class="info-item flex flex-col sm:flex-row justify-between py-2 md:py-3" data-aos="fade-up" data-aos-duration="500" data-aos-delay="500">
+                                <span class="text-on-surface-variant font-medium text-sm md:text-base" data-i18n="profile.info.motto">Motto</span>
+                                <span class="font-semibold text-primary text-sm md:text-base">Saluyu Ngawangun Jati Mandiri</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bagian Sejarah Lengkap -->
+            <div class="mt-8 md:mt-12 bg-surface rounded-2xl md:rounded-3xl p-4 md:p-8 lg:p-10 shadow-sm border border-surface-container" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="100">
+                <h2 class="section-title font-headline-md text-headline-md text-primary mb-2" data-i18n="profile.history.title">Sejarah Lengkap Kota Cimahi</h2>
+                <div class="w-10 md:w-12 h-1 bg-secondary-container rounded-full mb-4 md:mb-6"></div>
+                
+                <div class="space-y-4 md:space-y-6 text-on-surface-variant leading-relaxed">
+                    <p class="history-text font-body-md text-sm md:text-base" data-aos="fade-up" data-aos-duration="600" data-aos-delay="150" data-i18n="profile.history.p1">
+                        Cimahi mulai dikenal pada tahun <span class="font-bold text-primary">1811</span>, Gubernur Jendral Willem Daendels membuat jalan Anyer - Panarukan, dengan dibuatnya pos penjagaan (loji) di Alun-alun Cimahi sekarang. Tahun <span class="font-bold text-primary">1874 - 1893</span>, dilaksanakan pembuatan jalan kereta api Bandung - Cianjur sekaligus pembuatan stasiun kereta api Cimahi. Tahun <span class="font-bold text-primary">1886</span> dimulainya pembangunan pusat pendidikan militer dan fasilitas lainnya (RS Dustira, rumah tahanan militer, dll). Tahun <span class="font-bold text-primary">1935</span>, Cimahi menjadi kecamatan (lampiran staad blad tahun 1935). Tahun <span class="font-bold text-primary">1962</span> dibentuk setingkat kewedanaan, meliputi 4 kecamatan : Cimahi, Padalarang, Batujajar dan Cipatat. Tahun <span class="font-bold text-primary">1975</span>, ditingkatkan menjadi kota administratip (PP No. 29 Tahun 1975), diresmikannya pada tanggal <span class="font-bold text-primary">29 Januari 1976</span>, merupakan Kotip pertama di Jawa Barat dan ketiga di Indonesia. Tahun <span class="font-bold text-primary">2001</span> ditingkatkan statusnya menjadi kota otonom.
+                    </p>
+                    <p class="history-text font-body-md text-sm md:text-base" data-aos="fade-up" data-aos-duration="600" data-aos-delay="250" data-i18n="profile.history.p2">
+                        Cimahi yang berasal dari status Kecamatan yang berada di wilayah Kabupaten Bandung sesuai dengan perkembangan dan kemajuannya maka berdasarkan Undang-undang Republik Indonesia Nomor 5 Tahun 1974 tentang Pemerintahan dan Otonomi Daerah dan Peraturan Pemerintah Nomor 29 Tahun 1975 tentang Pembentukan Kota Administratif, Cimahi dapat ditingkatkan statusnya dari Kecamatan menjadi Kota Administratif yang berada di wilayah Kabupaten Bandung yang dipimpin oleh Walikota Administratif yang bertanggungjawab kepada Bupati Kepala Daerah Kabupaten Bandung. Kota Administratif Cimahi dengan luas wilayah keselurahan mencapai <span class="font-bold text-primary">4.025,73 Ha</span>, yang merupakan bagian dari Kabupaten Bandung Utara sebagaimana dimaksud dalam Undang-undang Nomor 14 Tahun 1950 tentang Pembentukan Daerah-Daerah Kabupaten dalam lingkungan Propinsi Jawa Barat.
+                    </p>
+                    <p class="history-text font-body-md text-sm md:text-base" data-aos="fade-up" data-aos-duration="600" data-aos-delay="350" data-i18n="profile.history.p3">
+                        Cimahi telah menunjukkan perkembangan yang pesat, khususnya dibidang pelaksanaan pembangunan dan peningkatan jumlah penduduk, yang pada tahun <span class="font-bold text-primary">1990</span> berjumlah 290.202 jiwa dan pada tahun <span class="font-bold text-primary">2000</span> meningkat menjadi 352.005 jiwa dengan pertumbuhan rata-rata <span class="font-bold text-primary">2,12%</span> per tahun. Hal ini mengakibatkan bertambahnya beban tugas dan wewenang kerja dalam penyelenggaraan pemerintahan, pelaksanaan pembangunan dan pelayanan kemasyarakatan. Oleh karena itu, sangat diperlukan adanya peningkatan dibidang penyelenggaraan pemerintahan, pelaksanaan pembangunan dan pelayanan kemasyarakatan dalam rangka meningkatkan taraf hidup dan kesejahteraan masyarakat di wilayah Cimahi. Kota Administratif Cimahi, sebagaimana diatur dalam Peraturan Pemerintah Nomor 29 tahun 1975 tentang Pembentukan Kota Administratif Cimahi.
+                    </p>
+                    <p class="history-text font-body-md text-sm md:text-base" data-aos="fade-up" data-aos-duration="600" data-aos-delay="450" data-i18n="profile.history.p4">
+                        Kewenangan Kota Cimahi sebagai Daerah Otonom mencakup seluruh kewenangan bidang pemerintahan, termasuk kewenangan wajib yaitu pekerjaan umum, kesehatan, pendidikan dan kebudayaan, perhubungan, industri dan perdagangan, penanaman modal, lingkungan hidup, pertahanan, koperasi dan tenaga kerja kecuali bidang politik luar negeri, pertahanan keamanan, peradilan, moneter fisikal, agama serta kewenangan bidang lain sesuai dengan peraturan Perundang-undangan Nomor I Tahun 2003 tentang Kewenangan Kota Cimahi sebagai Daerah Otonom.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- ============================================================
+         FOOTER - 3 SECTION (TOP, MID, BOTTOM) SAMA DENGAN INDEX.HTML
+         ============================================================ -->
+    <footer class="w-full text-white">
+        <!-- ======= TOP FOOTER ======= -->
+        <div class="top-footer">
+            <div class="top-footer-inner">
+                <!-- Kiri: Logo dan Brand -->
+                <div class="top-footer-left" data-aos="fade-right" data-aos-duration="600">
+                    <div class="flex items-center gap-4">
+                        <img alt="Logo Cimahi" class="h-14 w-auto object-contain" src="images/logo-cimahi.png">
+                        <img alt="Logo Cimahi Campernik" class="h-14 w-auto object-contain" src="images/logo-campernik.png">
+                    </div>
+                </div>
+
+                <!-- Tengah: Alamat -->
+                <div class="top-footer-center" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                    <p>Jl. Raden Demang Hardjakusumah Blok Jati Cihanjuang No.1,<br>
+                    Kelurahan Cibabat, Kec. Cimahi Utara, Kota Cimahi</p>
+                </div>
+
+                <!-- Kanan: Sosial Media -->
+                <div class="top-footer-right" data-aos="fade-left" data-aos-duration="600" data-aos-delay="200">
+                    <p data-i18n="footer.follow" class="text-center md:text-right">Ikuti kami</p>
+                   <div class="social-icons">
+                        <a href="https://www.facebook.com/pemerintahkotacimahi/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/cimahikota/" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.405a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+                        </a>
+                        <a href="https://www.youtube.com/user/admincimahi" class="social-icon w-10 h-10 rounded-full bg-white/10 hover:bg-[#ffb05f] flex items-center justify-center transition-all hover:scale-110" aria-label="YouTube">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= MID FOOTER - Data Lainnya ======= -->
+        <div class="mid-footer">
+            <div class="mid-footer-inner" data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+                <h3 class="mid-footer-title" data-i18n="footer.otherdata">Data Lainnya</h3>
+                <div class="footer-links-grid">
+                    <a href="profil.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="150">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.profile">Profil Kota Cimahi</span>
+                    </a>
+                    <a href="budaya.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="200">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culture">Budaya & Tradisi</span>
+                    </a>
+                    <a href="kuliner.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="250">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.culinary">Kuliner Khas</span>
+                    </a>
+                    <a href="wisata.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="300">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.destinations">Destinasi Wisata</span>
+                    </a>
+                    <a href="techno.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="350">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.technology">Perkembangan Teknologi & Modernisasi</span>
+                    </a>
+                    <a href="map.html" class="footer-link-item" data-aos="fade-left" data-aos-duration="400" data-aos-delay="400">
+                        <span class="bullet">•</span> <span data-i18n="footer.link.map">Peta Sarana Cimahi</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ======= BOTTOM FOOTER ======= -->
+        <div class="bottom-footer">
+            <div class="max-w-[1280px] mx-auto px-margin-mobile md:px-margin-desktop">
+                <p class="text-center text-sm text-white/50">
+                    © 2026 Cimahi Hepi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top FAB -->
+    <a href="#" class="back-to-top" aria-label="Kembali ke atas">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </a>
+
+    <!-- JavaScript untuk AOS, Translate dan Menu Toggle -->
+    <script>
+        // Inisialisasi AOS
+        AOS.init({
+            duration: 800,
+            once: false,
+            mirror: true,
+            offset: 50,
+            easing: 'ease-out-cubic'
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // ======= MOBILE/TABLET MENU TOGGLE =======
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            if (menuToggle) {
+                menuToggle.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    mobileMenu.classList.toggle('max-h-0');
+                    mobileMenu.classList.toggle('max-h-96');
+                    mobileMenu.classList.toggle('opacity-0');
+                    mobileMenu.classList.toggle('opacity-100');
+                });
+            }
+            
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('nav')) {
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    }
+                }
+            });
+
+            // ======= FITUR TRANSLATE =======
+            let currentLang = localStorage.getItem('cimahiLang') || 'id';
+
+            // Fungsi untuk update UI teks bahasa
+            function updateLanguageUI(lang) {
+                const langCodeDesktop = document.getElementById('langCodeDesktop');
+                const langCodeMobile = document.getElementById('langCodeMobile');
+                const langCodeAltDesktop = document.getElementById('langCodeAltDesktop');
+                const langCodeAltMobile = document.getElementById('langCodeAltMobile');
+
+                const activeLang = lang === 'id' ? 'ID' : 'EN';
+                const inactiveLang = lang === 'id' ? 'EN' : 'ID';
+
+                if (langCodeDesktop) {
+                    langCodeDesktop.textContent = activeLang;
+                    langCodeDesktop.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeDesktop.classList.add('active');
+                    void langCodeDesktop.offsetWidth;
+                    langCodeDesktop.classList.add('lang-pulse');
+                }
+                if (langCodeMobile) {
+                    langCodeMobile.textContent = activeLang;
+                    langCodeMobile.classList.remove('active', 'inactive', 'lang-pulse');
+                    langCodeMobile.classList.add('active');
+                    void langCodeMobile.offsetWidth;
+                    langCodeMobile.classList.add('lang-pulse');
+                }
+                if (langCodeAltDesktop) {
+                    langCodeAltDesktop.textContent = inactiveLang;
+                    langCodeAltDesktop.classList.remove('active', 'inactive');
+                    langCodeAltDesktop.classList.add('inactive');
+                }
+                if (langCodeAltMobile) {
+                    langCodeAltMobile.textContent = inactiveLang;
+                    langCodeAltMobile.classList.remove('active', 'inactive');
+                    langCodeAltMobile.classList.add('inactive');
+                }
+            }
+
+            const translations = {
+                id: {
+                    'nav.profile': 'Profil',
+                    'nav.history': 'Sejarah',
+                    'nav.culture': 'Budaya',
+                    'nav.culinary': 'Kuliner',
+                    'nav.destinations': 'Destinasi',
+                    'nav.technopark': 'Teknologi',
+                    'nav.lang': 'EN/ID',
+                    'profile.hero.title': 'Profil Kota Cimahi',
+                    'profile.back': 'Kembali ke Beranda',
+                    'profile.video.title': 'Video Profil Cimahi',
+                    'profile.video.hint': 'Klik thumbnail untuk menonton di YouTube',
+                    'profile.info.title': 'Informasi Singkat',
+                    'profile.info.area': 'Luas Wilayah',
+                    'profile.info.population': 'Penduduk (2026)',
+                    'profile.info.content.population': '614.304 jiwa',
+                    'profile.info.growth': 'Pertumbuhan Penduduk',
+                    'profile.info.content.growth' : '1,30% / tahun',
+                    'profile.info.status': 'Status',
+                    'profile.info.content.status' : 'Kota Otonom',
+                    'profile.info.founded': 'Hari Ulang Tahun Kota',
+                    'profile.info.content.founded' : '21 Juni',
+                    'profile.info.motto': 'Motto',
+                    'profile.history.title': 'Sejarah Lengkap Kota Cimahi',
+                    'profile.history.p1': 'Cimahi mulai dikenal pada tahun <span class="font-bold text-primary">1811</span>, Gubernur Jendral Willem Daendels membuat jalan Anyer - Panarukan, dengan dibuatnya pos penjagaan (loji) di Alun-alun Cimahi sekarang. Tahun <span class="font-bold text-primary">1874 - 1893</span>, dilaksanakan pembuatan jalan kereta api Bandung - Cianjur sekaligus pembuatan stasiun kereta api Cimahi. Tahun <span class="font-bold text-primary">1886</span> dimulainya pembangunan pusat pendidikan militer dan fasilitas lainnya (RS Dustira, rumah tahanan militer, dll). Tahun <span class="font-bold text-primary">1935</span>, Cimahi menjadi kecamatan (lampiran staad blad tahun 1935). Tahun <span class="font-bold text-primary">1962</span> dibentuk setingkat kewedanaan, meliputi 4 kecamatan : Cimahi, Padalarang, Batujajar dan Cipatat. Tahun <span class="font-bold text-primary">1975</span>, ditingkatkan menjadi kota administratip (PP No. 29 Tahun 1975), diresmikannya pada tanggal <span class="font-bold text-primary">29 Januari 1976</span>, merupakan Kotip pertama di Jawa Barat dan ketiga di Indonesia. Tahun <span class="font-bold text-primary">2001</span> ditingkatkan statusnya menjadi kota otonom.',
+                    'profile.history.p2': 'Cimahi yang berasal dari status Kecamatan yang berada di wilayah Kabupaten Bandung sesuai dengan perkembangan dan kemajuannya maka berdasarkan Undang-undang Republik Indonesia Nomor 5 Tahun 1974 tentang Pemerintahan dan Otonomi Daerah dan Peraturan Pemerintah Nomor 29 Tahun 1975 tentang Pembentukan Kota Administratif, Cimahi dapat ditingkatkan statusnya dari Kecamatan menjadi Kota Administratif yang berada di wilayah Kabupaten Bandung yang dipimpin oleh Walikota Administratif yang bertanggungjawab kepada Bupati Kepala Daerah Kabupaten Bandung. Kota Administratif Cimahi dengan luas wilayah keselurahan mencapai <span class="font-bold text-primary">4.025,73 Ha</span>, yang merupakan bagian dari Kabupaten Bandung Utara sebagaimana dimaksud dalam Undang-undang Nomor 14 Tahun 1950 tentang Pembentukan Daerah-Daerah Kabupaten dalam lingkungan Propinsi Jawa Barat.',
+                    'profile.history.p3': 'Cimahi telah menunjukkan perkembangan yang pesat, khususnya dibidang pelaksanaan pembangunan dan peningkatan jumlah penduduk, yang pada tahun <span class="font-bold text-primary">1990</span> berjumlah 290.202 jiwa dan pada tahun <span class="font-bold text-primary">2000</span> meningkat menjadi 352.005 jiwa dengan pertumbuhan rata-rata <span class="font-bold text-primary">2,12%</span> per tahun. Hal ini mengakibatkan bertambahnya beban tugas dan wewenang kerja dalam penyelenggaraan pemerintahan, pelaksanaan pembangunan dan pelayanan kemasyarakatan. Oleh karena itu, sangat diperlukan adanya peningkatan dibidang penyelenggaraan pemerintahan, pelaksanaan pembangunan dan pelayanan kemasyarakatan dalam rangka meningkatkan taraf hidup dan kesejahteraan masyarakat di wilayah Cimahi. Kota Administratif Cimahi, sebagaimana diatur dalam Peraturan Pemerintah Nomor 29 tahun 1975 tentang Pembentukan Kota Administratif Cimahi.',
+                    'profile.history.p4': 'Kewenangan Kota Cimahi sebagai Daerah Otonom mencakup seluruh kewenangan bidang pemerintahan, termasuk kewenangan wajib yaitu pekerjaan umum, kesehatan, pendidikan dan kebudayaan, perhubungan, industri dan perdagangan, penanaman modal, lingkungan hidup, pertahanan, koperasi dan tenaga kerja kecuali bidang politik luar negeri, pertahanan keamanan, peradilan, moneter fisikal, agama serta kewenangan bidang lain sesuai dengan peraturan Perundang-undangan Nomor I Tahun 2003 tentang Kewenangan Kota Cimahi sebagai Daerah Otonom.',
+                    'footer.follow': 'Ikuti kami',
+                    'footer.otherdata': 'Data Lainnya',
+                    'footer.link.profile': 'Profil Kota Cimahi',
+                    'footer.link.culture': 'Budaya & Tradisi',
+                    'footer.link.culinary': 'Kuliner Khas',
+                    'footer.link.destinations': 'Destinasi Wisata',
+                    'footer.link.technology': 'Perkembangan Teknologi & Modernisasi',
+                    'footer.link.map': 'Peta Sarana Cimahi'
+                },
+                en: {
+                    'nav.profile': 'Profile',
+                    'nav.history': 'History',
+                    'nav.culture': 'Culture',
+                    'nav.culinary': 'Culinary',
+                    'nav.destinations': 'Destinations',
+                    'nav.technopark': 'Technology',
+                    'nav.lang': 'ID/EN',
+                    'profile.hero.title': 'Cimahi City Profile',
+                    'profile.back': 'Back to Home',
+                    'profile.video.title': 'Cimahi Profile Video',
+                    'profile.video.hint': 'Click thumbnail to watch on YouTube',
+                    'profile.info.title': 'Brief Information',
+                    'profile.info.area': 'Area',
+                    'profile.info.population': 'Population (2026)',
+                    'profile.info.content.population': '614.304 people',
+                    'profile.info.growth': 'Population Growth',
+                    'profile.info.content.growth' : '1.30% / annum',
+                    'profile.info.status': 'Status',
+                    'profile.info.content.status' : 'autonomous city',
+                    'profile.info.founded': 'City Anniversary',
+                    'profile.info.content.founded' : '21 June',
+                    'profile.info.motto': 'Motto',
+                    'profile.history.title': 'Complete History of Cimahi City',
+                    'profile.history.p1': 'Cimahi began to be known in <span class="font-bold text-primary">1811</span>, when Governor General Willem Daendels built the Anyer - Panarukan road, along with a guard post (loji) at what is now Cimahi Square. In <span class="font-bold text-primary">1874 - 1893</span>, the Bandung - Cianjur railway line was constructed, along with the Cimahi railway station. In <span class="font-bold text-primary">1886</span>, the construction of a military education center and other facilities (RS Dustira, military detention house, etc.) began. In <span class="font-bold text-primary">1935</span>, Cimahi became a sub-district. In <span class="font-bold text-primary">1962</span>, it was formed at the level of a district, covering 4 sub-districts: Cimahi, Padalarang, Batujajar and Cipatat. In <span class="font-bold text-primary">1975</span>, it was upgraded to an administrative city (PP No. 29 of 1975), inaugurated on <span class="font-bold text-primary">January 29, 1976</span>, making it the first administrative city in West Java and the third in Indonesia. In <span class="font-bold text-primary">2001</span>, its status was upgraded to an autonomous city.',
+                    'profile.history.p2': 'Cimahi, which originated from the status of a Sub-district in the Bandung Regency area, in accordance with its development and progress, based on Law of the Republic of Indonesia Number 5 of 1974 concerning Regional Government and Autonomy and Government Regulation Number 29 of 1975 concerning the Establishment of the Administrative City, Cimahi could be upgraded from a Sub-district to an Administrative City within the Bandung Regency area, led by an Administrative Mayor responsible to the Regent of Bandung Regency. The Administrative City of Cimahi has a total area of <span class="font-bold text-primary">4,025.73 Ha</span>, which is part of North Bandung Regency as referred to in Law Number 14 of 1950 concerning the Establishment of Regencies within the Province of West Java.',
+                    'profile.history.p3': 'Cimahi has shown rapid development, particularly in the implementation of development and population growth, which in <span class="font-bold text-primary">1990</span> was 290,202 people and in <span class="font-bold text-primary">2000</span> increased to 352,005 people with an average growth rate of <span class="font-bold text-primary">2.12%</span> per year. This has resulted in an increased workload in the administration of government, development implementation, and community services. Therefore, improvements in governance, development implementation, and community services are highly needed to improve the standard of living and welfare of the people in the Cimahi area. The Administrative City of Cimahi, as regulated in Government Regulation Number 29 of 1975 concerning the Establishment of the Administrative City of Cimahi.',
+                    'profile.history.p4': 'The authority of Cimahi City as an Autonomous Region covers all governmental authority, including mandatory authority such as public works, health, education and culture, transportation, industry and trade, investment, environment, defense, cooperatives and manpower, except for foreign policy, defense and security, judiciary, monetary and fiscal, religion, as well as other areas of authority in accordance with Law Number I of 2003 concerning the Authority of Cimahi City as an Autonomous Region.',
+                    'footer.follow': 'Follow Us',
+                    'footer.otherdata': 'Other Data',
+                    'footer.link.profile': 'Cimahi City Profile',
+                    'footer.link.culture': 'Culture & Traditions',
+                    'footer.link.culinary': 'Signature Culinary',
+                    'footer.link.destinations': 'Tourist Destinations',
+                    'footer.link.technology': 'Technology Development & Modernization',
+                    'footer.link.map': 'Cimahi Facilities Map'
+                }
+            };
+
+            function applyLanguage(lang) {
+                document.querySelectorAll('[data-i18n]').forEach(function(el) {
+                    var key = el.getAttribute('data-i18n');
+                    if (translations[lang] && translations[lang][key] !== undefined) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+                updateLanguageUI(lang);
+                currentLang = lang;
+                localStorage.setItem('cimahiLang', lang);
+            }
+
+            // Apply bahasa yang tersimpan
+            applyLanguage(currentLang);
+
+            // Event listener untuk tombol bahasa
+            document.querySelectorAll('.lang-btn, .mobile-lang-btn').forEach(function(btn) {
+                btn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    var nextLang = currentLang === 'id' ? 'en' : 'id';
+                    applyLanguage(nextLang);
+                    if (mobileMenu) {
+                        mobileMenu.classList.add('max-h-0', 'opacity-0');
+                        mobileMenu.classList.remove('max-h-96', 'opacity-100');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
